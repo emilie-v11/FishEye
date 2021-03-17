@@ -8,6 +8,7 @@
 
 		&__item {
 			@include tag-item;
+			cursor: pointer;
 		}
 	}
 }
