@@ -1,27 +1,168 @@
 <!DOCTYPE html>
 <html lang='fr'>
+
 <head>
-   <meta charset='utf-8'>
-   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-   
-   <!-- title website -->
-   <title>FishEye</title>
-   
-   <!-- description for browsers/google-->
-   <meta name="description" content="">
-   
-   <!-- links for google fonts -->
-   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/"> -->
-   <!-- link for font-awesome icons -->
-   <link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-   
-   <!-- link for main CSS -->
-   <link rel="stylesheet" href="style.css">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+    <!-- title website -->
+    <title>FishEye</title>
+
+    <!-- description for browsers/google-->
+    <meta name="description" content="">
+
+    <!-- links for google fonts -->
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/"> -->
+    <!-- link for font-awesome icons -->
+    <link rel="stylesheet" href="https:cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <!-- link for main CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-   
-   
+    <div class="fishEye-homepage">
+        <div class="scroll">
+            <a class="scroll--link" href="#main" role="link" aria-label="Skip to main content">Passer au contenu</a>
+        </div>
+        <header class="header" role="banner">
+            <a class="header-logo" href="index.html" aria-label="FishEye Homepage">
+                <img src="./scss/img/logo.png" alt="Logo FishEye" aria-label="Logo FishEye">
+            </a>
+            <nav class="navigation" role="navigation" aria-label="photographer categories">
+                <ul class="navigation__list">
+                    <li id="portrait" class="navigation__list__item">
+                        <a>#Portrait</a>
+                    </li>
+                    <li id="art" class="navigation__list__item">
+                        <a>#Art</a>
+                    </li>
+                    <li id="fashion" class="navigation__list__item">
+                        <a>#Fashion</a>
+                    </li>
+                    <li id="architecture" class="navigation__list__item">
+                        <a>#Architecture</a>
+                    </li>
+                    <li id="travel" class="navigation__list__item">
+                        <a>#Travel</a>
+                    </li>
+                    <li id="sport" class="navigation__list__item">
+                        <a>#Sport</a>
+                    </li>
+                    <li id="animals" class="navigation__list__item">
+                        <a>#Animals</a>
+                    </li>
+                    <li id="events" class="navigation__list__item">
+                        <a>#Events</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="main" role="main">
+            <section class="container" role="region">
+                <!-- main title -->
+                <div class="main-heading">
+                    <h1> Nos photographes</h1>
+                </div>
+                <div class="photographers">
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture MK">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Mimi Keel</h2>
+                        <p class="photographers__card__place">London, UK</p>
+                        <p class="photographers__card__quote">Voir le beau dans le quotidien</p>
+                        <p class="photographers__card__price">400€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#portrait</li>
+                            <li class="photographers__card__tag__item">#events</li>
+                            <li class="photographers__card__tag__item">#travel</li>
+                            <li class="photographers__card__tag__item">#animals</li>
+                        </ul>
+                    </article>
+
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture ERW">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Ellie-Rose Wilkens</h2>
+                        <p class="photographers__card__place">Paris, France</p>
+                        <p class="photographers__card__quote">Travaille sur des compositions complexes</p>
+                        <p class="photographers__card__price">250€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#sport</li>
+                            <li class="photographers__card__tag__item">#architecture</li>
+                        </ul>
+                    </article>
+
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture TG">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Tracy Galindo</h2>
+                        <p class="photographers__card__place">Montreal, Canada</p>
+                        <p class="photographers__card__quote">Photographe freelance</p>
+                        <p class="photographers__card__price">500€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#art</li>
+                            <li class="photographers__card__tag__item">#fashion</li>
+                            <li class="photographers__card__tag__item">#events</li>
+                        </ul>
+                    </article>
+
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture NB">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Nabeel Bradford</h2>
+                        <p class="photographers__card__place">Mexico City, Mexico</p>
+                        <p class="photographers__card__quote">Je vais toujours de l'avant'</p>
+                        <p class="photographers__card__price">350€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#travel</li>
+                            <li class="photographers__card__tag__item">#portrait</li>
+                        </ul>
+                    </article>
+
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture RD">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Rhode Dubois</h2>
+                        <p class="photographers__card__place">Barcelona, Spain</p>
+                        <p class="photographers__card__quote">Créatrice de souvenirs</p>
+                        <p class="photographers__card__price">375€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#sport</li>
+                            <li class="photographers__card__tag__item">#fashion</li>
+                            <li class="photographers__card__tag__item">#events</li>
+                            <li class="photographers__card__tag__item">#animals</li>
+                        </ul>
+                    </article>
+
+                    <article class="photographers__card">
+                        <div class="photographers__card__picture MN">
+                            <!-- photo by css background-image(url) -->
+                        </div>
+                        <h2 class="photographers__card__heading">Marcel Nikolic</h2>
+                        <p class="photographers__card__place">Berlin, Germany</p>
+                        <p class="photographers__card__quote">Toujours à la recherche de LA photo</p>
+                        <p class="photographers__card__price">300€/jour</p>
+                        <ul class="photographers__card__tag">
+                            <li class="photographers__card__tag__item">#travel</li>
+                            <li class="photographers__card__tag__item">#architecture</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>

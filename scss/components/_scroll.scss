@@ -1,0 +1,19 @@
+// link fixed top page to scroll to main content
+.scroll {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	// text-align: center;
+	// z-index: 99;
+
+	&--link {
+		position: fixed;
+		top: 9px;
+		background-color: $color-scroll;
+		padding: 6px;
+		border-radius: 5px;
+		font-size: 18px;
+		font-weight: 700;
+		text-align: center;
+	}
+}
