@@ -2,11 +2,17 @@
 	max-width: 1440px;
 	max-height: 1024px;
 	margin: 3% auto;
-	position: relative;
+	position: relative; // TODO garder ou non ?
 }
 // TODO deplacer
 main {
 	display: block;
+	padding-top: 100px;
+	padding-bottom: 30px;
+}
+
+.container {
+	padding-top: 4rem;
 }
 
 .main-heading {
@@ -14,6 +20,17 @@ main {
 	margin: 0 5% 0;
 	padding: 0 2% 0 0;
 	// width: 100%;
+	position: absolute;
+	top: 0px;
+	right: 0%;
+
+	@include small-only {
+		padding: 0;
+		// margin-top: 10%;
+		position: absolute;
+		top: 40px;
+		right: 0%;
+	}
 
 	& h1 {
 		// max-width: 25%;
@@ -29,5 +46,10 @@ main {
 		line-height: 46px;
 		color: $color-primary-dark;
 		margin: 0;
+
+		@include small-only {
+			font-size: 14px;
+			line-height: 18px;
+		}
 	}
 }

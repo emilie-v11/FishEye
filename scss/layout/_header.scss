@@ -9,10 +9,23 @@
 	top: 0;
 	left: 0;
 
-	&-logo {
+	@include small-only {
+		margin: 30px 5%;
+		padding: 0;
+		align-items: flex-start;
+		max-width: 100%;
+		flex-direction: column;
+	}
+
+	&-logo img {
 		// position: absolute;
 		// left: 3%;
 		width: 200px;
 		height: 50px;
+
+		@include small-only {
+			width: 150px;
+			height: 37px;
+		}
 	}
 }

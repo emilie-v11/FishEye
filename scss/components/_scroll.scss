@@ -15,5 +15,11 @@
 		font-size: 18px;
 		font-weight: 700;
 		text-align: center;
+		// transform: translateX(-0%);
+
+		@include small-only {
+			font-size: 16px;
+			visibility: hidden; // BUG mettre animation + show/hidden scroll
+		}
 	}
 }

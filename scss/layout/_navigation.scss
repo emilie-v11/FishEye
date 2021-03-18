@@ -1,14 +1,29 @@
 .navigation {
 	margin: 0 60px 0 80px;
 
+	@include small-only {
+		margin: 0; // TODO modifier la margin après.
+		padding-top: 7%;
+	}
+
 	&__list {
 		display: flex;
 		align-items: center;
 		// margin: 0 60px 0 80px;
 
+		@include small-only {
+			flex-wrap: wrap;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
 		&__item {
 			@include tag-item;
-			cursor: pointer;
+
+			&:hover {
+				@include tag-item--hover;
+			}
 		}
 	}
 }
