@@ -1,31 +1,30 @@
 .header {
 	display: flex;
-	align-items: center;
-	justify-content: start;
-	margin: 0 0 0 5%;
-	padding: 0 2%;
-	max-width: 70%;
-	position: absolute;
-	top: 0;
-	left: 0;
+	flex-direction: column;
+	padding: 40px 10px 40px 20px;
+	width: 100%;
 
-	@include small-only {
-		margin: 30px 5%;
-		padding: 0;
-		align-items: flex-start;
+	@include large-only {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 72%;
+		padding-right: 0;
+	}
+
+	@include xlarge-only {
+		padding: 40px 100px;
 		max-width: 100%;
-		flex-direction: column;
+		justify-content: start;
 	}
 
 	&-logo img {
-		// position: absolute;
-		// left: 3%;
-		width: 200px;
-		height: 50px;
+		width: 150px;
+		height: 37px;
 
-		@include small-only {
-			width: 150px;
-			height: 37px;
+		@include xlarge-only {
+			width: 200px;
+			height: 50px;
 		}
 	}
 }

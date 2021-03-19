@@ -1,55 +1,54 @@
 .fishEye-homepage {
 	max-width: 1440px;
 	max-height: 1024px;
-	margin: 3% auto;
-	position: relative; // TODO garder ou non ?
-}
-// TODO deplacer
-main {
-	display: block;
-	padding-top: 100px;
-	padding-bottom: 30px;
+	margin: 0 auto;
+	position: relative;
 }
 
 .container {
-	padding-top: 4rem;
+	@include large-only {
+		padding-top: 4rem;
+	}
 }
 
 .main-heading {
-	text-align: right;
-	margin: 0 5% 0;
-	padding: 0 2% 0 0;
-	// width: 100%;
+	top: 50px;
+	right: 20px;
+	padding: 0;
+	margin-top: 40px;
 	position: absolute;
-	top: 0px;
-	right: 0%;
+	margin: 0;
 
-	@include small-only {
+	@include xsmall-only {
+		top: 45px;
+	}
+
+	@include large-only {
 		padding: 0;
-		// margin-top: 10%;
-		position: absolute;
-		top: 40px;
-		right: 0%;
+	}
+
+	@include xlarge-only {
+		top: 60px;
+		margin: 0 100px 0;
 	}
 
 	& h1 {
-		// max-width: 25%;
-		// position: absolute;
-		// top: 0;
-		// right: 0;
-		// margin: 5%;
-		// padding: 0 2% 0 0;
-		// margin: 0 5%;
-		// text-align: right;
+		font-size: 14px;
 		font-weight: 400;
-		font-size: 2.25rem; // 36px
-		line-height: 46px;
 		color: $color-primary-dark;
 		margin: 0;
 
+		@include xsmall-only {
+			font-size: 22px;
+		}
+
 		@include small-only {
-			font-size: 14px;
-			line-height: 18px;
+			font-size: 30px;
+		}
+
+		@include xlarge-only {
+			font-size: 36px;
+			line-height: 7px;
 		}
 	}
 }

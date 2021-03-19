@@ -1,10 +1,9 @@
 // link fixed top page to scroll to main content
+// FIXME mettre animation + show/hidden scroll
 .scroll {
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	// text-align: center;
-	// z-index: 99;
 
 	&--link {
 		position: fixed;
@@ -12,14 +11,18 @@
 		background-color: $color-scroll;
 		padding: 6px;
 		border-radius: 5px;
-		font-size: 18px;
+		font-size: 16px;
 		font-weight: 700;
 		text-align: center;
-		// transform: translateX(-0%);
+		visibility: hidden;
 
 		@include small-only {
-			font-size: 16px;
-			visibility: hidden; // BUG mettre animation + show/hidden scroll
+			visibility: hidden;
+		}
+
+		@include xlarge-only {
+			font-size: 18px;
+			visibility: visible;
 		}
 	}
 }

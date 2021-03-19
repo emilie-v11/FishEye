@@ -1,22 +1,34 @@
 .navigation {
-	margin: 0 60px 0 80px;
+	// margin: 0 60px 0 80px;
+	// display: flex;
+	// flex-wrap: wrap;
+	// align-items: center;
+	// justify-content: center;
+	// max-width: 100%;
+	// margin: 0 auto; // TODO modifier la margin après.
+	padding-top: 40px;
+	// padding: 0 0 0 100px;
 
-	@include small-only {
-		margin: 0; // TODO modifier la margin après.
-		padding-top: 7%;
+	@include large-only {
+		// margin: 0 auto; // TODO modifier la margin après.
+		// padding-top: 7%;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+	}
+	@include xlarge-only {
+		padding: 0 0 0 80px;
 	}
 
 	&__list {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		// margin: 0 60px 0 80px;
-
-		@include small-only {
-			flex-wrap: wrap;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+		justify-content: center;
+		margin: 0 auto;
+		margin: 5px 0;
 
 		&__item {
 			@include tag-item;

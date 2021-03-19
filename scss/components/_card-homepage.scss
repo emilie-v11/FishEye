@@ -2,33 +2,36 @@
 
 //TODO deplacer dans 'layout' ou 'pages'
 .photographers {
-	width: 100%;
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	padding: 6% 0;
-	justify-items: center;
-	margin: 0;
+	flex-direction: column;
+	justify-content: center;
 
-	@include small-only {
-		flex-direction: column;
-		justify-content: center;
+	@include medium-only {
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-items: center;
+		margin: 0;
 	}
 
 	&__card {
-		// width: 200px; // 33%
-		width: 370px;
-		width: 28%;
-		height: auto;
-		align-items: center;
-		// justify-items: center;
-		padding: 2% 0;
+		min-width: 301px;
+		width: 100%;
+		padding-bottom: 5%;
 
-		@include small-only {
-			width: 100%;
-			padding-bottom: 5%;
+		@include medium-only {
+			width: 50%;
 		}
+
+		@include large-only {
+			width: 370px;
+			width: 33%;
+			height: auto;
+			padding: 2% 0;
+		}
+
+		//========================================================================
 
 		&__picture {
 			width: 200px;

@@ -2,40 +2,58 @@
 ** Media Queries variables
 */
 
-/* The site is developing in responsive for large screen 1440px, 
-not mobile-first because users are mainly in computer format for accessibility.
-*/
+// desktop
+$breakpoint-xlarge: 1440px;
 
-// //desktop
-// // $breakpoint-large: 1200px;
-// $breakpoint-large: 1200px;
+// iPad pro
+$breakpoint-large: 1024px; // ou 900 ou 1200 ??
 
-// //tablet
-// $breakpoint-medium: 768px; // ou 900 ou 1024 ??
+//tablet
+$breakpoint-medium: 768px;
 
 //large phone
 $breakpoint-small: 600px;
 
+// X-Small screen
+$breakpoint-xsmall: 425px;
+
 //===================================================================================
 //Media Queries Mixins
 
-@mixin small-only {
-	@media only screen and (max-width: $breakpoint-small) {
+// 425px
+@mixin xsmall-only {
+	@media only screen and (min-width: $breakpoint-xsmall) {
 		@content;
 	}
 }
 
-// @mixin large-only {
-// 	@media only screen and (min-width: $breakpoint-large) {
-// 		@content;
-// 	}
-// }
+// 600px
+@mixin small-only {
+	@media only screen and (min-width: $breakpoint-small) {
+		@content;
+	}
+}
 
-// @mixin medium-only {
-// 	@media only screen and (min-width: $breakpoint-medium) {
-// 		@content;
-// 	}
-// }
+// 768px
+@mixin medium-only {
+	@media only screen and (min-width: $breakpoint-medium) {
+		@content;
+	}
+}
+
+// 1024px
+@mixin large-only {
+	@media only screen and (min-width: $breakpoint-large) {
+		@content;
+	}
+}
+
+// 1440px
+@mixin xlarge-only {
+	@media only screen and (min-width: $breakpoint-xlarge) {
+		@content;
+	}
+}
 
 //===================================================================================
 //variable for max-width of sections in the large version
