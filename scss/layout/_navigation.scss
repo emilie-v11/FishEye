@@ -1,17 +1,7 @@
 .navigation {
-	// margin: 0 60px 0 80px;
-	// display: flex;
-	// flex-wrap: wrap;
-	// align-items: center;
-	// justify-content: center;
-	// max-width: 100%;
-	// margin: 0 auto; // TODO modifier la margin après.
 	padding-top: 40px;
-	// padding: 0 0 0 100px;
 
 	@include large-only {
-		// margin: 0 auto; // TODO modifier la margin après.
-		// padding-top: 7%;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;

@@ -1,0 +1,33 @@
+/*
+** Hidden in small screen
+*/
+aside {
+	display: none;
+
+	@include large-only {
+		display: block;
+        position: fixed;
+        bottom: -18px;
+        right: 36px;
+	}
+	& p {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 376px;
+		height: 89px;
+		background-color: $color-beige;
+		border-radius: 5px;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 31px;
+		letter-spacing: 0em;
+
+		& #total-likes {
+			& i {
+				padding-left: 6px;
+			}
+		}
+	}
+}

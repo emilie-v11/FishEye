@@ -10,7 +10,8 @@
     <title>FishEye, Homepage</title>
 
     <!-- description for browsers/google-->
-    <meta name="description" content=" FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
+    <meta name="description"
+        content=" FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
 
     <!-- link for font-awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -22,7 +23,7 @@
 <body>
     <div class="fishEye-homepage">
         <div class="scroll">
-            <a class="scroll--link" href="#main" aria-label="Skip to main content">Passer au contenu</a>
+            <a class="scroll--link" href="#main-homepage" aria-label="Skip to main content">Passer au contenu</a>
         </div>
         <header class="header">
             <a class="header-logo" href="index.html" aria-label="FishEye Homepage">
@@ -31,7 +32,7 @@
             <nav class="navigation" aria-label="photographer categories">
                 <ul class="navigation__list">
                     <li id="portrait" class="navigation__list__item">
-                        <a href="#">#Portrait</a>
+                        <a href="#">#Portrait<span class="sr-only">Portrait</span></a>
                     </li>
                     <li id="art" class="navigation__list__item">
                         <a href="#">#Art</a>
@@ -58,124 +59,126 @@
             </nav>
         </header>
 
-        <main id="main">
+        <main id="main-homepage">
             <section class="container">
                 <!-- main title -->
                 <div class="main-heading">
                     <h1> Nos photographes</h1>
                 </div>
-                <div class="photographers">
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture MK">
+
+                <!-- Part with photographers'cards - create dynamically with JS -->
+                <div class="container photographers">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait MK">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Mimi Keel</h2>
+                            <h2 class="photographers__name">Mimi Keel</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">London, UK</span>
-                            <span class="photographers__card__infos--quote">Voir le beau dans le quotidien</span>
-                            <span class="photographers__card__infos--price">400€/jour</span>
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">London, UK</span>
+                            <span class="photographers__infos--tagline">Voir le beau dans le quotidien</span>
+                            <span class="photographers__infos--price">400€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#portrait</li>
-                            <li class="photographers__card__tag__item">#events</li>
-                            <li class="photographers__card__tag__item">#travel</li>
-                            <li class="photographers__card__tag__item">#animals</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#portrait</li>
+                            <li class="photographers__tags__item">#events</li>
+                            <li class="photographers__tags__item">#travel</li>
+                            <li class="photographers__tags__item">#animals</li>
                         </ul>
                     </article>
 
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture ERW">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait ERW">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Ellie-Rose Wilkens</h2>
+                            <h2 class="photographers__name">Ellie-Rose Wilkens</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">Paris, France</span>
-                            <span class="photographers__card__infos--quote">Travaille sur des compositions
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">Paris, France</span>
+                            <span class="photographers__infos--tagline">Travaille sur des compositions
                                 complexes</span>
-                            <span class="photographers__card__infos--price">250€/jour</span>
+                            <span class="photographers__infos--price">250€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#sport</li>
-                            <li class="photographers__card__tag__item">#architecture</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#sport</li>
+                            <li class="photographers__tags__item">#architecture</li>
                         </ul>
                     </article>
 
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture TG">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait TG">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Tracy Galindo</h2>
+                            <h2 class="photographers__name">Tracy Galindo</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">Montreal, Canada</span>
-                            <span class="photographers__card__infos--quote">Photographe freelance</span>
-                            <span class="photographers__card__infos--price">500€/jour</span>
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">Montreal, Canada</span>
+                            <span class="photographers__infos--tagline">Photographe freelance</span>
+                            <span class="photographers__infos--price">500€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#art</li>
-                            <li class="photographers__card__tag__item">#fashion</li>
-                            <li class="photographers__card__tag__item">#events</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#art</li>
+                            <li class="photographers__tags__item">#fashion</li>
+                            <li class="photographers__tags__item">#events</li>
                         </ul>
                     </article>
 
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture NB">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait NB">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Nabeel Bradford</h2>
+                            <h2 class="photographers__name">Nabeel Bradford</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">Mexico City, Mexico</span>
-                            <span class="photographers__card__infos--quote">Je vais toujours de l'avant'</span>
-                            <span class="photographers__card__infos--price">350€/jour</span>
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">Mexico City, Mexico</span>
+                            <span class="photographers__infos--tagline">Je vais toujours de l'avant'</span>
+                            <span class="photographers__infos--price">350€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#travel</li>
-                            <li class="photographers__card__tag__item">#portrait</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#travel</li>
+                            <li class="photographers__tags__item">#portrait</li>
                         </ul>
                     </article>
 
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture RD">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait RD">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Rhode Dubois</h2>
+                            <h2 class="photographers__name">Rhode Dubois</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">Barcelona, Spain</span>
-                            <span class="photographers__card__infos--quote">Créatrice de souvenirs</span>
-                            <span class="photographers__card__infos--price">375€/jour</span>
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">Barcelona, Spain</span>
+                            <span class="photographers__infos--tagline">Créatrice de souvenirs</span>
+                            <span class="photographers__infos--price">375€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#sport</li>
-                            <li class="photographers__card__tag__item">#fashion</li>
-                            <li class="photographers__card__tag__item">#events</li>
-                            <li class="photographers__card__tag__item">#animals</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#sport</li>
+                            <li class="photographers__tags__item">#fashion</li>
+                            <li class="photographers__tags__item">#events</li>
+                            <li class="photographers__tags__item">#animals</li>
                         </ul>
                     </article>
 
-                    <article class="photographers__card">
-                        <a href="#">
-                            <div class="photographers__card__picture MN">
+                    <article class="photographers">
+                        <a href="pages/photographer-page.html">
+                            <div class="photographers__portrait MN">
                                 <!-- photo by css background-image(url) -->
                             </div>
-                            <h2 class="photographers__card__heading">Marcel Nikolic</h2>
+                            <h2 class="photographers__name">Marcel Nikolic</h2>
                         </a>
-                        <p class="photographers__card__infos">
-                            <span class="photographers__card__infos--place">Berlin, Germany</span>
-                            <span class="photographers__card__infos--quote">Toujours à la recherche de LA photo</span>
-                            <span class="photographers__card__infos--price">300€/jour</span>
+                        <p class="photographers__infos">
+                            <span class="photographers__infos--place">Berlin, Germany</span>
+                            <span class="photographers__infos--tagline">Toujours à la recherche de LA photo</span>
+                            <span class="photographers__infos--price">300€/jour</span>
                         </p>
-                        <ul class="photographers__card__tag">
-                            <li class="photographers__card__tag__item">#travel</li>
-                            <li class="photographers__card__tag__item">#architecture</li>
+                        <ul class="photographers__tags">
+                            <li class="photographers__tags__item">#travel</li>
+                            <li class="photographers__tags__item">#architecture</li>
                         </ul>
                     </article>
 

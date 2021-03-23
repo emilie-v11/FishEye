@@ -1,0 +1,131 @@
+.photographer {
+	padding: 0 20px;
+	position: relative;
+	margin: 0 auto;
+	max-width: 700px;
+
+    @include medium-only {
+        padding: 0;
+    }
+
+	@include large-only {
+		padding: 50px 50px;
+		width: 900px;
+		height: 313px;
+		max-width: 100%;
+		background-color: $color-secondary-light;
+		border-radius: 5px;
+	}
+
+    @include xlarge-only {
+        padding: 50px 50px;
+		width: 1240px;
+		height: 313px;
+		max-width: 100%;
+    }
+
+	&__heading {
+		font-size: 36px;
+		line-height: 47px;
+		letter-spacing: 0em;
+		font-style: normal;
+		font-weight: 400;
+		text-align: left;
+		color: $color-primary-light;
+		margin: 0;
+
+		@include large-only {
+			font-size: 64px;
+			line-height: 83px;
+			// padding: 50px 50px;
+		}
+	}
+
+	&__infos {
+		display: flex;
+		flex-direction: column;
+
+		&--place {
+			@include typo--xsmall;
+			color: $color-primary-dark;
+
+			@include large-only {
+				font-size: 24px;
+				line-height: 31px;
+				padding-bottom: 19px;
+			}
+		}
+		&--tagline {
+			@include typo--xsmall;
+			color: $color-grey;
+
+			@include large-only {
+				font-size: 18px;
+				line-height: 23px;
+				padding-bottom: 15px;
+			}
+		}
+	}
+
+	& .photographers__tags {
+		display: flex;
+		justify-content: left;
+
+		&__item {
+			@include large-only {
+				font-size: 18px;
+				font-weight: 500;
+				line-height: 23px;
+				letter-spacing: 0em;
+				text-align: left;
+			}
+		}
+
+		& :nth-child(1) {
+			margin-left: 0;
+		}
+	}
+
+	.contact {
+		position: fixed;
+		bottom: 28px;
+		left: 50%;
+		transform: translateX(-50%);
+		// margin-left: -85px;
+		border: none;
+		border-radius: 5px;
+		background-color: $color-primary-dark;
+		padding: 5px 19px 7px;
+		color: $color-white;
+		@include typo--small;
+		text-align: center;
+
+		@include large-only {
+			width: 170px;
+			height: 69px;
+			position: absolute;
+			top: 63px;
+            left: 480px;
+            padding: 21px 11px;
+		}
+
+        @include xlarge-only {
+            left: 530px;
+        }
+	}
+}
+
+.photographers__portrait.small.MK {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: -5px;
+	right: 20px;
+
+	@include large-only {
+		width: 200px;
+		height: 200px;
+		top: 50px;
+		right: 50px;
+	}
+}

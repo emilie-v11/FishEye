@@ -8,7 +8,7 @@
 	line-height: 16px;
 	border: 0.5px solid #c4c4c4;
 	border-radius: 11px;
-	padding: 3px 5px;
+	padding: 0px 5px 1px;
 	margin: 3px;
 	cursor: pointer;
 }
@@ -16,4 +16,22 @@
 @mixin tag-item--hover {
 	background-color: $color-primary-dark;
 	color: $color-white;
+}
+
+@mixin typo--small {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 23px;
+	letter-spacing: 0em;
+}
+
+@mixin typo--xsmall {
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 17px;
+	letter-spacing: 0em;
+	text-align: left;
+	padding-bottom: 5px;
 }

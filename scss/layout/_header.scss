@@ -28,3 +28,20 @@
 		}
 	}
 }
+
+.fishEye-photographer-page {
+	& .header {
+		@include large-only {
+			padding: 40px 60px;
+			max-width: 100%;
+			justify-content: start;
+		}
+
+		&-logo img {
+            @include large-only{
+			width: 200px;
+			height: 50px;
+            }
+		}
+	}
+}

@@ -1,0 +1,117 @@
+.container-works {
+	margin: 10px auto 60px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	// margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include large-only {
+		padding: 40px 0px;
+		justify-content: space-between;
+	}
+
+	@include xlarge-only {
+		padding: 40px 55px;
+	}
+}
+
+// FIXME corriger la taille et dispo image
+// BUG image *3 et collées!
+
+.work {
+	width: 335px;
+	// position: relative;
+	padding-bottom: 30px;
+	margin: 20px auto;
+
+	@include large-only {
+		width: 350px;
+		// min-width: 25%;
+	}
+
+	&__image {
+		background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
+		width: 335px;
+		height: 190px;
+		border-radius: 5px;
+		// object-fit: cover;
+
+		@include large-only {
+			width: 350px;
+			height: 300px;
+		}
+
+		&.MK1 {
+			background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
+			background-position: right 30% top 18%; // right 50% bottom 58%
+			background-size: 100%; //150
+		}
+	}
+
+	&__infos {
+		display: flex;
+		justify-content: space-between;
+		color: $color-primary-dark;
+		padding-top: 10px;
+
+		@include large-only {
+			width: 350px;
+		}
+
+		&__name {
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 18px;
+			letter-spacing: 0em;
+
+			@include large-only {
+				font-size: 24px;
+				line-height: 31px;
+				text-align: left;
+			}
+		}
+
+		&__price {
+			font-size: 12px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 16px;
+			letter-spacing: 0em;
+
+			@include large-only {
+				font-size: 24px;
+				font-weight: 500;
+				line-height: 31px;
+			}
+		}
+
+		&__likes {
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 18px;
+			letter-spacing: 0em;
+			padding-left: 10px;
+			padding-right: 6px;
+
+			@include large-only {
+				font-size: 24px;
+				line-height: 31px;
+				padding-left: 15px;
+			}
+
+			& i {
+				width: 10px;
+				height: 10px;
+
+				@include large-only {
+					width: 17px;
+					height: 18px;
+				}
+			}
+		}
+	}
+}
