@@ -33,8 +33,7 @@
 	}
 
 	& h1 {
-		font-size: 14px;
-		font-weight: 400;
+		@include typo-14px--400;
 		color: $color-primary-dark;
 		margin: 0;
 
@@ -47,7 +46,7 @@
 		}
 
 		@include xlarge-only {
-			font-size: 36px;
+			@include typo-36px--400;
 			line-height: 7px;
 		}
 	}

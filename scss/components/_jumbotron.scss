@@ -1,42 +1,41 @@
 .photographer {
-	padding: 0 20px;
+	// padding: 0 20px;
 	position: relative;
 	margin: 0 auto;
-	max-width: 700px;
+	width: 335px;
 
-    @include medium-only {
-        padding: 0;
-    }
+	@include medium-only {
+		padding: 0;
+		width: 700px;
+	}
 
 	@include large-only {
 		padding: 50px 50px;
-		width: 900px;
+		margin: 0 auto;
+		min-width: 900px;
+		max-width: 1240px;
+		// width: 100%;
 		height: 313px;
-		max-width: 100%;
+		// max-width: 100%;
 		background-color: $color-secondary-light;
 		border-radius: 5px;
 	}
 
-    @include xlarge-only {
-        padding: 50px 50px;
+	@include xlarge-only {
+		padding: 50px 50px;
 		width: 1240px;
 		height: 313px;
 		max-width: 100%;
-    }
+	}
 
 	&__heading {
-		font-size: 36px;
-		line-height: 47px;
-		letter-spacing: 0em;
-		font-style: normal;
-		font-weight: 400;
+		@include typo-36px--400;
 		text-align: left;
 		color: $color-primary-light;
 		margin: 0;
 
 		@include large-only {
-			font-size: 64px;
-			line-height: 83px;
+			@include typo-64px--400;
 			// padding: 50px 50px;
 		}
 	}
@@ -46,22 +45,25 @@
 		flex-direction: column;
 
 		&--place {
-			@include typo--xsmall;
+			@include typo-13px--400;
+			padding-bottom: 5px;
+			text-align: left;
 			color: $color-primary-dark;
 
 			@include large-only {
-				font-size: 24px;
-				line-height: 31px;
+				@include typo-24px--500;
+				font-weight: 400;
 				padding-bottom: 19px;
 			}
 		}
 		&--tagline {
-			@include typo--xsmall;
+			@include typo-13px--400;
+			padding-bottom: 5px;
+			text-align: left;
 			color: $color-grey;
 
 			@include large-only {
-				font-size: 18px;
-				line-height: 23px;
+				@include typo-18px--500;
 				padding-bottom: 15px;
 			}
 		}
@@ -73,10 +75,7 @@
 
 		&__item {
 			@include large-only {
-				font-size: 18px;
-				font-weight: 500;
-				line-height: 23px;
-				letter-spacing: 0em;
+				@include typo-18px--500;
 				text-align: left;
 			}
 		}
@@ -85,34 +84,6 @@
 			margin-left: 0;
 		}
 	}
-
-	.contact {
-		position: fixed;
-		bottom: 28px;
-		left: 50%;
-		transform: translateX(-50%);
-		// margin-left: -85px;
-		border: none;
-		border-radius: 5px;
-		background-color: $color-primary-dark;
-		padding: 5px 19px 7px;
-		color: $color-white;
-		@include typo--small;
-		text-align: center;
-
-		@include large-only {
-			width: 170px;
-			height: 69px;
-			position: absolute;
-			top: 63px;
-            left: 480px;
-            padding: 21px 11px;
-		}
-
-        @include xlarge-only {
-            left: 530px;
-        }
-	}
 }
 
 .photographers__portrait.small.MK {
@@ -120,7 +91,7 @@
 	height: 100px;
 	position: absolute;
 	top: -5px;
-	right: 20px;
+	right: 0px;
 
 	@include large-only {
 		width: 200px;

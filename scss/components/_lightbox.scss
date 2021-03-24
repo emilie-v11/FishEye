@@ -1,0 +1,143 @@
+.lightbox {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	right: 50%;
+	transform: translateX(-50%);
+	width: 100vw;
+	max-width: 1250px;
+	height: 100vh;
+
+	& .lightbox-modal {
+		position: relative;
+		width: 342px;
+		height: 248px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: $color-primary-dark;
+		margin: 0;
+
+		@include medium-only {
+			width: 684px;
+			height: 496px; //387
+		}
+
+		@include large-only {
+			width: 956px;
+			height: 644px; // 984px
+		}
+
+		@include xlarge-only {
+			width: 1253px;
+			height: 940px; // 984px
+		}
+
+		.close-lightbox {
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			&.fa-times {
+				@include medium-only {
+					font-size: 22px;
+				}
+
+				@include large-only {
+					font-size: 42px;
+				}
+			}
+		}
+
+		.previous {
+			position: absolute;
+			top: 50%;
+			left: 0;
+
+			&.fa-chevron-left {
+				@include medium-only {
+					font-size: 22px;
+				}
+
+				@include large-only {
+					font-size: 42px;
+				}
+			}
+		}
+
+		.next {
+			position: absolute;
+			top: 50%;
+			right: 0;
+
+			&.fa-chevron-right {
+				@include medium-only {
+					font-size: 22px;
+				}
+
+				@include large-only {
+					font-size: 42px;
+				}
+			}
+		}
+
+		.lightbox-content {
+			position: absolute;
+			height: 248px;
+			width: 290px;
+			border-radius: 5px;
+			top: 0px;
+			left: 0%;
+			transform: translate(9%, 0);
+			background: #c4c4c4;
+
+			@include medium-only {
+				width: 580px;
+				height: 496px;
+			}
+
+			@include large-only {
+				width: 800px;
+				height: 644px; // 984px
+			}
+
+			@include xlarge-only {
+				width: 1050px;
+				height: 900px;
+			}
+
+			& img,
+			video {
+				width: 100%;
+				height: 100%;
+				max-width: 100%;
+				border-radius: 5px;
+				object-fit: cover;
+			}
+
+			& h3 {
+				@include typo-14px--400;
+
+				@include medium-only {
+					@include typo-18px--500;
+					font-weight: 400;
+				}
+
+				@include large-only {
+					@include typo-24px--500;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}
+
+.overlay-lightbox {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $color-white;
+	z-index: 5;
+}

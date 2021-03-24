@@ -83,10 +83,7 @@
 	}
 
 	&__name {
-		font-size: 36px;
-		font-weight: 400;
-		line-height: 47px;
-		letter-spacing: 0em;
+		@include typo-36px--400;
 		text-align: center;
 		color: $color-primary-light;
 	}
@@ -97,10 +94,7 @@
 		justify-content: center;
 		align-items: center;
 		&--place {
-			font-size: 13px;
-			font-weight: 400;
-			line-height: 17px;
-			letter-spacing: 0em;
+			@include typo-13px--400;
 			text-align: center;
 			padding-bottom: 3px;
 			color: $color-primary-dark;

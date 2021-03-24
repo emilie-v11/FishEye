@@ -1,0 +1,63 @@
+@mixin typo-12px--500 {
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-13px--400 {
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 17px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-14px--400 {
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-18px--500 {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 23px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-18px--700 {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 23px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-24px--500 {
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 31px;
+	letter-spacing: 0em;
+}
+
+@mixin typo-36px--400 {
+	font-size: 36px;
+	line-height: 47px;
+	letter-spacing: 0em;
+	font-style: normal;
+	font-weight: 400;
+}
+
+@mixin typo-64px--400 {
+	font-size: 64px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 83px;
+	letter-spacing: 0em;
+}

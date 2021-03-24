@@ -1,4 +1,7 @@
-// link fixed top page to scroll to main content
+/*
+link fixed top page to scroll to main content
+"Passer au contenu"
+*/
 // FIXME mettre animation + show/hidden scroll
 .scroll {
 	width: 100%;
@@ -21,7 +24,7 @@
 		}
 
 		@include xlarge-only {
-			font-size: 18px;
+			@include typo-18px--700;
 			visibility: visible;
 		}
 	}

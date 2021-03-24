@@ -31,17 +31,40 @@
 
 .fishEye-photographer-page {
 	& .header {
+		width: 335px;
+
+		@include xsmall-only {
+			padding-left: 45px;
+		}
+
+		@include small-only {
+			width: 600px;
+			margin: 0 auto;
+		}
+
+		@include medium-only {
+			width: 700px;
+			padding-left: 0;
+		}
+
 		@include large-only {
 			padding: 40px 60px;
+			max-width: 100%;
+			width: 100%;
+			justify-content: start;
+		}
+
+		@include xlarge-only {
+			padding: 40px 100px;
 			max-width: 100%;
 			justify-content: start;
 		}
 
 		&-logo img {
-            @include large-only{
-			width: 200px;
-			height: 50px;
-            }
+			@include large-only {
+				width: 200px;
+				height: 50px;
+			}
 		}
 	}
 }

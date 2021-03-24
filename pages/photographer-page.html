@@ -44,7 +44,7 @@
                         <li class="photographers__tags__item">#animals</li>
                     </ul>
                 </div>
-                <button class="contact">Contactez-moi</button>
+                <button class="contact-btn btn">Contactez-moi</button>
                 <div class="photographers__portrait small MK">
                     <!-- photo by css background-image(url) -->
                 </div>
@@ -66,11 +66,11 @@
                         <span class="fas fa-chevron-down"></span>
                     </button>
                     <ul class="dropdown hidden">
-                        <a href="#" class="dropdown__item">Popularité
+                        <li href="#" class="dropdown__item">Popularité
                             <span class="fas fa-chevron-up"></span>
-                        </a>
-                        <a href="#" class="dropdown__item">Date</a>
-                        <a href="#" class="dropdown__item">Titre</a>
+                        </li>
+                        <li href="#" class="dropdown__item">Date</li>
+                        <li href="#" class="dropdown__item">Titre</li>
                     </ul>
                 </nav>
 
@@ -246,60 +246,78 @@
                 </div>
             </section>
 
-            <div id="form-modal" style="display: none;">
-                <div class="form-modal-content">
-                    <span class="close fas fa-times" aria-label="Close the contact form"></span>
-                    <form name="contact" method="post">
-                        <div class="form-content">
-                            <h2>Contactez-moi
-                                <br>
-                                <span id="photographer-name"></span>
-                            </h2>
+            <div class="overlay-form hidden">
+                <div id="form-modal" class="modal ">
+                    <span class="close-form" aria-label="Close the form contact">
+                        <img class="icon-times" src="../scss/img/icon-times.png" alt="icon times">
+                    </span>
+                    <form class="form-content" name="contact" method="post">
+                        <h3>Contactez-moi <br />
+                            <span id="photographer-name"> Mimi Keel</span>
+                        </h3>
 
-                            <div class="form-data">
-                                <label id="first-name" for="first">Prénom</label>
-                                <br>
-                                <input class="text-control" type="text" id="first" name="first"
-                                    aria-labelledby="first-name" />
-                            </div>
-
-                            <div class="form-data">
-                                <label id="last-name" for="last">Nom</label>
-                                <br>
-                                <input class="text-control" type="text" id="last" name="last"
-                                    aria-labelledby="last-name" />
-                            </div>
-
-                            <div class="form-data">
-                                <label id="email-address" for="email">Email</label>
-                                <br>
-                                <input class="text-control" type="email" id="email" name="email"
-                                    aria-labelledby="email-address" />
-                            </div>
-
-                            <div class="form-data">
-                                <label id="message-input" for="message">Votre message</label>
-                                <br>
-                                <textarea class="text-control" id="message" name="message" rows="4"
-                                    aria-labelledby="message-input"></textarea>
-                            </div>
-
-                            <input id="submit-btn" type="submit" class="btn" value="Envoyer" aria-label="send" />
-
-                            <div id="formResult">
-                                <span class="close fas fa-times" aria-label="close contact form"></span>
-                                <p id="formResultText"></p>
-                                <input id="close-btn--validation" class="btn" type="button" value="Fermer"
-                                    aria-label="Close the contact form" />
-                            </div>
+                        <div class="form-data">
+                            <label id="first-name" for="first">Prénom</label>
+                            <br>
+                            <input id="first" class="text-control" type="text" name="first"
+                                aria-labelledby="first-name" />
                         </div>
+
+                        <div class="form-data">
+                            <label id="last-name" for="last">Nom</label>
+                            <br>
+                            <input id="last" class="text-control" type="text" name="last" aria-labelledby="last-name" />
+                        </div>
+
+                        <div class="form-data">
+                            <label id="email-address" for="email">Email</label>
+                            <br>
+                            <input id="email" class="text-control" type="email" name="email"
+                                aria-labelledby="email address" />
+                        </div>
+
+                        <div class="form-data 4">
+                            <label id="message-input" for="message">Votre message</label>
+                            <br>
+                            <textarea id="message" class="text-control" name="message"
+                                aria-labelledby="message-form"></textarea>
+                        </div>
+
+                        <input id="form-submit" class="submit-btn btn" type="submit" value="Envoyer"
+                            aria-label="send" />
                     </form>
                 </div>
             </div>
 
-            <div class="lightbox">
-
+            <div class="overlay-lightbox hidden">
+                <div class="lightbox">
+                    <div class="lightbox-modal">
+                        <span class="close-lightbox fas fa-times"></span>
+                        <span class="previous fas fa-chevron-left"></span>
+                        <span class="next fas fa-chevron-right"></span>
+                        <div class="lightbox-content">
+                            <img src="../scss/img/photos/Mimi/Travel_Lonesome.jpg" alt="">
+                            <h3>Travel Lonesome</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="overlay-lightbox hidden">
+                <div class="lightbox">
+                    <div class="lightbox-modal">
+                        <span class="close-lightbox fas fa-times"></span>
+                        <span class="previous fas fa-chevron-left"></span>
+                        <span class="next fas fa-chevron-right"></span>
+                        <div class="lightbox-content">
+                            <video src="../scss/img/photos/Mimi/Animals_Wild_Horses_in_the_mountains.mp4"
+                                controls="true"></video>
+                            <h3>Wild Horses in the mountains</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </main>
     </div>

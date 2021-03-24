@@ -2,8 +2,7 @@
 
 @mixin tag-item {
 	color: $color-primary-dark;
-	font-size: 12px;
-	font-weight: 500;
+	@include typo-12px--500;
 	text-align: center;
 	line-height: 16px;
 	border: 0.5px solid #c4c4c4;
@@ -18,20 +17,27 @@
 	color: $color-white;
 }
 
-@mixin typo--small {
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 23px;
-	letter-spacing: 0em;
+// btn contact-btn & submit-btn in form
+@mixin btn--small {
+	color: $color-white;
+	@include typo-18px--700;
+	text-align: center;
+	background-color: $color-primary-dark;
+	border: none;
+	border-radius: 5px;
+	width: 170px;
+	height: 35px;
+	padding: 7px 18px;
 }
 
-@mixin typo--xsmall {
-	font-size: 13px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 17px;
-	letter-spacing: 0em;
-	text-align: left;
-	padding-bottom: 5px;
+@mixin btn--large {
+	color: $color-white;
+	@include typo-18px--700;
+	text-align: center;
+	background-color: $color-primary-dark;
+	border: none;
+	border-radius: 5px;
+	width: 170px;
+	height: 69px;
+	padding: 21px 11px;
 }

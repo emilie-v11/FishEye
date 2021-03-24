@@ -1,30 +1,8 @@
-.container-works {
-	margin: 10px auto 60px;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: start;
-	// margin: 0 auto;
-	margin-left: auto;
-	margin-right: auto;
-
-	@include large-only {
-		padding: 40px 0px;
-		justify-content: space-between;
-	}
-
-	@include xlarge-only {
-		padding: 40px 55px;
-	}
-}
-
-// FIXME corriger la taille et dispo image
-// BUG image *3 et collées!
-
 .work {
 	width: 335px;
-	// position: relative;
 	padding-bottom: 30px;
-	margin: 20px auto;
+	// margin: 20px auto;
+	margin: 20px;
 
 	@include large-only {
 		width: 350px;
@@ -61,45 +39,31 @@
 		}
 
 		&__name {
-			font-size: 14px;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 18px;
-			letter-spacing: 0em;
+			@include typo-14px--400;
 
 			@include large-only {
-				font-size: 24px;
-				line-height: 31px;
+				@include typo-24px--500;
+				font-weight: 400;
 				text-align: left;
 			}
 		}
 
 		&__price {
-			font-size: 12px;
-			font-style: normal;
-			font-weight: 500;
-			line-height: 16px;
-			letter-spacing: 0em;
+			@include typo-12px--500;
 
 			@include large-only {
-				font-size: 24px;
-				font-weight: 500;
-				line-height: 31px;
+				@include typo-24px--500;
 			}
 		}
 
 		&__likes {
-			font-size: 14px;
-			font-style: normal;
+			@include typo-14px--400;
 			font-weight: 500;
-			line-height: 18px;
-			letter-spacing: 0em;
 			padding-left: 10px;
 			padding-right: 6px;
 
 			@include large-only {
-				font-size: 24px;
-				line-height: 31px;
+				@include typo-24px--500;
 				padding-left: 15px;
 			}
 

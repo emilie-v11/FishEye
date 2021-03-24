@@ -12,20 +12,20 @@
 			padding: 40px 60px 8px;
 		}
 
-        @include xlarge-only {
-            padding: 40px 100px 8px;
-        }
+		@include xlarge-only {
+			padding: 40px 100px 8px;
+		}
 
 		& h2 {
 			margin: 0;
 			padding-right: 26px;
-			@include typo--small;
+			@include typo-18px--700;
 			text-align: left;
 		}
 
 		& .dropdown-btn {
 			padding: 14px;
-			@include typo--small;
+			@include typo-18px--700;
 			text-align: left;
 			color: $color-white;
 			background-color: $color-primary-dark;
@@ -55,7 +55,7 @@
 
 			&__item {
 				padding: 14px;
-				@include typo--small;
+				@include typo-18px--700;
 				text-align: left;
 
 				&:nth-child(2) {

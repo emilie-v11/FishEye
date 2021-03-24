@@ -1,0 +1,57 @@
+/*  Photographer-page : 
+    Base Btn for contact-btn & submit-btn
+*/
+.btn {
+	@include btn--small;
+
+	@include large-only {
+		@include btn--large;
+	}
+}
+/*  Photographer-page:
+    btn .contact-btn in jumbotron(large screen)
+    & fixed bottom page (small screen)
+*/
+.contact-btn {
+	position: fixed;
+	bottom: 28px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	&:hover {
+		color: $color-black;
+		background-color: $color-beige;
+	}
+
+	@include large-only {
+		position: absolute;
+		top: 63px;
+		left: 480px;
+	}
+
+	@include xlarge-only {
+		left: 530px;
+	}
+}
+
+/*  Photographer-page:
+    btn .submit-btn in form (large screen & small screen)
+*/
+.submit-btn {
+	position: relative;
+	// margin-top: 26px;
+    bottom: -25px;
+	// bottom: 75px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	@include large-only {
+		margin-top: 26px;
+
+		bottom: 35px;
+		left: 35px;
+        bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}

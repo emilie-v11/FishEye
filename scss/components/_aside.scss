@@ -18,11 +18,8 @@ aside {
 		height: 89px;
 		background-color: $color-beige;
 		border-radius: 5px;
-		font-size: 24px;
-		font-style: normal;
-		font-weight: 500;
-		line-height: 31px;
-		letter-spacing: 0em;
+        @include typo-24px--500;
+		// font-weight: 500;
 
 		& #total-likes {
 			& i {
