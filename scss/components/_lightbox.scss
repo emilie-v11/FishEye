@@ -89,7 +89,7 @@
 			top: 0px;
 			left: 0%;
 			transform: translate(9%, 0);
-			background: #c4c4c4;
+			background: $color-grey-bg;
 
 			@include medium-only {
 				width: 580px;
