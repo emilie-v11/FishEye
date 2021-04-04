@@ -31,7 +31,7 @@
 
         <main class="photographer-page">
             <section class="photographer">
-                <div class="photographer-content">
+                <!-- <div class="photographer-content">
                     <h1 class="photographer__heading">Mimi Keel</h1>
                     <p class="photographer__infos">
                         <span class="photographer__infos--place">London, UK</span>
@@ -46,8 +46,8 @@
                 </div>
                 <button class="contact-btn btn">Contactez-moi</button>
                 <div class="photographers__portrait small MK">
-                    <!-- photo by css background-image(url) -->
-                </div>
+                    <!-- photo by css background-image(url) ->
+                </div> -->
             </section>
 
             <aside>
@@ -292,21 +292,26 @@
             <div class="overlay-lightbox hidden">
                 <div class="lightbox">
                     <div class="lightbox-modal">
+                        <!-- <span class="close-lightbox fas fa-times"></span>
+                        <span class="previous fas fa-chevron-left"></span>
+                        <span class="next fas fa-chevron-right"></span> -->
+                        <!-- <div class="lightbox-content"> -->
+                        <img src="../scss/img/photos/Mimi/Animals_Rainbow.jpg" alt="">
+                        <h3>Travel Lonesome</h3>
                         <span class="close-lightbox fas fa-times"></span>
                         <span class="previous fas fa-chevron-left"></span>
                         <span class="next fas fa-chevron-right"></span>
-                        <div class="lightbox-content">
-                            <img src="../scss/img/photos/Mimi/Travel_Lonesome.jpg" alt="">
-                            <h3>Travel Lonesome</h3>
-                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
 
-            <div class="overlay-lightbox hidden">
+            <!-- FIXME modification class for test (class="overlay-lightbox hidden") -->
+            <div class="hidden">
                 <div class="lightbox">
                     <div class="lightbox-modal">
-                        <span class="close-lightbox fas fa-times"></span>
+                        <!-- FIXME modification class for test (class="close-lightbox fas fa-times") -->
+                        <span class=""></span>
                         <span class="previous fas fa-chevron-left"></span>
                         <span class="next fas fa-chevron-right"></span>
                         <div class="lightbox-content">
@@ -322,6 +327,7 @@
         </main>
     </div>
 
+    <script src="/photographer-page-script.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 // cards photgraphers.container homepage
 
 //TODO deplacer dans 'layout' ou 'pages'
-.photographers.container {
+.container-photographers {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -41,42 +41,36 @@
 		border-radius: 50%;
 		margin: 0 auto 20px;
 		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+		object-fit: cover;
 
-		&.MK {
-			// Mimi Keel
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/MimiKeel.jpg');
+		&.243 {
+			// Mimi Keel MK
 			background-position: right 30% bottom 50%; // right 50% bottom 58%
 			background-size: 100%; //150
-			// object-fit: cover;
 		}
-		&.ERW {
-			// Ellie-Rose Wilkens
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/EllieRoseWilkens.jpg');
+		&.930 {
+			// Ellie-Rose Wilkens ERW
 			background-position: right 50% bottom 58%;
 			background-size: 180%;
 		}
-		&.TG {
-			// Tracy Galindo
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/TracyGalindo.jpg');
+		&.82 {
+			// Tracy Galindo TG
 			background-position: right 50% bottom 56%;
 			background-size: 100%;
 		}
-		&.NB {
-			// Nabeel Bradford
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/NabeelBrandford.jpg');
+		&.527 {
+			// Nabeel Bradford NB
 			background-position: right 30% bottom 56%;
 			background-size: 140%;
 		}
-		&.RD {
-			// Rhode Dubois
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/RhodeDubois.jpg');
+		&.925 {
+			// Rhode Dubois RD
 			background-position: left 40% top 0%; //left 40% top 15%
 			background-size: 180%;
 		}
 
-		&.MN {
-			// Marcel Nikolic
-			background-image: url('../scss/img/photos/PhotographersIDPhotos/MarcelNikolic.jpg');
+		&.195 {
+			// Marcel Nikolic MN
 			background-position: left 50% top 0%;
 			background-size: 180%;
 		}

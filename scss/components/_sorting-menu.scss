@@ -5,6 +5,9 @@
 .photographer-works {
 	& .sorting-menu {
 		display: none;
+		// z-index: 1000;
+		// height: 500px;
+		position: relative;
 
 		@include large-only {
 			display: flex;
@@ -31,6 +34,8 @@
 			background-color: $color-primary-dark;
 			border-radius: 5px;
 			border: none;
+			width: 170px;
+			height: 69px;
 
 			&.hidden {
 				display: none;
@@ -61,6 +66,7 @@
 				&:nth-child(2) {
 					border-top: #fff solid 2px;
 					width: 90%;
+					text-align: left;
 					align-self: center;
 				}
 
@@ -68,6 +74,7 @@
 					border-top: #fff solid 2px;
 					width: 90%;
 					text-align: left;
+					align-self: center;
 				}
 
 				& span {
