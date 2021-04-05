@@ -4,26 +4,32 @@
 const photographersListEl = document.querySelector('.container-photographers');
 const tagsListEl = document.querySelector('.photographers__tags');
 
+// navigation tags
+const tagsNavEl = document.querySelector('.navigation__list');
+const tagsNavItemEl = document.querySelectorAll('.navigation__list__item');
+console.log(tagsNavEl);
+console.log(tagsNavItemEl);
+
 const URL = '/FishEyeDataFR.json';
 
 // Read the json
 // Method: GET
 fetch(URL)
-	.then((response) => {
+	.then(response => {
 		if (response.ok) {
 			return response.json();
 		} else {
 			return Promise.reject('something went wrong!');
 		}
 	})
-	.then((data) => renderPhotographers(data))
+	.then(data => renderPhotographers(data))
 	// .then((data) => renderPhotographerJT(data))
-	.catch((error) => console.log('error is', error));
+	.catch(error => console.log('error is', error));
 
 // Function render photographers' cards
-const renderPhotographers = (data) => {
+const renderPhotographers = data => {
 	let newPhotographer = '';
-	data['photographers'].forEach((photographers) => {
+	data['photographers'].forEach(photographers => {
 		// Render Photographers' Tag list
 		let newLiTags = '';
 		let tagsList = photographers['tags'];
@@ -35,7 +41,7 @@ const renderPhotographers = (data) => {
 		// Render Photographers' cards
 		newPhotographer += `
             <article class="photographers" id="${photographers['id']}">
-                <a href="pages/photographer-page.html">
+                <a href="pages/photographer-page.html?id=${photographers['id']}">
                     <div class="photographers__portrait">
                         <img class="photographers__portrait ${photographers['id']}" src='./scss/img/photos/PhotographersIDPhotos/${photographers['portrait']}' alt="" aria-label=""/>
                     </div>
@@ -57,3 +63,21 @@ const renderPhotographers = (data) => {
 	});
 	photographersListEl.innerHTML = newPhotographer;
 };
+
+// Change style for tag selected
+for (let i = 0; i < tagsNavItemEl.length; i++) {
+	tagsNavItemEl[i].addEventListener('click', function () {
+		let tagActive = tagsNavItemEl[i].classList.contains('active');
+
+		tagsNavItemEl[i].classList.toggle('active');
+		if (!tagsNavItemEl[i] === tagActive) {
+			tagsNavItemEl[i].style.color = '#fff';
+			tagsNavItemEl[i].style.backgroundColor = '#901c1c';
+			if (tagsNavItemEl[i] != tagActive) {
+			} else {
+			}
+		}
+	});
+}
+
+//FIXME juste un selectionné, déselectionné qd re-clique sur autre tag

@@ -1,5 +1,4 @@
 .photographer {
-	// padding: 0 20px;
 	position: relative;
 	margin: 0 auto;
 	width: 335px;
@@ -15,7 +14,8 @@
 		min-width: 900px;
 		max-width: 1240px;
 		// width: 100%;
-		height: 313px;
+		// height: 313px;
+		height: 100%;
 		// max-width: 100%;
 		background-color: $color-secondary-light;
 		border-radius: 5px;
@@ -33,10 +33,10 @@
 		text-align: left;
 		color: $color-primary-light;
 		margin: 0;
+		// max-width: 295px;
 
-		@include large-only {
+		@include xlarge-only {
 			@include typo-64px--400;
-			// padding: 50px 50px;
 		}
 	}
 
@@ -69,24 +69,26 @@
 		}
 	}
 
-	& .photographers__tags {
-		display: flex;
-		justify-content: left;
+	& .photographers {
+		&__tags {
+			display: flex;
+			justify-content: left;
 
-		&__item {
-			@include large-only {
-				@include typo-18px--500;
-				text-align: left;
+			&__item {
+				@include large-only {
+					@include typo-18px--500;
+					text-align: left;
+				}
+
+				&:nth-child(1) {
+					margin-left: 0;
+				}
 			}
-		}
-
-		& :nth-child(1) {
-			margin-left: 0;
 		}
 	}
 }
 
-.photographers__portrait.small.MK {
+.photographers__portrait.small {
 	width: 100px;
 	height: 100px;
 	position: absolute;
@@ -98,5 +100,18 @@
 		height: 200px;
 		top: 50px;
 		right: 50px;
+	}
+
+	& img {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+
+		@include large-only {
+			width: 200px;
+			height: 200px;
+		}
 	}
 }

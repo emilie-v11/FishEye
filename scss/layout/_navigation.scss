@@ -23,7 +23,8 @@
 		&__item {
 			@include tag-item;
 
-			&:hover {
+			&:hover,
+			&:active {
 				@include tag-item--hover;
 			}
 		}

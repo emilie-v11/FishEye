@@ -3,29 +3,32 @@ link fixed top page to scroll to main content
 "Passer au contenu"
 */
 // FIXME mettre animation + show/hidden scroll
-.scroll {
-	width: 100%;
+.scroll-link {
+	// width: 100%;
 	display: flex;
 	justify-content: center;
 
-	&--link {
-		position: fixed;
-		top: 9px;
-		background-color: $color-beige;
-		padding: 6px;
-		border-radius: 5px;
-		font-size: 16px;
-		font-weight: 700;
-		text-align: center;
-		visibility: hidden;
+	position: fixed;
+	top: 9px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: $color-beige;
+	padding: 6px;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	text-align: center;
+	// visibility: hidden;
+	display: none;
 
-		@include small-only {
-			visibility: hidden;
-		}
+	// @include small-only {
+	// 	visibility: hidden;
+	// 	// display: none;
+	// }
 
-		@include xlarge-only {
-			@include typo-18px--700;
-			visibility: visible;
-		}
+	@include large-only {
+		@include typo-18px--700;
+		// visibility: visible;
+		display: block;
 	}
 }
