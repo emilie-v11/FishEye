@@ -24,11 +24,12 @@
 	}
 
 	@include large-only {
+		top: 50px;
 		padding: 0;
 	}
 
 	@include xlarge-only {
-		top: 60px;
+		top: 65px;
 		margin: 0 100px 0;
 	}
 

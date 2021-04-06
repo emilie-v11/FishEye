@@ -3,6 +3,7 @@
 */
 aside {
 	display: none;
+    z-index: 100;
 
 	@include large-only {
 		display: block;

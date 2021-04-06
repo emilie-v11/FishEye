@@ -10,22 +10,33 @@
 	}
 
 	&__image {
-		background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
+		// background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
 		width: 335px;
 		height: 190px;
 		border-radius: 5px;
-		background-color: $color-grey-bg-card;
-		// object-fit: cover;
+		object-fit: cover;
+
+        position: relative;
 
 		@include large-only {
 			width: 350px;
 			height: 300px;
 		}
 
-		&.MK1 {
-			background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
+		&.img {
 			background-position: right 30% top 18%; // right 50% bottom 58%
 			background-size: 100%; //150
+			object-fit: cover;
+		}
+
+		&.video {
+			background-position: right 30% top 18%; // right 50% bottom 58%
+			background-size: 100%; //150
+			object-fit: cover;
+
+            position: absolute;
+            top: 0;
+            left: 0;
 		}
 	}
 

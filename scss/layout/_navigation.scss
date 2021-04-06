@@ -9,7 +9,8 @@
 		padding: 0;
 	}
 	@include xlarge-only {
-		padding: 0 0 0 80px;
+		// padding: 0 0 0 80px;
+		width: 60%;
 	}
 
 	&__list {
@@ -19,6 +20,8 @@
 		justify-content: center;
 		margin: 0 auto;
 		margin: 5px 0;
+
+		// padding-top: 40px;
 
 		&__item {
 			@include tag-item;

@@ -1,25 +1,17 @@
 'use strict';
-
-const ID = Utils.getIdByUrl();
-console.log(ID);
-
-// find()
 /*
  **  DOM ELEMENTS
  */
-
 // Form contact
 const btnOpenFormEl = document.querySelectorAll('.contact-btn');
 const btnCloseFormEl = document.querySelectorAll('.close-form');
 const overlayFormEl = document.querySelector('.overlay-form');
-
 const formEl = document.querySelector('.form-content');
 const submitBtnForm = document.querySelectorAll('#form-submit');
 const firstnameInput = document.querySelectorAll('#first-name');
 const lastnameInput = document.querySelectorAll('#last-name');
 const emailInput = document.querySelectorAll('#email');
 const messageInput = document.querySelectorAll('#message');
-
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
 const btnCloseLightboxEl = document.querySelector('.close-lightbox');
@@ -30,32 +22,25 @@ const dropdownListEl = document.querySelector('.dropdown');
 const photographerJumbotronEl = document.querySelector('.photographer');
 const tagsListEl = document.querySelector('.photographers__tags');
 // Photographer work
+const containerWorks = document.querySelector('.container-works');
 const workImageEl = document.querySelectorAll('.work__image');
+
+const ID = Utils.getIdByUrl();
+console.log(ID);
 
 // URL JSON
 const URL = '/FishEyeDataFR.json';
 
 const datas = Utils.getAllPhotographers(URL).then(data =>
-	renderPhotographerJT(data)
+	renderPhotographerJumbotron(data)
 );
-// fetch(URL)
-// 	.then(response => {
-// 		if (response.ok) {
-// 			return response.json();
-// 		} else {
-// 			return Promise.reject('something went wrong!');
-// 		}
-// 	})
-// 	.then(data => renderPhotographerJT(data))
-// 	.catch(error => console.log('error is', error));
 
-const renderPhotographerJT = data => {
-	console.log(data);
-	let newPhotographerJT = '';
+// function for jumbotron photographer
+const renderPhotographerJumbotron = data => {
+	// console.log(data);
+	let newPhotographerJumbotron = '';
 	let photographers = data['photographers'];
 	let photographer = photographers.find(photograph => photograph.id == ID);
-	// let photographerMimi = photographer[0];
-	// photographer.forEach(function (photographers) {
 	console.log(photographer);
 
 	// Render Photographers' Tag list
@@ -66,8 +51,8 @@ const renderPhotographerJT = data => {
 	            <li class="photographers__tags__item">#${tagsList[i]}</li>
 	            `;
 	}
-	// Render Each Photographer' jumbotron
-	newPhotographerJT = `
+	// Render Each Photographer' Jumbotron
+	newPhotographerJumbotron = `
 	    <div class="photographer-content">
 	        <h1 class="photographer__heading">${photographer.name}</h1>
 	        <p class="photographer__infos">
@@ -83,7 +68,45 @@ const renderPhotographerJT = data => {
 	        <img class="photographers__portrait small ${photographer.id}" src='../scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
 	    </div>
 	    `;
-	photographerJumbotronEl.innerHTML = newPhotographerJT;
+	photographerJumbotronEl.innerHTML = newPhotographerJumbotron;
+};
+
+const datasWorks = Utils.getAllPhotographers(URL).then(data =>
+	renderPhotographerWorks(data)
+);
+
+// Function render photographers' works
+const renderPhotographerWorks = data => {
+	let newMedia = '';
+	let media = data.media;
+	const workById = media.filter(media => media['photographerId'] == ID);
+
+	console.log(media); // ==> Array with 59 medias
+	console.log(ID); // ==> id of photographer in URL
+	console.log(workById); // ==> array 10 work for Mimi
+
+	workById.forEach(work => {
+		newMedia += `
+            <article class="work">
+                <a href="#">
+                    <div class="work__image">
+                        <img class="work__image img" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
+                        <video class="work__image video" src="../scss/img/photos/${ID}/${work.video}"></video>
+                    </div>
+                </a>
+                <div class="work__infos">
+                    <h3 class="work__infos__name">Arc-en-ciel</h3>
+                    <p>
+                        <span class="work__infos__price">${work.price} €</span>
+                        <span class="work__infos__likes">${work.likes}
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </p>
+                </div>
+            </article>
+            `;
+	});
+	containerWorks.innerHTML = newMedia;
 };
 
 // /*
