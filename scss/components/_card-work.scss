@@ -1,12 +1,19 @@
 .work {
 	width: 335px;
-	padding-bottom: 30px;
+	// padding-bottom: 30px;
 	// margin: 20px auto;
 	margin: 20px;
 
 	@include large-only {
 		width: 350px;
+		// width: 335px;
+		margin: 20px;
+
 		// min-width: 25%;
+		// margin-left: 70px;
+	}
+	@include xlarge-only {
+		margin: 20px 50px;
 	}
 
 	&__image {
@@ -15,8 +22,10 @@
 		height: 190px;
 		border-radius: 5px;
 		object-fit: cover;
+		background-position: right 30% top 18%; // right 50% bottom 58%
+		background-size: 100%; //150
 
-        position: relative;
+		position: relative; //FIXME 
 
 		@include large-only {
 			width: 350px;
@@ -26,7 +35,7 @@
 		&.img {
 			background-position: right 30% top 18%; // right 50% bottom 58%
 			background-size: 100%; //150
-			object-fit: cover;
+			// object-fit: cover; // cover
 		}
 
 		&.video {
@@ -34,9 +43,9 @@
 			background-size: 100%; //150
 			object-fit: cover;
 
-            position: absolute;
-            top: 0;
-            left: 0;
+			position: absolute; //FIXME 
+			top: 0;
+			left: 0;
 		}
 	}
 

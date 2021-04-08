@@ -17,6 +17,7 @@
 	bottom: 28px;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 5;
 
 	&:hover {
 		color: $color-black;
@@ -25,7 +26,7 @@
 
 	@include large-only {
 		position: absolute;
-		top: 18%; // 15%
+		top: 19%; // 15% 18%
 		left: 55%;
 	}
 }

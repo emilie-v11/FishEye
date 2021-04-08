@@ -8,6 +8,7 @@
 .photographer-page {
 	// padding: 10px 20px 20px;
 	margin: 0 auto;
+	padding-bottom: 10px;
 }
 
 // FIXME corriger la taille et dispo image
@@ -28,11 +29,16 @@
 	// }
 
 	@include large-only {
-		padding: 40px 40px;
+		// padding: 40px 40px;
 		justify-content: space-between;
+		// justify-content: center;
+		margin: 40px 40px;
 	}
 
 	@include xlarge-only {
-		padding: 40px 80px;
+		// padding: 40px 80px;
+		justify-content: flex-start;
+		margin: 40px 45px;
+		padding: 0;
 	}
 }

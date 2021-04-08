@@ -3,13 +3,13 @@
 */
 aside {
 	display: none;
-    z-index: 100;
+	z-index: 5;
 
 	@include large-only {
 		display: block;
-        position: fixed;
-        bottom: -18px;
-        right: 36px;
+		position: fixed;
+		bottom: -2%; // -18px
+		right: 8%; // 36px
 	}
 	& p {
 		display: flex;
@@ -19,7 +19,7 @@ aside {
 		height: 89px;
 		background-color: $color-beige;
 		border-radius: 5px;
-        @include typo-24px--500;
+		@include typo-24px--500;
 		// font-weight: 500;
 
 		& #total-likes {

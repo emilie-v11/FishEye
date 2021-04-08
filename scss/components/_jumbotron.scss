@@ -34,6 +34,7 @@
 		color: $color-primary-light;
 		margin: 0;
 		// max-width: 295px;
+        max-width: 80%;
 
 		@include xlarge-only {
 			@include typo-64px--400;

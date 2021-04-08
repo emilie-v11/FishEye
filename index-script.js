@@ -13,25 +13,14 @@ console.log(tagsNavItemEl);
 // URL JSON
 const URL = '/FishEyeDataFR.json';
 
+//==================================================================================================
+//  Render Photographers' Cards Homepage
+//==================================================================================================
+
 const datas = Utils.getAllPhotographers(URL).then(data =>
 	renderPhotographers(data)
 );
 
-// Read the json
-// Method: GET
-// fetch(URL)
-// 	.then(response => {
-// 		if (response.ok) {
-// 			return response.json();
-// 		} else {
-// 			return Promise.reject('something went wrong!');
-// 		}
-// 	})
-// 	.then(data => renderPhotographers(data))
-// 	// .then((data) => renderPhotographerJT(data))
-// 	.catch(error => console.log('error is', error));
-
-// Function render photographers' cards
 const renderPhotographers = data => {
 	let newPhotographer = '';
 	data['photographers'].forEach(photographers => {

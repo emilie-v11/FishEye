@@ -3,9 +3,11 @@
  **  DOM ELEMENTS
  */
 // Form contact
-const btnOpenFormEl = document.querySelectorAll('.contact-btn');
-const btnCloseFormEl = document.querySelectorAll('.close-form');
+const btnOpenFormEl = document.querySelector('.contact-btn');
+const btnCloseFormEl = document.querySelector('.close-form');
 const overlayFormEl = document.querySelector('.overlay-form');
+const modalFormEl = document.querySelector('.modal-form');
+
 const formEl = document.querySelector('.form-content');
 const submitBtnForm = document.querySelectorAll('#form-submit');
 const firstnameInput = document.querySelectorAll('#first-name');
@@ -31,6 +33,10 @@ console.log(ID);
 // URL JSON
 const URL = '/FishEyeDataFR.json';
 
+//==================================================================================================
+//  Render Photographer Jumbotron
+//==================================================================================================
+
 const datas = Utils.getAllPhotographers(URL).then(data =>
 	renderPhotographerJumbotron(data)
 );
@@ -51,6 +57,7 @@ const renderPhotographerJumbotron = data => {
 	            <li class="photographers__tags__item">#${tagsList[i]}</li>
 	            `;
 	}
+
 	// Render Each Photographer' Jumbotron
 	newPhotographerJumbotron = `
 	    <div class="photographer-content">
@@ -63,13 +70,16 @@ const renderPhotographerJumbotron = data => {
 	        ${newLiTags}
 	        </ul>
 	    </div>
-	    <button class="contact-btn btn">Contactez-moi</button>
 	    <div class="photographers__portrait small">
 	        <img class="photographers__portrait small ${photographer.id}" src='../scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
 	    </div>
 	    `;
 	photographerJumbotronEl.innerHTML = newPhotographerJumbotron;
 };
+
+//==================================================================================================
+//  Render Photographer Works
+//==================================================================================================
 
 const datasWorks = Utils.getAllPhotographers(URL).then(data =>
 	renderPhotographerWorks(data)
@@ -109,40 +119,47 @@ const renderPhotographerWorks = data => {
 	containerWorks.innerHTML = newMedia;
 };
 
-// /*
-//  ** function and events for Open & Close form contact :
-//  */
+//==================================================================================================
+//  function and events for Open & Close form contact :
+//==================================================================================================
 
-// const openCloseForm = function () {
-// 	overlayFormEl.classList.toggle('hidden');
+// const openForm = function () {
+// 	overlayFormEl.classList.remove('hidden');
+// 	modalFormEl.classList.remove('hidden');
 // };
 
-// // BUG Pquoi? le bouton ne marche pas: p-ê car code au dessus le multiplie pr chaque photographe
-// // donc faut forEach et querySelectorAll
-// btnOpenFormEl.forEach(button => {
-// 	addEventListener('click', openCloseForm);
-// });
+const closeForm = function () {
+	overlayFormEl.classList.add('hidden');
+	modalFormEl.classList.add('hidden');
+};
 
-// btnCloseFormEl.forEach(button => {
-// 	addEventListener('click', openCloseForm);
-// });
+btnOpenFormEl.addEventListener('click', () => {
+	overlayFormEl.classList.remove('hidden');
+	modalFormEl.classList.remove('hidden');
+});
 
-// // Event submit form d
-// submitBtnForm.forEach(button => {
-// 	addEventListener('submit', function (e) {
-// 		e.preventDefault();
-// 		console.log(`
-//             Prénom : ${firstnameInput.value}
-//             Nom : ${lastnameInput.value}
-//             Email : ${emailInput.value}
-//             Message : ${messageInput.value}
-//         `);
-// 	});
-// });
+btnCloseFormEl.addEventListener('click', closeForm);
 
-/*
- ** function and events for Open & Close sorting dropdown :
- */
+//====================
+// Event submit form
+//====================
+
+//FIXME envoyer les infos + fermer le form et reset form. cf P4 !
+modalFormEl.addEventListener('submit', function (e) {
+	e.preventDefault();
+	return console.log(`
+            Prénom : ${firstnameInput.value}
+            Nom : ${lastnameInput.value}
+            Email : ${emailInput.value}
+            Message : ${messageInput.value}
+        `);
+	closeForm();
+});
+
+//==================================================================================================
+//  function and events for Open & Close sorting dropdown :
+//==================================================================================================
+
 const openDropdown = function () {
 	btnDropdownEl.classList.add('hidden');
 	dropdownListEl.classList.remove('hidden');
@@ -158,12 +175,13 @@ const closeDropdown = function () {
 	// console.log(btnDropdownEl.textContent);
 };
 
-btnDropdownEl.addEventListener('click', openDropdown);
-dropdownListEl.addEventListener('click', closeDropdown);
+// btnDropdownEl.addEventListener('click', openDropdown);
+// dropdownListEl.addEventListener('click', closeDropdown);
 
-/*
- ** function and events for Open & Close lightboxes :
- */
+//==================================================================================================
+//  function and events for Open & Close lightboxes :
+//==================================================================================================
+
 const openCloseLightbox = function () {
 	overlayLightboxEl.classList.toggle('hidden');
 };
@@ -173,3 +191,5 @@ for (let i = 0; i < workImageEl.length; i++) {
 }
 // workImageEl.addEventListener('click', openCloseLightbox);
 btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
+
+console.log(workImageEl);
