@@ -1,4 +1,5 @@
-.photographer {
+
+.jumbotron {
 	position: relative;
 	margin: 0 auto;
 	width: 335px;
@@ -28,6 +29,7 @@
 		max-width: 100%;
 	}
 
+    // Jumbotron heading
 	&__heading {
 		@include typo-36px--400;
 		text-align: left;
@@ -41,6 +43,7 @@
 		}
 	}
 
+    // Jumbotron infos: city and country
 	&__infos {
 		display: flex;
 		flex-direction: column;
@@ -70,6 +73,7 @@
 		}
 	}
 
+    // Jumbotron tags
 	& .photographers {
 		&__tags {
 			display: flex;
@@ -88,7 +92,7 @@
 		}
 	}
 }
-
+// Jumbotron Small photo
 .photographers__portrait.small {
 	width: 100px;
 	height: 100px;

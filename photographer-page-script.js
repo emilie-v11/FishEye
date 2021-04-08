@@ -2,6 +2,14 @@
 /*
  **  DOM ELEMENTS
  */
+// Main
+const mainEl = document.querySelector('.photographer-page');
+// Jumbotron photographer
+const jumbotronEl = document.querySelector('.jumbotron');
+const tagsListEl = document.querySelector('.photographers__tags');
+// Photographer work
+const containerWorks = document.querySelector('.container-works');
+const workImageEl = document.querySelectorAll('.work__media');
 // Form contact
 const btnOpenFormEl = document.querySelector('.contact-btn');
 const btnCloseFormEl = document.querySelector('.close-form');
@@ -20,15 +28,9 @@ const btnCloseLightboxEl = document.querySelector('.close-lightbox');
 // Dropdown
 const btnDropdownEl = document.querySelector('.dropdown-btn');
 const dropdownListEl = document.querySelector('.dropdown');
-// Jumbotron photographer
-const photographerJumbotronEl = document.querySelector('.photographer');
-const tagsListEl = document.querySelector('.photographers__tags');
-// Photographer work
-const containerWorks = document.querySelector('.container-works');
-const workImageEl = document.querySelectorAll('.work__image');
 
 const ID = Utils.getIdByUrl();
-console.log(ID);
+// console.log(ID);
 
 // URL JSON
 const URL = '/FishEyeDataFR.json';
@@ -37,14 +39,14 @@ const URL = '/FishEyeDataFR.json';
 //  Render Photographer Jumbotron
 //==================================================================================================
 
-const datas = Utils.getAllPhotographers(URL).then(data =>
-	renderPhotographerJumbotron(data)
+const datasJumbotron = Utils.getAllPhotographers(URL).then(data =>
+	renderJumbotron(data)
 );
 
 // function for jumbotron photographer
-const renderPhotographerJumbotron = data => {
+const renderJumbotron = data => {
 	// console.log(data);
-	let newPhotographerJumbotron = '';
+	let newJumbotron = '';
 	let photographers = data['photographers'];
 	let photographer = photographers.find(photograph => photograph.id == ID);
 	console.log(photographer);
@@ -58,13 +60,28 @@ const renderPhotographerJumbotron = data => {
 	            `;
 	}
 
+	// Total Likes by each photographer for all works likes
+	let media = data.media;
+    const dataByID = media.filter(media => media['photographerId'] == ID);
+    
+    // Create an array with all likes of current photographer (ID)
+	let likesByIDList = dataByID.map(likesByID => likesByID.likes);
+    console.log(likesByIDList);
+
+    // Calcul the total of the likes' array
+    let totalLikes = likesByIDList.reduce((a, b) => a + b);
+    console.log(totalLikes);
+
+	console.log(dataByID); // works photographers [10]
+	console.log(dataByID.length); //Mimi 10
+
 	// Render Each Photographer' Jumbotron
-	newPhotographerJumbotron = `
-	    <div class="photographer-content">
-	        <h1 class="photographer__heading">${photographer.name}</h1>
-	        <p class="photographer__infos">
-	            <span class="photographer__infos--place">${photographer.city}, ${photographer.country}</span>
-	            <span class="photographer__infos--tagline">${photographer.tagline}</span>
+	newJumbotron = `
+	    <div class="jumbotron-content">
+	        <h1 class="jumbotron__heading">${photographer.name}</h1>
+	        <p class="jumbotron__infos">
+	            <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
+	            <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
 	        </p>
 	        <ul class="photographers__tags">
 	        ${newLiTags}
@@ -73,8 +90,14 @@ const renderPhotographerJumbotron = data => {
 	    <div class="photographers__portrait small">
 	        <img class="photographers__portrait small ${photographer.id}" src='../scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
 	    </div>
+        <aside>
+            <p>
+                <span class="total-likes">${totalLikes} <i class="fas fa-heart" aria-label="likes"></i></span>
+                <span class="price-day">${photographer.price}€ / jour</span>
+            </p>
+        </aside>
 	    `;
-	photographerJumbotronEl.innerHTML = newPhotographerJumbotron;
+	jumbotronEl.innerHTML = newJumbotron;
 };
 
 //==================================================================================================
@@ -99,9 +122,9 @@ const renderPhotographerWorks = data => {
 		newMedia += `
             <article class="work">
                 <a href="#">
-                    <div class="work__image">
-                        <img class="work__image img" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
-                        <video class="work__image video" src="../scss/img/photos/${ID}/${work.video}"></video>
+                    <div class="work__media">
+                        <img class="work__media image" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
+                        <video class="work__media video" src="../scss/img/photos/${ID}/${work.video}"></video>
                     </div>
                 </a>
                 <div class="work__infos">
@@ -192,4 +215,4 @@ for (let i = 0; i < workImageEl.length; i++) {
 // workImageEl.addEventListener('click', openCloseLightbox);
 btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
 
-console.log(workImageEl);
+// console.log(workImageEl);

@@ -16,7 +16,7 @@
 		margin: 20px 50px;
 	}
 
-	&__image {
+	&__media {
 		// background-image: url(../scss/img/photos/Mimi/Animals_Rainbow.jpg);
 		width: 335px;
 		height: 190px;
@@ -25,14 +25,14 @@
 		background-position: right 30% top 18%; // right 50% bottom 58%
 		background-size: 100%; //150
 
-		position: relative; //FIXME 
+		position: relative; //FIXME
 
 		@include large-only {
 			width: 350px;
 			height: 300px;
 		}
 
-		&.img {
+		&.image {
 			background-position: right 30% top 18%; // right 50% bottom 58%
 			background-size: 100%; //150
 			// object-fit: cover; // cover
@@ -43,7 +43,7 @@
 			background-size: 100%; //150
 			object-fit: cover;
 
-			position: absolute; //FIXME 
+			position: absolute; //FIXME
 			top: 0;
 			left: 0;
 		}
