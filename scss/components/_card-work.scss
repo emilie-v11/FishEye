@@ -54,6 +54,7 @@
 		justify-content: space-between;
 		color: $color-primary-dark;
 		padding-top: 10px;
+		width: 100%;
 
 		@include large-only {
 			width: 350px;
@@ -61,12 +62,19 @@
 
 		&__name {
 			@include typo-14px--400;
+			max-width: 228px;
 
 			@include large-only {
 				@include typo-24px--500;
 				font-weight: 400;
 				text-align: left;
 			}
+		}
+
+		& p {
+			// min-width: 126px;
+			min-width: 129px;
+			text-align: right;
 		}
 
 		&__price {
@@ -80,12 +88,11 @@
 		&__likes {
 			@include typo-14px--400;
 			font-weight: 500;
-			padding-left: 10px;
+			padding-left: 8px;
 			padding-right: 6px;
 
 			@include large-only {
 				@include typo-24px--500;
-				padding-left: 15px;
 			}
 
 			& i {
@@ -95,6 +102,7 @@
 				@include large-only {
 					width: 17px;
 					height: 18px;
+					margin-left: 5px;
 				}
 			}
 		}

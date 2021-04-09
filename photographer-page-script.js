@@ -17,6 +17,7 @@ const overlayFormEl = document.querySelector('.overlay-form');
 const modalFormEl = document.querySelector('.modal-form');
 
 const formEl = document.querySelector('.form-content');
+const photographerName = document.querySelector('.photographer-name');
 const submitBtnForm = document.querySelectorAll('#form-submit');
 const firstnameInput = document.querySelectorAll('#first-name');
 const lastnameInput = document.querySelectorAll('#last-name');
@@ -30,7 +31,7 @@ const btnDropdownEl = document.querySelector('.dropdown-btn');
 const dropdownListEl = document.querySelector('.dropdown');
 
 const ID = Utils.getIdByUrl();
-// console.log(ID);
+console.log(ID);
 
 // URL JSON
 const URL = '/FishEyeDataFR.json';
@@ -56,24 +57,27 @@ const renderJumbotron = data => {
 	let tagsList = photographer['tags'];
 	for (let i = 0; i < tagsList.length; i++) {
 		newLiTags += `
-	            <li class="photographers__tags__item">#${tagsList[i]}</li>
-	            `;
+            <li class="photographers__tags__item">#${tagsList[i]}</li>
+        `;
 	}
 
 	// Total Likes by each photographer for all works likes
 	let media = data.media;
-    const dataByID = media.filter(media => media['photographerId'] == ID);
-    
-    // Create an array with all likes of current photographer (ID)
-	let likesByIDList = dataByID.map(likesByID => likesByID.likes);
-    console.log(likesByIDList);
-
-    // Calcul the total of the likes' array
-    let totalLikes = likesByIDList.reduce((a, b) => a + b);
-    console.log(totalLikes);
-
+	const dataByID = media.filter(media => media['photographerId'] == ID);
 	console.log(dataByID); // works photographers [10]
-	console.log(dataByID.length); //Mimi 10
+
+	// Create an array with all likes of current photographer (ID)
+	let likesByIDList = dataByID.map(likesByID => likesByID.likes);
+	console.log(likesByIDList);
+
+	// Calcul the total of the likes' array
+	// let totalLikes = likesByIDList.reduce((a, b) => a + b);
+	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
+
+	console.log(totalLikes);
+
+	// Render photographer name in form modal
+	photographerName.innerHTML = `${photographer.name}`;
 
 	// Render Each Photographer' Jumbotron
 	newJumbotron = `
@@ -113,10 +117,18 @@ const renderPhotographerWorks = data => {
 	let newMedia = '';
 	let media = data.media;
 	const workById = media.filter(media => media['photographerId'] == ID);
-
 	console.log(media); // ==> Array with 59 medias
 	console.log(ID); // ==> id of photographer in URL
 	console.log(workById); // ==> array 10 work for Mimi
+
+	let likesByIDList = workById.map(likesByID => likesByID.likes);
+	console.log(likesByIDList);
+
+	// Calcul the total of the likes' array
+	// let totalLikes = likesByIDList.reduce((a, b) => a + b);
+	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
+
+	console.log(totalLikes); // ==>
 
 	workById.forEach(work => {
 		newMedia += `
@@ -128,12 +140,10 @@ const renderPhotographerWorks = data => {
                     </div>
                 </a>
                 <div class="work__infos">
-                    <h3 class="work__infos__name">Arc-en-ciel</h3>
+                    <h3 class="work__infos__name">${work.alt}</h3>
                     <p>
-                        <span class="work__infos__price">${work.price} €</span>
-                        <span class="work__infos__likes">${work.likes}
-                            <i class="fas fa-heart"></i>
-                        </span>
+                        <span class="work__infos__price">${work.price}€</span>
+                        <span class="work__infos__likes">${work.likes}<i class="fas fa-heart"></i></span>
                     </p>
                 </div>
             </article>
@@ -151,16 +161,17 @@ const renderPhotographerWorks = data => {
 // 	modalFormEl.classList.remove('hidden');
 // };
 
+const openForm = function () {
+	overlayFormEl.classList.remove('hidden');
+	modalFormEl.classList.remove('hidden');
+};
+
 const closeForm = function () {
 	overlayFormEl.classList.add('hidden');
 	modalFormEl.classList.add('hidden');
 };
 
-btnOpenFormEl.addEventListener('click', () => {
-	overlayFormEl.classList.remove('hidden');
-	modalFormEl.classList.remove('hidden');
-});
-
+btnOpenFormEl.addEventListener('click', openForm);
 btnCloseFormEl.addEventListener('click', closeForm);
 
 //====================
