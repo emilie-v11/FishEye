@@ -89,21 +89,12 @@
 			@include typo-14px--400;
 			font-weight: 500;
 			padding-left: 8px;
-			padding-right: 6px;
+			padding-right: 18px;
+			position: relative;
 
 			@include large-only {
 				@include typo-24px--500;
-			}
-
-			& i {
-				width: 10px;
-				height: 10px;
-
-				@include large-only {
-					width: 17px;
-					height: 18px;
-					margin-left: 5px;
-				}
+				padding-right: 28px;
 			}
 		}
 	}

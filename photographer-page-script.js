@@ -4,12 +4,16 @@
  */
 // Main
 const mainEl = document.querySelector('.photographer-page');
+
 // Jumbotron photographer
 const jumbotronEl = document.querySelector('.jumbotron');
 const tagsListEl = document.querySelector('.photographers__tags');
+
 // Photographer work
 const containerWorks = document.querySelector('.container-works');
 const workImageEl = document.querySelectorAll('.work__media');
+// const btnLike = document.querySelector('.btn-like');
+
 // Form contact
 const btnOpenFormEl = document.querySelector('.contact-btn');
 const btnCloseFormEl = document.querySelector('.close-form');
@@ -23,9 +27,11 @@ const firstnameInput = document.querySelectorAll('#first-name');
 const lastnameInput = document.querySelectorAll('#last-name');
 const emailInput = document.querySelectorAll('#email');
 const messageInput = document.querySelectorAll('#message');
+
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
 const btnCloseLightboxEl = document.querySelector('.close-lightbox');
+
 // Dropdown
 const btnDropdownEl = document.querySelector('.dropdown-btn');
 const dropdownListEl = document.querySelector('.dropdown');
@@ -39,7 +45,6 @@ const URL = '/FishEyeDataFR.json';
 //==================================================================================================
 //  Render Photographer Jumbotron
 //==================================================================================================
-
 const datasJumbotron = Utils.getAllPhotographers(URL).then(data =>
 	renderJumbotron(data)
 );
@@ -57,7 +62,7 @@ const renderJumbotron = data => {
 	let tagsList = photographer['tags'];
 	for (let i = 0; i < tagsList.length; i++) {
 		newLiTags += `
-            <li class="photographers__tags__item">#${tagsList[i]}</li>
+            <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
         `;
 	}
 
@@ -71,9 +76,7 @@ const renderJumbotron = data => {
 	console.log(likesByIDList);
 
 	// Calcul the total of the likes' array
-	// let totalLikes = likesByIDList.reduce((a, b) => a + b);
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
-
 	console.log(totalLikes);
 
 	// Render photographer name in form modal
@@ -87,17 +90,21 @@ const renderJumbotron = data => {
 	            <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
 	            <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
 	        </p>
-	        <ul class="photographers__tags">
-	        ${newLiTags}
-	        </ul>
+	        <nav class="photographers__tags">
+	            ${newLiTags}
+	        </nav>
 	    </div>
 	    <div class="photographers__portrait small">
 	        <img class="photographers__portrait small ${photographer.id}" src='../scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
 	    </div>
-        <aside>
-            <p>
-                <span class="total-likes">${totalLikes} <i class="fas fa-heart" aria-label="likes"></i></span>
-                <span class="price-day">${photographer.price}€ / jour</span>
+        <aside class="aside">
+            <p> 
+                <span class='total-likes'>
+                    ${totalLikes} <i class='fas fa-heart' aria-label='likes'></i>
+                </span>
+                <span class='price-day'>
+                    ${photographer.price}€ / jour
+                </span>
             </p>
         </aside>
 	    `;
@@ -125,10 +132,22 @@ const renderPhotographerWorks = data => {
 	console.log(likesByIDList);
 
 	// Calcul the total of the likes' array
-	// let totalLikes = likesByIDList.reduce((a, b) => a + b);
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
+	console.log(totalLikes);
 
-	console.log(totalLikes); // ==>
+	// // BUG FIXME ne fonction pas 😭 !!!
+	// function likeWork(button) {
+	// 	console.log('ok');
+	console.log(likesByIDList);
+
+	// let btnLike = document.querySelectorAll('.btn-like');
+	// const addLike = button => {
+	//     btnLike.forEach(button => {
+	//         likesByID.likes += 1;
+	//     })
+	//     console.log('ok');
+	// };
+	// btnLike.addEventListener('click', addLike());
 
 	workById.forEach(work => {
 		newMedia += `
@@ -143,23 +162,82 @@ const renderPhotographerWorks = data => {
                     <h3 class="work__infos__name">${work.alt}</h3>
                     <p>
                         <span class="work__infos__price">${work.price}€</span>
-                        <span class="work__infos__likes">${work.likes}<i class="fas fa-heart"></i></span>
+                        <span class="work__infos__likes">${work.likes}
+                            <a href="#" class="btn-like" type="button">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        </span>
                     </p>
                 </div>
             </article>
             `;
+		console.log(work.likes);
 	});
 	containerWorks.innerHTML = newMedia;
+
+	let btnLike = document.querySelectorAll('.btn-like');
+	let likesNumber = document.querySelectorAll('.work__infos__likes');
+	console.log(btnLike, btnLike.length); // nodelist avec 10 btn
+	console.log(likesNumber, likesNumber.length);
+
+	// 	// for (let i = 0; i < likesNumber.length; i++) {
+	// 	// 	// const liked = likesByIDList[i];
+	// 	// 	likesNumber[i] = likesNumber + 1;
+	// 	// 	console.log(likesNumber[i]);
+	// 	// }
+	// 	// like[i] = like + 1;
+	// 	// console.log(like);
+	btnLike.addEventListener('click', function () {
+		btnLike.likesNumber.textContent++;
+		console.log(btnLike.likesNumber);
+	});
+	//===================================================================
+	// let btnLike = document.querySelectorAll('.btn-like');
+	// console.log(btnLike, btnLike.length); // nodelist avec 10 btn
+
+	// console.log(likesByIDList);
+	// btnLike.forEach(button => {
+	// 	addLike();
+	// });
+	// btnLike.addEventListener('click', addLike);
+	// function addLike() {
+	// 	for (let like = 0; like < likesByIDList.length; like++) {
+	// 		const addLike = likesByIDList[like] + 1;
+	// 		console.log(addLike); // chaque like de chaque image de ce photog +1
+	// 		console.log(likesByIDList[like]); // chaque like de chaque image de ce photog
+	// 	}
+	// }
+	// console.log(work.likes);
+	// work.likes.innerHTML = addLike;
+
+	//BUG FIXME ça ne marche pas ! POURQUOI !!!! 😭😭😭😭😭😭😭😭
+
+	// LikesByIDList.forEach(like => {
+	//     btnLike.addEventListener('click', function (like) {
+	// 		like += 1;
+	// 		console.log(like);
+	// 	});
+	// });
+
+	// btnLike.forEach(button => {
+
+	// btnLike.addEventListener('click', function() {
+	// 	likesByIDList.forEach(like => {
+	// 		like[i] += 1;
+	// 		console.log(like);
+	// 	});
+	// });
+
+	// console.log(likesByIDList);
 };
+
+//==================================================================================================
+//  function and events for like work :
+//==================================================================================================
 
 //==================================================================================================
 //  function and events for Open & Close form contact :
 //==================================================================================================
-
-// const openForm = function () {
-// 	overlayFormEl.classList.remove('hidden');
-// 	modalFormEl.classList.remove('hidden');
-// };
 
 const openForm = function () {
 	overlayFormEl.classList.remove('hidden');
@@ -209,8 +287,8 @@ const closeDropdown = function () {
 	// console.log(btnDropdownEl.textContent);
 };
 
-// btnDropdownEl.addEventListener('click', openDropdown);
-// dropdownListEl.addEventListener('click', closeDropdown);
+btnDropdownEl.addEventListener('click', openDropdown);
+dropdownListEl.addEventListener('click', closeDropdown);
 
 //==================================================================================================
 //  function and events for Open & Close lightboxes :
@@ -226,4 +304,4 @@ for (let i = 0; i < workImageEl.length; i++) {
 // workImageEl.addEventListener('click', openCloseLightbox);
 btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
 
-// console.log(workImageEl);
+console.log(workImageEl);

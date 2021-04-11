@@ -39,15 +39,15 @@
                     <span class="price-day">300€ / jour</span>
                 </p>
             </aside> -->
-
+            <!-- FIXME h2 en 1er et nav ensuite mettre 1 div à la place 
+                de la nav pour le style -->
             <section class="photographer-works">
                 <nav class="sorting-menu">
                     <h2>Trier par</h2>
 
-                    <button class="dropdown-btn">
-                        Popularité
+                    <a href="#" class="dropdown-btn">Popularité
                         <span class="fas fa-chevron-down"></span>
-                    </button>
+                    </a>
                     <div class="dropdown hidden">
                         <a href="#" class="dropdown__item">Popularité
                             <span class="fas fa-chevron-up"></span>
@@ -56,6 +56,16 @@
                         <a href="#" class="dropdown__item">Titre</a>
                     </div>
                 </nav>
+                <!-- TODO penser à supprimer après -->
+                <!-- <span class="work__infos__likes">
+                    <a href="#" class="btn-like" type="button">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="#" class="btn-like" type="button">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </span> -->
+
 
                 <div class="container-works">
 
@@ -65,7 +75,7 @@
             <div class="overlay-form hidden">
             </div>
             <div class="modal-form hidden">
-                <span class="close-form" aria-label="Close form">
+                <span class="close-form" aria-label="Close the form contact">
                     <img class="icon-times" src="../scss/img/icon-times.png" alt="icon times">
                 </span>
                 <form class="form-content" name="contact" action="#" method="post">
@@ -104,9 +114,9 @@
             </div>
 
 
-            <div class="overlay-lightbox hidden">
+            <div class="overlay-lightbox image hidden">
             </div>
-            <div class="lightbox hidden">
+            <div class="lightbox image hidden">
                 <div class="lightbox-modal">
                     <!-- <span class="close-lightbox fas fa-times"></span>
                         <span class="previous fas fa-chevron-left"></span>
@@ -123,21 +133,21 @@
 
 
             <!-- FIXME modification class for test (class="overlay-lightbox hidden") -->
-            <div class="hidden">
-                <div class="lightbox">
-                    <div class="lightbox-modal">
-                        <!-- FIXME modification class for test (class="close-lightbox fas fa-times") -->
-                        <span class=""></span>
-                        <span class="previous fas fa-chevron-left"></span>
-                        <span class="next fas fa-chevron-right"></span>
-                        <div class="lightbox-content">
-                            <video src="../scss/img/photos/243/Animals_Wild_Horses_in_the_mountains.mp4"
-                                controls></video>
-                            <h3>Wild Horses in the mountains</h3>
-                        </div>
+            <div class="overlay-lightbox video hidden">
+            </div>
+            <div class="lightbox video hidden">
+                <div class="lightbox-modal">
+                    <!-- FIXME modification class for test (class="close-lightbox fas fa-times") -->
+                    <span class=""></span>
+                    <span class="previous fas fa-chevron-left"></span>
+                    <span class="next fas fa-chevron-right"></span>
+                    <div class="lightbox-content">
+                        <video src="../scss/img/photos/243/Animals_Wild_Horses_in_the_mountains.mp4" controls></video>
+                        <h3>Wild Horses in the mountains</h3>
                     </div>
                 </div>
             </div>
+
 
 
         </main>

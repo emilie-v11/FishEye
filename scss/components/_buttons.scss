@@ -52,3 +52,41 @@
 		transform: translateX(-50%);
 	}
 }
+
+/*  Photographer-page:
+    btn .btn-like in Cards' Work(large screen & small screen)
+*/
+
+.btn-like {
+	background: transparent;
+	border: 1px solid transparent;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	padding: 0;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: -2px;
+	right: 0;
+
+	@include large-only {
+		top: 0;
+		width: 54px;
+		height: 54px;
+	}
+
+	& i {
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		top: 2px;
+		right: 5px;
+
+		@include large-only {
+			width: 17px;
+			height: 18px;
+		}
+	}
+}
