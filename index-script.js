@@ -11,7 +11,7 @@ console.log(tagsNavEl);
 console.log(tagsNavItemEl);
 
 // URL JSON
-const URL = '/FishEyeDataFR.json';
+const URL = 'FishEyeDataFR.json';
 
 //==================================================================================================
 //  Render Photographers' Cards Homepage
