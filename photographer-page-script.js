@@ -135,10 +135,18 @@ const renderPhotographerWorks = data => {
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
 	console.log(totalLikes);
 
-	// // BUG FIXME ne fonction pas 😭 !!!
-	// function likeWork(button) {
-	// 	console.log('ok');
 	console.log(likesByIDList);
+
+	// TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
+	let btnLike = Array.from(document.querySelectorAll('.btn-like'));
+	btnLike.forEach(btn =>
+		btn.addEventListener('click', function () {
+			btn.previousElementSibling.textContent++;
+
+			console.log(workById['likes']);
+		})
+	);
+	// // console.log(work.likes);
 
 	// let btnLike = document.querySelectorAll('.btn-like');
 	// const addLike = button => {
@@ -162,7 +170,7 @@ const renderPhotographerWorks = data => {
                     <h3 class="work__infos__name">${work.alt}</h3>
                     <p>
                         <span class="work__infos__price">${work.price}€</span>
-                        <span class="work__infos__likes">${work.likes}
+                        <span class="work__infos__likes"><span>${work.likes}</span>
                             <a href="#" class="btn-like" type="button">
                                 <i class="fas fa-heart"></i>
                             </a>
@@ -171,14 +179,37 @@ const renderPhotographerWorks = data => {
                 </div>
             </article>
             `;
-		console.log(work.likes);
+		// console.log(work.likes);
+		// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
+		// btnLike.forEach(btn =>
+		// 	btn.addEventListener('click', function () {
+		// 		btn.previousElementSibling.textContent++;
+		// 	})
+		// );
+		// console.log(work.likes);
+
+		// console.log(totalLikes);
 	});
 	containerWorks.innerHTML = newMedia;
 
-	let btnLike = document.querySelectorAll('.btn-like');
-	let likesNumber = document.querySelectorAll('.work__infos__likes');
-	console.log(btnLike, btnLike.length); // nodelist avec 10 btn
-	console.log(likesNumber, likesNumber.length);
+	// // TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
+	// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
+	// btnLike.forEach(btn =>
+	// 	btn.addEventListener('click', function () {
+	// 		// btn.previousElementSibling.textContent++;
+	//         btn.previousElementSibling.workById.likes++;
+
+	//         console.log(workById['likes']);
+	// 	})
+	// );
+	// // // console.log(work.likes);
+
+	// console.log(totalLikes);
+
+	// let btnLike = document.querySelectorAll('.btn-like');
+	// let likesNumber = document.querySelectorAll('.work__infos__likes');
+	// console.log(btnLike, btnLike.length); // nodelist avec 10 btn
+	// console.log(likesNumber, likesNumber.length);
 
 	// 	// for (let i = 0; i < likesNumber.length; i++) {
 	// 	// 	// const liked = likesByIDList[i];
@@ -187,10 +218,10 @@ const renderPhotographerWorks = data => {
 	// 	// }
 	// 	// like[i] = like + 1;
 	// 	// console.log(like);
-	btnLike.addEventListener('click', function () {
-		btnLike.likesNumber.textContent++;
-		console.log(btnLike.likesNumber);
-	});
+	// btnLike.addEventListener('click', function () {
+	// 	btnLike.likesNumber.textContent++;
+	// 	console.log(btnLike.likesNumber);
+	// });
 	//===================================================================
 	// let btnLike = document.querySelectorAll('.btn-like');
 	// console.log(btnLike, btnLike.length); // nodelist avec 10 btn
