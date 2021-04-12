@@ -35,7 +35,7 @@ const renderPhotographers = data => {
 		// Render Photographers' cards
 		newPhotographer += `
             <article class="photographers" id="${photographers['id']}">
-                <a href="pages/photographer-page.html?id=${photographers['id']}">
+                <a href="photographer-page.html?id=${photographers['id']}">
                     <div class="photographers__portrait">
                         <img class="photographers__portrait ${photographers['id']}" src='./scss/img/photos/PhotographersIDPhotos/${photographers['portrait']}' alt="" aria-label=""/>
                     </div>
