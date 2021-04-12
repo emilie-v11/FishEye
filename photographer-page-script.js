@@ -40,7 +40,7 @@ const ID = Utils.getIdByUrl();
 console.log(ID);
 
 // URL JSON
-const URL = 'FishEyeDataFR.json';
+const URL = './FishEyeDataFR.json';
 
 //==================================================================================================
 //  Render Photographer Jumbotron
