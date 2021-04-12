@@ -83,6 +83,7 @@ const renderJumbotron = data => {
 	photographerName.innerHTML = `${photographer.name}`;
 
 	// Render Each Photographer' Jumbotron
+	//src='./scss/img/photos/PhotographersIDPhotos/${photographer.portrait}'
 	newJumbotron = `
 	    <div class="jumbotron-content">
 	        <h1 class="jumbotron__heading">${photographer.name}</h1>
