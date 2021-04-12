@@ -95,7 +95,7 @@ const renderJumbotron = data => {
 	        </nav>
 	    </div>
 	    <div class="photographers__portrait small">
-	        <img class="photographers__portrait small ${photographer.id}" src='../scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
+	        <img class="photographers__portrait small ${photographer.id}" src='./scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
 	    </div>
         <aside class="aside">
             <p> 
@@ -181,8 +181,8 @@ const renderPhotographerWorks = data => {
 	});
 	containerWorks.innerHTML = newMedia;
 	/*
-        <img class="work__media image" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
-        <video class="work__media video" src="../scss/img/photos/${ID}/${work.video}"></video>
+        <img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
+        <video class="work__media video" src="./scss/img/photos/${ID}/${work.video}"></video>
 
     */
 
