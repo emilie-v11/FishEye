@@ -137,15 +137,15 @@ const renderPhotographerWorks = data => {
 
 	console.log(likesByIDList);
 
-	// TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
-	let btnLike = Array.from(document.querySelectorAll('.btn-like'));
-	btnLike.forEach(btn =>
-		btn.addEventListener('click', function () {
-			btn.previousElementSibling.textContent++;
+	// // TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
+	// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
+	// console.log(btnLike);
 
-			console.log(workById['likes']);
-		})
-	);
+	// btnLike.forEach(btn =>
+	// 	btn.addEventListener('click', function () {
+	// 		btn.previousElementSibling.textContent++;
+	// 	})
+	// );
 	// // console.log(work.likes);
 
 	// let btnLike = document.querySelectorAll('.btn-like');
@@ -162,8 +162,7 @@ const renderPhotographerWorks = data => {
             <article class="work">
                 <a href="#">
                     <div class="work__media">
-                        <img class="work__media image" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
-                        <video class="work__media video" src="../scss/img/photos/${ID}/${work.video}"></video>
+                    
                     </div>
                 </a>
                 <div class="work__infos">
@@ -179,18 +178,23 @@ const renderPhotographerWorks = data => {
                 </div>
             </article>
             `;
-		// console.log(work.likes);
-		// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
-		// btnLike.forEach(btn =>
-		// 	btn.addEventListener('click', function () {
-		// 		btn.previousElementSibling.textContent++;
-		// 	})
-		// );
-		// console.log(work.likes);
-
-		// console.log(totalLikes);
 	});
 	containerWorks.innerHTML = newMedia;
+	/*
+        <img class="work__media image" src='../scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
+        <video class="work__media video" src="../scss/img/photos/${ID}/${work.video}"></video>
+
+    */
+
+	// TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
+	let btnLike = Array.from(document.querySelectorAll('.btn-like'));
+	console.log(btnLike);
+
+	btnLike.forEach(btn =>
+		btn.addEventListener('click', function () {
+			btn.previousElementSibling.textContent++;
+		})
+	);
 
 	// // TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
 	// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
@@ -325,14 +329,14 @@ dropdownListEl.addEventListener('click', closeDropdown);
 //  function and events for Open & Close lightboxes :
 //==================================================================================================
 
-const openCloseLightbox = function () {
-	overlayLightboxEl.classList.toggle('hidden');
-};
+// const openCloseLightbox = function () {
+// 	overlayLightboxEl.classList.toggle('hidden');
+// };
 
-for (let i = 0; i < workImageEl.length; i++) {
-	workImageEl[i].addEventListener('click', openCloseLightbox);
-}
-// workImageEl.addEventListener('click', openCloseLightbox);
-btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
+// for (let i = 0; i < workImageEl.length; i++) {
+// 	workImageEl[i].addEventListener('click', openCloseLightbox);
+// }
+// // workImageEl.addEventListener('click', openCloseLightbox);
+// btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
 
-console.log(workImageEl);
+// console.log(workImageEl);
