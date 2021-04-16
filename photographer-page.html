@@ -42,20 +42,20 @@
             <!-- FIXME h2 en 1er et nav ensuite mettre 1 div à la place 
                 de la nav pour le style -->
             <section class="photographer-works">
-                <nav class="sorting-menu">
+                <div class="sorting-menu">
                     <h2>Trier par</h2>
-
-                    <a href="#" class="dropdown-btn">Popularité
-                        <span class="fas fa-chevron-down"></span>
-                    </a>
-                    <div class="dropdown hidden">
-                        <a href="#" class="dropdown__item">Popularité
-                            <span class="fas fa-chevron-up"></span>
+                    <nav class="dropdown">
+                        <a href="#" class="dropdown__item btn active">
+                            <span class="sort-item">Popularité</span>
+                            <span class="chevron-icon fas fa-chevron-down">
+                            </span>
                         </a>
-                        <a href="#" class="dropdown__item">Date</a>
-                        <a href="#" class="dropdown__item">Titre</a>
-                    </div>
-                </nav>
+                        <div class="dropdown-extend hidden">
+                            <a href="#" class="dropdown__item"><span class="sort-item">Date</span></a>
+                            <a href="#" class="dropdown__item "><span class="sort-item">Titre</span></a>
+                        </div>
+                    </nav>
+                </div>
                 <!-- TODO penser à supprimer après -->
                 <!-- <span class="work__infos__likes">
                     <a href="#" class="btn-like" type="button">
@@ -113,18 +113,21 @@
             </div>
 
 
-            <!-- <div class="overlay-lightbox image hidden">
+            <div class="overlay-lightbox image hidden">
             </div>
             <div class="lightbox image hidden">
                 <div class="lightbox-modal">
-                    <img src="#" alt="">
-                    <h3>Travel Lonesome</h3>
+                    <div class="lightbox-modal content">
+                        <!-- <img class="lightbox-modal__media" src="./scss/img/photos/243/Animals_Rainbow.jpg" alt=""> -->
+                        <div class="lightbox-modal__media img">
+                        </div>
+                        <h3 class="lightbox-modal__heading"></h3>
+                    </div>
                     <span class="close-lightbox fas fa-times"></span>
                     <span class="previous fas fa-chevron-left"></span>
                     <span class="next fas fa-chevron-right"></span>
                 </div>
-            </div> -->
-
+            </div>
 
             <!-- <div class="overlay-lightbox video hidden">
             </div>
@@ -139,8 +142,6 @@
                     </div>
                 </div>
             </div> -->
-
-
 
         </main>
     </div>

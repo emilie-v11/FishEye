@@ -1,5 +1,5 @@
 .lightbox {
-	position: relative;
+	position: fixed;
 	// top: 10%;
 	// left: 50%;
 	// right: 50%;
@@ -10,6 +10,7 @@
 	bottom: 0%;
 	width: 100%;
 	height: 100%;
+	z-index: 100;
 	// transform: translateX(-50%);
 	// width: 100vw;
 	// max-width: 1250px;
@@ -32,11 +33,11 @@
 		// width: 290px;
 		// max-height: 80vh; //248px
 		border-radius: 5px;
-		top: 50%;
+		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-        width: 80%;
-        height: 80%;
+		width: 80%;
+		height: 80%;
 
 		// @include medium-only {
 		// 	width: 684px;
@@ -52,6 +53,10 @@
 		// 	width: 1253px;
 		// 	height: 940px; // 940px
 		// }
+
+		& .content {
+			width: auto;
+		}
 
 		.close-lightbox {
 			position: absolute;
@@ -129,16 +134,28 @@
 		video {
 			width: 100%;
 			height: 100%;
+
 			// max-width: 100%;
 			// max-height: 100%;
 			border-radius: 5px;
 			object-fit: contain;
 			// background: $color-grey-bg-card;
 			// margin: 50px;
-		}
+			position: relative;
 
+			@include xlarge-only {
+				max-width: 900px;
+				max-height: 750px;
+                min-width: 900px;
+                min-height: 750px;
+                width: 100%;
+                height: 100%;
+			}
+		}
+		//TODO verifier le centrage du titre/image
 		& h3 {
 			@include typo-14px--400;
+			text-align: left;
 
 			@include medium-only {
 				@include typo-18px--500;
@@ -148,6 +165,7 @@
 			@include large-only {
 				@include typo-24px--500;
 				font-weight: 400;
+				// padding-left: 50px;
 			}
 		}
 	}
