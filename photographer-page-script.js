@@ -183,17 +183,7 @@ const renderPhotographerWorks = data => {
 		// workMediaEl.forEach(media => {
 		// 	workMediaEl.addEventListener('click', openCloseLightbox);
 		// });
-//=============================================================
-		// // Span likes button and icon
-		// let newLikesWork = '';
-		// newLikesWork += `
-		//     <span class="work__infos__likes"><span>${work.likes}</span>
-		//         <a href="#" class="btn-like" type="button">
-		//             <i class="fas fa-heart"></i>
-		//         </a>
-		//     </span>
-		// `;
-
+		//=============================================================
 		// Works Cards (Image - name - price - numb of like & heart icon)
 		newWorkCard += `
             <article class="work">
@@ -206,7 +196,8 @@ const renderPhotographerWorks = data => {
                     <h3 class="work__infos__name">${work['alt-text']}</h3>
                     <p>
                         <span class="work__infos__price">${work.price}€</span>
-                        <span class="work__infos__likes"><span>${work.likes}</span>
+                        <span class="work__infos__likes">
+                            <span>${work.likes}</span>
                             <a href="#" class="btn-like" type="button">
                                 <i class="fas fa-heart"></i>
                             </a>
@@ -214,11 +205,9 @@ const renderPhotographerWorks = data => {
                     </p>
                 </div>
             </article>
-            
         `;
 	});
 	containerWorks.innerHTML = newWorkCard;
-
 	/*
         <img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
         <video class="work__media video" src="./scss/img/photos/${ID}/${work.video}"></video>
@@ -239,17 +228,40 @@ const renderPhotographerWorks = data => {
 	let btnLike = Array.from(document.querySelectorAll('.btn-like'));
 	console.log(btnLike);
 
-	btnLike.forEach(btn =>
+	console.log(totalLikes);
+
+	btnLike.forEach(btn => {
 		btn.addEventListener('click', function () {
-			// const liked = btn.previousElementSibling.innerHTML++;
-			btn.previousElementSibling.innerHTML++;
+			if (!btn.classList.contains('liked')) {
+				// btn.previousElementSibling.innerHTML++;
+				btn.previousElementSibling.innerHTML++;
+				btn.classList.add('liked');
+				totalLikes++;
+				console.log(totalLikes);
+			} else {
+				btn.previousElementSibling.innerHTML--;
+				btn.classList.remove('liked');
+				totalLikes--;
+			}
+			document.querySelector('.total-likes').innerHTML = totalLikes;
+			console.log(totalLikes);
+		});
+	});
 
-			let totalLikesLiked = totalLikes++;
+	// btnLike.forEach(btn => {
+	// 	btn.addEventListener('click', function () {
+	// 		btn.previousElementSibling.innerHTML++;
+	//         btn.classList.toggle('liked');
+	// 				// btn.previousElementSibling.innerHTML++;
+	// 				// chevronIconEl.classList.replace('fa-chevron-down', 'fa-chevron-up');
 
-			// return (totalLikes.innerHTML = totalLikesLiked);
-			// console.log(work.likes);
-		})
-	);
+	// 		    // btn.previousElementSibling.innerHTML++;
+
+	// 			// let totalLikesLiked = totalLikes++;
+	// 			// return (totalLikes.innerHTML = totalLikesLiked);
+	// 			// console.log(work.likes);
+	// 	});
+	// });
 };
 
 //==================================================================================================
@@ -296,9 +308,9 @@ modalFormEl.addEventListener('submit', function (e) {
 //==================================================================================================
 
 // function for swap chevron icon 'down' or 'up'
-const swapchevronIconEl = function () {
+const swapchevronIcon = function () {
 	if (!dropdownBtnEl.classList.contains('active')) {
-		chevronIconEl.classList.add('fa-chevron-up');
+		chevronIconEl.classList.replace('fa-chevron-down', 'fa-chevron-up');
 	} else {
 		chevronIconEl.classList.replace('fa-chevron-up', 'fa-chevron-down');
 	}
@@ -314,13 +326,13 @@ console.log(dropdownItemArray);
 const openDropdown = function () {
 	dropdownBtnEl.classList.remove('active');
 	dropdownExtendEl.classList.remove('hidden');
-	swapchevronIconEl();
+	swapchevronIcon();
 };
 
 const closeDropdown = function () {
 	dropdownExtendEl.classList.add('hidden');
 	dropdownBtnEl.classList.add('active');
-	swapchevronIconEl();
+	swapchevronIcon();
 };
 
 // dropdownBtnEl.addEventListener('click', openDropdown);
@@ -328,11 +340,11 @@ dropdownBtnEl.addEventListener('click', function () {
 	if (dropdownBtnEl.classList.contains('active')) {
 		dropdownBtnEl.classList.remove('active');
 		dropdownExtendEl.classList.remove('hidden');
-		swapchevronIconEl();
+		swapchevronIcon();
 	} else {
 		dropdownExtendEl.classList.add('hidden');
 		dropdownBtnEl.classList.add('active');
-		swapchevronIconEl();
+		swapchevronIcon();
 	}
 });
 
@@ -527,3 +539,33 @@ console.log(btnCloseLightboxEl);
 // });
 
 // console.log(likesByIDList);
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// FACTORY
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// const FactoryMedia = (image) => {
+//     newMedia
+// 		if ((work.image = work.image)) {
+// 			newMedia = mediaImage;
+// 		} else if ((work.image = work.video)) {
+// 			newMedia = mediaVideo;
+// 		}
+//         return newMedia;
+// 	}
+
+// const factoryMedia = (image, video, media) => {
+// 	if (image in media) {
+// 		return `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`;
+// 	} else if (video in media) {
+// 		return `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`;
+// 	}
+// }
+
+// console.log(newMedia);
+
+// let mediaImage = function () {
+//     `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`;
+// }
+// let mediaVideo = function () {
+//     `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`;
+// }

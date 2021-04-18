@@ -1,35 +1,31 @@
 .navigation {
 	padding-top: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	// margin: 0 auto;
+	margin: 5px 0;
 
-	@include large-only {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
+	@include medium-only {
 		padding: 0;
 	}
+
 	@include xlarge-only {
-		// padding: 0 0 0 80px;
 		width: 60%;
 	}
 
-	&__list {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		margin: 0 auto;
-		margin: 5px 0;
+	&__item {
+		@include tag-item;
 
-		// padding-top: 40px;
-
-		&__item {
-			@include tag-item;
-
-			&:hover,
-			&:active {
-				@include tag-item--hover;
-			}
+		&:hover,
+		&:active {
+			@include tag-item--hover;
 		}
+	}
+
+	& .active {
+		color: $color-white;
+		background-color: $color-primary-dark;
 	}
 }
