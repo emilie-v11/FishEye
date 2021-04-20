@@ -1,0 +1,32 @@
+// Photographer page
+// Animation like heart-icon
+
+//rules for full heart
+.btn-like {
+	& i.fas.fa-heart.liked {
+		transform: scale(0);
+		transition: 350ms ease-in-out; //600ms 350ms
+
+		// add for safari otherwise the heart is transparent
+		&::before {
+			background: $color-primary-dark; //$color-linear-gradient;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+	}
+}
+
+.btn-like.liked i.fas.fa-heart {
+	//far
+	background: $color-primary-dark; //$color-linear-gradient;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.btn-like.liked i.fas.fa-heart.liked {
+	// background-clip: text;
+	background: $color-primary-dark; //$color-linear-gradient;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transform: scale(1);
+}

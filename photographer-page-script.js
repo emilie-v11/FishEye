@@ -1,7 +1,6 @@
 'use strict';
-/*
- **  DOM ELEMENTS
- */
+
+//DOM ELEMENTS
 // Main
 const mainEl = document.querySelector('.photographer-page');
 
@@ -10,66 +9,69 @@ const jumbotronEl = document.querySelector('.jumbotron');
 const tagsListEl = document.querySelector('.photographers__tags');
 
 // Photographer work
-const containerWorks = document.querySelector('.container-works');
-const btnLike = document.querySelector('.btn-like');
+const containerWorksEl = document.querySelector('.container-works');
+const btnLikeEl = document.querySelector('.btn-like');
 
 // Form contact
-const btnOpenFormEl = document.querySelector('.contact-btn');
+const btnOpenFormEl = document.querySelector('.btn-contact');
 const btnCloseFormEl = document.querySelector('.close-form');
+const btnXCloseSuccessEl = document.querySelector('.close-success');
+const btnSuccessMessageEl = document.querySelector('.btn-success');
 const overlayFormEl = document.querySelector('.overlay-form');
+const modalBg = document.querySelector('.modal-bg');
+const modalSuccessEl = document.querySelector('.modal-success');
 const modalFormEl = document.querySelector('.modal-form');
-
-const formEl = document.querySelector('.form-content');
 const photographerNameEl = document.querySelector('.photographer-name');
-const submitBtnForm = document.querySelectorAll('#form-submit');
-const firstnameInput = document.querySelectorAll('#first-name');
-const lastnameInput = document.querySelectorAll('#last-name');
-const emailInput = document.querySelectorAll('#email');
-const messageInput = document.querySelectorAll('#message');
+const btnSubmitFormEl = document.querySelector('.btn-submit');
+
+const firstNameInput = document.querySelector('#first-name');
+const lastNameInput = document.querySelector('#last-name');
+const emailInput = document.querySelector('#email');
+const messageTextarea = document.querySelector('#message');
+const errorFirst = document.querySelector('.error-first');
+const errorLast = document.querySelector('.error-last');
+const errorEmail = document.querySelector('.error-email');
+const errorMessage = document.querySelector('.error-message');
 
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
 const lightboxEl = document.querySelector('.lightbox');
 const btnCloseLightboxEl = document.querySelector('.close-lightbox');
 
+const lightboxHeadingEl = document.querySelector('.lightbox-modal__heading');
+const lightboxMediaEl = document.querySelector('.lightbox-modal__media');
+
 // Dropdown
 const dropdownBtnEl = document.querySelector('.dropdown__item.btn');
 const dropdownExtendEl = document.querySelector('.dropdown-extend');
 const dropdownItemEl = document.querySelectorAll('.dropdown__item');
-const chevronIconEl = document.querySelector('.fa-chevron-down');
-
+const chevronIconEl = document.querySelector('.chevron-icon');
 console.log(dropdownItemEl);
 
+//==================================================================================================
 const ID = Utils.getIdByUrl();
 console.log(ID);
 
 // URL JSON
 const URL = './FishEyeDataFR.json';
 
+const datasPhotographerPage = Utils.getAllPhotographers(URL).then(data => {
+	renderJumbotron(data), renderPhotographerWorks(data);
+});
+
 //==================================================================================================
 //  Render Photographer Jumbotron
 //==================================================================================================
-const datasJumbotron = Utils.getAllPhotographers(URL).then(data =>
-	renderJumbotron(data)
-);
 
-// function for jumbotron photographer
 const renderJumbotron = data => {
 	// console.log(data);
-	let newJumbotron = '';
 	let photographers = data['photographers'];
 	let photographer = photographers.find(photograph => photograph.id == ID);
 	console.log(photographer);
 
-	// Render Photographers' Tag list
-	let newLiTags = '';
-	let tagsList = photographer['tags'];
-	for (let i = 0; i < tagsList.length; i++) {
-		newLiTags += `
-            <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
-        `;
-	}
-
+	/*
+	    ASIDE : photographer's total like & price per day
+	 */
 	// Total Likes by each photographer for all works likes
 	let media = data.media;
 	const dataByID = media.filter(media => media['photographerId'] == ID);
@@ -87,10 +89,19 @@ const renderJumbotron = data => {
 	console.log(totalLikesList);
 	let totalLikes = totalLikesList;
 
-	// Render photographer name in form modal
-	photographerNameEl.innerHTML = `${photographer.name}`;
-
+	/*
+	    JUMBOTRON :
+	 */
+	// Render Photographers' Tag list
+	let newLiTags = '';
+	let tagsList = photographer['tags'];
+	for (let i = 0; i < tagsList.length; i++) {
+		newLiTags += `
+            <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
+        `;
+	}
 	// Render Each Photographer' Jumbotron
+	let newJumbotron = '';
 	newJumbotron = `
 	    <div class="jumbotron-content">
 	        <h1 class="jumbotron__heading">${photographer.name}</h1>
@@ -107,26 +118,30 @@ const renderJumbotron = data => {
 	    </div>
 
         <aside class="aside">
-            <p> 
-                <span class='total-likes'>
-                    ${totalLikes} <i class='fas fa-heart' aria-label='likes'></i>
-                </span>
-                <span class='price-day'>
+            <div class= "aside-content">
+                <p>
+                    <span class='total-likes'>${totalLikes}</span>
+                    <i class='fas fa-heart aside'></i>
+                </p>
+                <p class='price-day'>
                     ${photographer.price}€ / jour
-                </span>
-            </p>
+                </p>
+            </div>
         </aside>
 	    `;
 	jumbotronEl.innerHTML = newJumbotron;
+
+	// Render photographer name in form modal
+	photographerNameEl.innerHTML = `${photographer.name}`;
 };
 
 //==================================================================================================
 //  Render Photographer Works
 //==================================================================================================
 
-const datasWorks = Utils.getAllPhotographers(URL).then(data =>
-	renderPhotographerWorks(data)
-);
+// const datasWorks = Utils.getAllPhotographers(URL).then(data =>
+// 	renderPhotographerWorks(data)
+// );
 
 // Function render photographers' works
 const renderPhotographerWorks = data => {
@@ -150,21 +165,16 @@ const renderPhotographerWorks = data => {
 	workById.forEach(work => {
 		// TODO NE PAS EFFACER CETTE LIGNE ' workById.forEach(work => { '
 		console.log(work.likes);
+		console.log(work.image);
 
 		let newMedia = '';
-		newMedia += work.image = work.image
-			? (newMedia = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`)
-			: (newMedia = `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`);
+		newMedia +=
+			work.image !== undefined
+				? (newMedia = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`)
+				: (newMedia = `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`);
 
 		// Lightbox infos
-		const lightboxHeadingEl = document.querySelector(
-			'.lightbox-modal__heading'
-		);
 		lightboxHeadingEl.innerHTML = `${work['alt-text']}`;
-
-		const lightboxMediaEl = document.querySelector(
-			'.lightbox-modal__media'
-		);
 		lightboxMediaEl.innerHTML = `${newMedia}`;
 
 		const workMediaEl = document.querySelector('lightbox-modal__media');
@@ -174,16 +184,8 @@ const renderPhotographerWorks = data => {
 		console.log(lightboxMediaEl);
 		lightboxMediaEl.addEventListener('click', openCloseLightbox);
 
-		//FIXME ne s'ouvre pas au click.
-		function openCloseLightbox() {
-			overlayLightboxEl.classList.toggle('hidden');
-			lightboxEl.classList.toggle('hidden');
-			console.log(overlayLightboxEl);
-		}
-		// workMediaEl.forEach(media => {
-		// 	workMediaEl.addEventListener('click', openCloseLightbox);
-		// });
 		//=============================================================
+
 		// Works Cards (Image - name - price - numb of like & heart icon)
 		newWorkCard += `
             <article class="work">
@@ -198,17 +200,19 @@ const renderPhotographerWorks = data => {
                         <span class="work__infos__price">${work.price}€</span>
                         <span class="work__infos__likes">
                             <span>${work.likes}</span>
-                            <a href="#" class="btn-like" type="button">
-                                <i class="fas fa-heart"></i>
-                            </a>
+                            <button class="btn-like" aria-label="click for like it">
+                                <i class="far fa-heart "></i>
+                                <i class="fas fa-heart liked"></i>
+                            </button>
                         </span>
                     </p>
                 </div>
             </article>
         `;
 	});
-	containerWorks.innerHTML = newWorkCard;
+	containerWorksEl.innerHTML = newWorkCard;
 	/*
+
         <img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
         <video class="work__media video" src="./scss/img/photos/${ID}/${work.video}"></video>
     
@@ -224,20 +228,21 @@ const renderPhotographerWorks = data => {
                 </div>
             </div>
     */
-	// TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
-	let btnLike = Array.from(document.querySelectorAll('.btn-like'));
-	console.log(btnLike);
 
+	//==================================================================================================
+	//  Function & Events for like  each Works & total likes
+	//==================================================================================================
+	let btnLikeEl = Array.from(document.querySelectorAll('.btn-like'));
+	console.log(btnLikeEl);
 	console.log(totalLikes);
 
-	btnLike.forEach(btn => {
-		btn.addEventListener('click', function () {
+	btnLikeEl.forEach(btn => {
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
 			if (!btn.classList.contains('liked')) {
-				// btn.previousElementSibling.innerHTML++;
 				btn.previousElementSibling.innerHTML++;
 				btn.classList.add('liked');
 				totalLikes++;
-				console.log(totalLikes);
 			} else {
 				btn.previousElementSibling.innerHTML--;
 				btn.classList.remove('liked');
@@ -247,65 +252,161 @@ const renderPhotographerWorks = data => {
 			console.log(totalLikes);
 		});
 	});
-
-	// btnLike.forEach(btn => {
-	// 	btn.addEventListener('click', function () {
-	// 		btn.previousElementSibling.innerHTML++;
-	//         btn.classList.toggle('liked');
-	// 				// btn.previousElementSibling.innerHTML++;
-	// 				// chevronIconEl.classList.replace('fa-chevron-down', 'fa-chevron-up');
-
-	// 		    // btn.previousElementSibling.innerHTML++;
-
-	// 			// let totalLikesLiked = totalLikes++;
-	// 			// return (totalLikes.innerHTML = totalLikesLiked);
-	// 			// console.log(work.likes);
-	// 	});
-	// });
 };
 
 //==================================================================================================
-//  function and events for like work :
+//  FORM CONTACT
 //==================================================================================================
+// OPEN & CLOSE FORM
+//====================
 
-//==================================================================================================
-//  Form Contact
-// function and events for Open & Close
-//==================================================================================================
-
+// Function for Open & Close
 const openForm = function () {
 	overlayFormEl.classList.remove('hidden');
-	modalFormEl.classList.remove('hidden');
+	modalBg.classList.remove('hidden');
 };
 
 const closeForm = function () {
 	overlayFormEl.classList.add('hidden');
-	modalFormEl.classList.add('hidden');
+	modalBg.classList.add('hidden');
 };
 
+const closemodalSuccess = function () {
+	closeForm();
+	modalSuccessEl.style.display = 'none';
+	modalFormEl.reset();
+};
+
+//====================
+// VALIDATION FORM
+//====================
+// Regex
+const nameRegExp = /^([A-ZÀ-Ÿa-z-']{2,20})$/;
+const emailRegExp = /^([a-zA-Z0-9.]{2,})+@([a-zA-Z0-9.]{2,})+[.]+([a-zA-Z0-9-]{2,20})$/;
+const messageRegExp = /^([A-ZÀ-Ÿa-z0-9.']{10,200})$/; //TODO vérifier
+
+//FIXME penser à changer aria-hidden=false pour visible lecteur
+function checkFirstName() {
+	const isFirstNameValid = nameRegExp.test(firstNameInput.value);
+
+	if (isFirstNameValid) {
+		errorFirst.style.display = 'none';
+		firstNameInput.style.border = 'none';
+	} else {
+		errorFirst.style.display = 'block';
+		firstNameInput.style.border = 'red 2px solid';
+	}
+
+	return isFirstNameValid;
+}
+
+function checkLastName() {
+	const isLastNameValid = nameRegExp.test(lastNameInput.value);
+
+	if (isLastNameValid) {
+		errorLast.style.display = 'none';
+		lastNameInput.style.border = 'none';
+	} else {
+		errorLast.style.display = 'block';
+		lastNameInput.style.border = 'red 2px solid';
+	}
+
+	return isLastNameValid;
+}
+
+function checkEmail() {
+	const isEmailValid = emailRegExp.test(emailInput.value);
+
+	if (isEmailValid) {
+		errorEmail.style.display = 'none';
+		emailInput.style.border = 'none';
+	} else {
+		errorEmail.style.display = 'block';
+		emailInput.style.border = 'red 2px solid';
+	}
+
+	return isEmailValid;
+}
+
+function checkMessage() {
+	const isMessageValid = emailRegExp.test(messageTextarea.value);
+
+	if (isMessageValid) {
+		errorMessage.style.display = 'none';
+		messageTextarea.style.border = 'none';
+	} else {
+		errorMessage.style.display = 'block';
+		messageTextarea.style.border = 'red 2px solid';
+	}
+
+	return isMessageValid;
+}
+
+//====================
+// EVENTS FORM
+//====================
+
+// Events for Open & Close Form without validation
 btnOpenFormEl.addEventListener('click', openForm);
 btnCloseFormEl.addEventListener('click', closeForm);
 
+// Events for Close the success modal
+// with 'X' Button Icon
+btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
+// with Button 'Fermer'
+btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
+
 //====================
-// Event submit form
+// SUBMIT FORM
 //====================
 
-//FIXME isValid à ajouter, envoyer les infos + fermer le form et reset form. cf P4 !
 modalFormEl.addEventListener('submit', function (e) {
+    console.log(submit);
+
 	e.preventDefault();
-	return console.log(`
-            Prénom : ${firstnameInput.value}
-            Nom : ${lastnameInput.value}
-            Email : ${emailInput.value}
-            Message : ${messageInput.value}
-        `);
-	closeForm();
+	const isFormValid =
+		checkFirstName() && checkLastName() && checkEmail() && checkMessage();
+
+	checkFirstName();
+	checkLastName();
+	checkEmail();
+	checkMessage();
+
+	if (isFormValid) {
+		modalSuccess.style.display = 'block';
+	}
 });
 
+// function validate(e) {
+//     e.preventDefault();
+//     let formValid = true;
+//     // let firstName = document.getElementById("first");
+// };
+
+// btnSubmitFormEl.addEventListener("click",validate(e));
+
 //==================================================================================================
-//  Sorting Dropdown
-// function and events for Open & Close
+//  DROPDOWN
 //==================================================================================================
+
+// functions for Open & Close Dropdown
+const openCloseDropdown = function () {
+	if (dropdownBtnEl.classList.contains('active')) {
+		dropdownBtnEl.classList.remove('active');
+		dropdownExtendEl.classList.remove('hidden');
+		swapchevronIcon();
+	} else {
+		dropdownExtendEl.classList.add('hidden');
+		dropdownBtnEl.classList.add('active');
+		swapchevronIcon();
+	}
+};
+
+// const closeDropdown = function () {
+// 	dropdownExtendEl.classList.add('hidden');
+// 	dropdownBtnEl.classList.add('active');
+// 	swapchevronIcon();
+// };
 
 // function for swap chevron icon 'down' or 'up'
 const swapchevronIcon = function () {
@@ -316,63 +417,18 @@ const swapchevronIcon = function () {
 	}
 };
 
+// Events for Open & Close Dropdown
+// dropdownBtnEl.addEventListener('click', openDropdown);
+// dropdownExtendEl.addEventListener('click', closeDropdown);
+chevronIconEl.addEventListener('click', openCloseDropdown);
+
+// function Dropdown filter
 let dropdownItemArray = Array.from(
 	document.querySelectorAll('.dropdown__item')
 );
 //Array.from(document.querySelectorAll('.dropdown__item'));
 console.log(dropdownItemArray[0].textContent);
 console.log(dropdownItemArray);
-
-const openDropdown = function () {
-	dropdownBtnEl.classList.remove('active');
-	dropdownExtendEl.classList.remove('hidden');
-	swapchevronIcon();
-};
-
-const closeDropdown = function () {
-	dropdownExtendEl.classList.add('hidden');
-	dropdownBtnEl.classList.add('active');
-	swapchevronIcon();
-};
-
-// dropdownBtnEl.addEventListener('click', openDropdown);
-dropdownBtnEl.addEventListener('click', function () {
-	if (dropdownBtnEl.classList.contains('active')) {
-		dropdownBtnEl.classList.remove('active');
-		dropdownExtendEl.classList.remove('hidden');
-		swapchevronIcon();
-	} else {
-		dropdownExtendEl.classList.add('hidden');
-		dropdownBtnEl.classList.add('active');
-		swapchevronIcon();
-	}
-});
-
-dropdownExtendEl.addEventListener('click', closeDropdown);
-
-// function Dropdown filter
-
-// function activeSortBtn(item, index) {
-// 	switch (item) {
-// 		case 'Popularité':
-// 			dropdownItemArray[0].textContent = 'Popularité';
-// 			dropdownItemArray[1].textContent = 'Date';
-// 			dropdownItemArray[2].textContent = 'Titre';
-// 			break;
-// 		case 'Date':
-// 			dropdownItemArray[0].textContent = 'Date';
-// 			dropdownItemArray[1].textContent = 'Popularité';
-// 			dropdownItemArray[2].textContent = 'Titre';
-// 			break;
-// 		case 'Titre':
-// 			dropdownItemArray[0].textContent = 'Titre';
-// 			dropdownItemArray[1].textContent = 'Date';
-// 			dropdownItemArray[2].textContent = 'Popularité';
-// 			dropdownBtnEl.textContent = 'Titre';
-// 			break;
-// 	}
-// 	dropdownItemEl.innerHTML = dropdownItemArray[index];
-// }
 
 dropdownItemArray.forEach(btn => {
 	btn.addEventListener('click', function (item) {
@@ -397,14 +453,14 @@ function openCloseLightbox() {
 	lightboxEl.classList.toggle('hidden');
 	console.log(overlayLightboxEl);
 }
-// openCloseLightbox();
 
-// for (let i = 0; i < workMediaEl.length; i++) {
-// 	workmediaEl[i].addEventListener('click', openCloseLightbox);
+// for (let i = 0; i < lightboxMediaEl.length; i++) {
+// 	lightboxMediaEl[i].addEventListener('click', openCloseLightbox);
 // }
-// console.log(workMediaEl);
+console.log(lightboxMediaEl);
 
 // workMediaEl.addEventListener('click', openCloseLightbox);
+lightboxMediaEl.addEventListener('click', openCloseLightbox);
 
 // Close lightbox
 btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
@@ -412,28 +468,11 @@ console.log(btnCloseLightboxEl);
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 //=============================================================
-//=============================================================
 // BROUILLON
-//=============================================================
-// // TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
-// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
-// console.log(btnLike);
-
-// btnLike.forEach(btn =>
-// 	btn.addEventListener('click', function () {
-// 		btn.previousElementSibling.textContent++;
-// 	})
-// );
-// // console.log(work.likes);
-
-// let btnLike = document.querySelectorAll('.btn-like');
-// const addLike = button => {
-//     btnLike.forEach(button => {
-//         likesByID.likes += 1;
-//     })
-//     console.log('ok');
-// };
-// btnLike.addEventListener('click', addLike());
+//============================================================
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// FACTORY
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // let newMedia = '';
 // let imageWork = workById.map(imageById => imageById.image);
@@ -449,12 +488,7 @@ console.log(btnCloseLightboxEl);
 //     newMedia +=
 // 		`<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>`;
 
-// 		// return `<video class="work__media video" src="./scss/img/photos/${ID}/${workById.video}"></video>`;
-
-// 	console.log();
-// });
-// console.log();
-// console.log();
+// return `<video class="work__media video" src="./scss/img/photos/${ID}/${workById.video}"></video>`;
 
 // if (imageWork in element) {
 // 	return (newMediaChoice = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>`);
@@ -472,77 +506,6 @@ console.log(btnCloseLightboxEl);
 // 	}
 // };
 
-// // TODO fonctionne ! mais transformer pour changer le json et pas le textContent.
-// let btnLike = Array.from(document.querySelectorAll('.btn-like'));
-// btnLike.forEach(btn =>
-// 	btn.addEventListener('click', function () {
-// 		// btn.previousElementSibling.textContent++;
-//         btn.previousElementSibling.workById.likes++;
-
-//         console.log(workById['likes']);
-// 	})
-// );
-// // // console.log(work.likes);
-
-// console.log(totalLikes);
-
-// let likesNumber = document.querySelectorAll('.work__infos__likes');
-// console.log(btnLike, btnLike.length); // nodelist avec 10 btn
-// console.log(likesNumber, likesNumber.length);
-
-// for (let i = 0; i < likesNumber.length; i++) {
-// const liked = likesByIDList[i];
-// 	likesNumber[i] = likesNumber + 1;
-// 	console.log(likesNumber[i]);
-// }
-// like[i] = like + 1;
-// console.log(like);
-// btnLike.addEventListener('click', function () {
-// 	btnLike.likesNumber.textContent++;
-// 	console.log(btnLike.likesNumber);
-// });
-//===================================================================
-// let btnLike = document.querySelectorAll('.btn-like');
-// console.log(btnLike, btnLike.length); // nodelist avec 10 btn
-
-// console.log(likesByIDList);
-// btnLike.forEach(button => {
-// 	addLike();
-// });
-// btnLike.addEventListener('click', addLike);
-// function addLike() {
-// 	for (let like = 0; like < likesByIDList.length; like++) {
-// 		const addLike = likesByIDList[like] + 1;
-// 		console.log(addLike); // chaque like de chaque image de ce photog +1
-// 		console.log(likesByIDList[like]); // chaque like de chaque image de ce photog
-// 	}
-// }
-// console.log(work.likes);
-// work.likes.innerHTML = addLike;
-
-//BUG FIXME ça ne marche pas ! POURQUOI !!!! 😭😭😭😭😭😭😭😭
-
-// LikesByIDList.forEach(like => {
-//     btnLike.addEventListener('click', function (like) {
-// 		like += 1;
-// 		console.log(like);
-// 	});
-// });
-
-// btnLike.forEach(button => {
-
-// btnLike.addEventListener('click', function() {
-// 	likesByIDList.forEach(like => {
-// 		like[i] += 1;
-// 		console.log(like);
-// 	});
-// });
-
-// console.log(likesByIDList);
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// FACTORY
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // const FactoryMedia = (image) => {
 //     newMedia
 // 		if ((work.image = work.image)) {

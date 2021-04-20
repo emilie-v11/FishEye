@@ -15,6 +15,8 @@
 
     <!-- link for font-awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- link for favicon -->
+    <link rel="icon" href="./scss/img/favicon.png" type="image/png" sizes="32x32" />
 
     <!-- link for main CSS -->
     <link rel="stylesheet" href="./css/main.css">
@@ -32,7 +34,7 @@
         <main class="photographer-page">
             <section class="jumbotron">
             </section>
-            <button class="contact-btn btn">Contactez-moi</button>
+            <button class="btn-contact btn">Contactez-moi</button>
             <!-- <aside>
                 <p>
                     <span class="total-likes">297 081<i class="fas fa-heart" aria-label="likes"></i></span>
@@ -46,8 +48,8 @@
                     <h2>Trier par</h2>
                     <nav class="dropdown">
                         <a href="#" class="dropdown__item btn active">
-                            <span class="sort-item">Popularité</span>
-                            <span class="chevron-icon fas fa-chevron-down">
+                            <span class="sort-item">Popularité
+                                <button class="chevron-icon fas fa-chevron-down"></button>
                             </span>
                         </a>
                         <div class="dropdown-extend hidden">
@@ -73,11 +75,11 @@
 
             <div class="overlay-form hidden">
             </div>
-            <div class="modal-form hidden">
-                <span class="close-form" aria-label="Close the form contact">
+            <div class="modal-bg hidden">
+                <button class="close-form" aria-label="Close the form contact">
                     <img class="icon-times" src="./scss/img/icon-times.png" alt="icon times">
-                </span>
-                <form class="form-content" name="contact" action="#" method="post">
+                </button>
+                <form class="modal-form" name="contact" action="#" method="post">
                     <h3>Contactez-moi <br />
                         <span class="photographer-name"></span>
                     </h3>
@@ -87,6 +89,9 @@
                         <br>
                         <input id="first-name" class="text-control" type="text" name="first"
                             aria-labelledby="first-name" />
+                        <span role="alert" class="error-message error-first" aria-hidden="true">
+                            Veuillez entrer un prénom valide, 2 caractères ou plus
+                        </span>
                     </div>
 
                     <div class="form-data">
@@ -94,25 +99,46 @@
                         <br>
                         <input id="last-name" class="text-control" type="text" name="last"
                             aria-labelledby="last-name" />
+                        <span role="alert" class="error-message error-last" aria-hidden="true">
+                            Veuillez entrer un nom valide, 2 caractères ou plus
+                        </span>
                     </div>
 
                     <div class="form-data">
                         <label for="email">Email</label>
                         <br>
                         <input id="email" class="text-control" type="email" name="email" aria-labelledby="email" />
+                        <span role="alert" class="error-message error-email" aria-hidden="true">
+                            Veuillez entrer un email valide
+                        </span>
                     </div>
 
-                    <div class="form-data 4">
+                    <div class="form-data">
                         <label for="message">Votre message</label>
                         <br>
                         <textarea id="message" class="text-control" name="message" aria-labelledby="message"></textarea>
+                        <span role="alert" class="error-message error-message" aria-hidden="true">
+                            Veuillez entrer un message
+                        </span>
                     </div>
-
-                    <input id="form-submit" class="submit-btn btn" type="submit" value="Envoyer" aria-label="send" />
+                    <div class="form-data__submit">
+                        <input class="btn-submit btn" type="submit" value="Envoyer" aria-label="Send message" />
+                    </div>
                 </form>
+                <div class="modal-success">
+                    <button class="close-success" aria-label="Close the form contact">
+                        <img class="icon-times" src="./scss/img/icon-times.png" alt="icon times">
+                    </button>
+                    <div class="success-content">
+                        <p>
+                            Votre message a bien été envoyé !
+                        </p>
+                        <div>
+                            <input class="btn btn-success" type="button" value="Fermer" />
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
             <div class="overlay-lightbox image hidden">
             </div>
             <div class="lightbox image hidden">

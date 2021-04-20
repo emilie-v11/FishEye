@@ -4,28 +4,26 @@
 aside {
 	display: none;
 	z-index: 5;
+	position: fixed;
+	bottom: -16px; // -3% -18px
+	right: 8%; // 36px
+	width: 376px;
+	height: 89px;
+	background-color: $color-beige;
+	color: $color-black;
+	border-radius: 5px;
+	@include typo-24px--500;
 
 	@include large-only {
-		display: block;
-		position: fixed;
-		bottom: -2%; // -18px
-		right: 8%; // 36px
-	}
-	& p {
+		// display: block;
 		display: flex;
-		justify-content: space-around;
-		align-items: center;
-		width: 376px;
-		height: 89px;
-		background-color: $color-beige;
-		border-radius: 5px;
-		@include typo-24px--500;
-		// font-weight: 500;
+	}
 
-		& #total-likes {
-			& i {
-				padding-left: 6px;
-			}
-		}
+	& .aside-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		padding-bottom: 10px;
+        width: 100%;
 	}
 }

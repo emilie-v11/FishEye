@@ -1,5 +1,5 @@
 /*  Photographer-page : 
-    Base Btn for contact-btn & submit-btn
+    Base Btn for btn-contact & btn-submit
 */
 .btn {
 	@include btn--small;
@@ -9,10 +9,10 @@
 	}
 }
 /*  Photographer-page:
-    btn .contact-btn in jumbotron(large screen)
+    btn .btn-contact in jumbotron(large screen)
     & fixed bottom page (small screen)
 */
-.contact-btn {
+.btn-contact {
 	position: fixed;
 	bottom: 28px;
 	left: 50%;
@@ -32,61 +32,90 @@
 }
 
 /*  Photographer-page:
-    btn .submit-btn in form (large screen & small screen)
+    btn .btn-submit in form (large screen & small screen)
 */
-.submit-btn {
-	position: relative;
-	// margin-top: 26px;
-	bottom: -25px;
-	// bottom: 75px;
-	left: 50%;
-	transform: translateX(-50%);
+.btn-submit {
+	margin: 26px;
 
 	@include large-only {
-		margin-top: 26px;
+		margin: 26px 26px 0;
+	}
+}
 
-		bottom: 35px;
-		left: 35px;
-		bottom: 0;
-		left: 50%;
-		transform: translateX(-50%);
+// btn in modal success message
+.btn-success {
+	margin: 26px;
+}
+
+// btn 'X' to close form contact & success
+.close-form,
+.close-success {
+	@include button-reset;
+	@include center-icon;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 32px;
+	height: 32px;
+	color: $color-white;
+
+	& img {
+		width: 19px;
+		height: 19px;
+	}
+
+	@include large-only {
+		width: 72px;
+		height: 72px;
 	}
 }
 
 /*  Photographer-page:
-    btn .btn-like in Cards' Work(large screen & small screen)
+    btn .btn-like in Cards' Work
 */
-
 .btn-like {
-	background: transparent;
-	border: 1px solid transparent;
+	@include button-reset;
+	@include center-icon;
+	position: absolute;
+	top: -3px;
+	right: -4px;
 	width: 24px;
 	height: 24px;
-	cursor: pointer;
 	padding: 0;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: -2px;
-	right: 0;
+	color: $color-primary-dark;
 
 	@include large-only {
-		top: 0;
+		top: -11px;
+		right: -15px;
 		width: 54px;
 		height: 54px;
 	}
 
-	& i {
+	//Base for all heart-icon
+	& i.fa-heart {
+		@include center-icon;
+		@include heart;
 		width: 10px;
 		height: 10px;
-		position: absolute;
-		top: 2px;
-		right: 5px;
 
 		@include large-only {
 			width: 17px;
 			height: 18px;
+		}
+	}
+
+	&i.fas.fa-heart.liked {
+		background: $color-primary-dark; //$color-linear-gradient;
+		transform: scale(0);
+		transition: 350ms ease-in-out; //600ms 350ms
+		// -webkit-background-clip: text;
+		// -webkit-text-fill-color: transparent;
+
+		// add for safari otherwise the heart is transparent
+		&::before {
+			background: $color-primary-dark; //$color-linear-gradient;
+			// -webkit-background-clip: text;
+			// -webkit-text-fill-color: transparent;
 		}
 	}
 }

@@ -14,62 +14,43 @@
 	z-index: 99;
 }
 
-.modal-form {
-	width: 375px;
-	height: 812px;
+.modal-bg,
+.modal-success {
 	position: absolute;
-	top: 0px;
-	left: 0px;
-	// width: 100%;
-	// height: 100%;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%);
+	z-index: 100;
+	width: 375px;
+	height: auto; //812px
 	border-radius: 5px;
 	padding: 17px;
 	background-color: $color-beige;
-	z-index: 100;
-	left: 50%;
-	transform: translate(-50%);
 
-	@include small-only {
-		top: 50%;
+	@include medium-only {
+		top: 0;
 		left: 50%;
-		// 	transform: translate(-50%);
-		transform: translate(-50%, -50%);
+		// transform: translate(-50%, -50%);
+		transform: translateX(-50%);
 	}
 
 	@include large-only {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		height: 900px;
+		// height: 930px;
 		width: 669px;
 		padding: 15px 35px 35px;
 		box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
 	}
 
-	.close-form {
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		color: $color-white;
-		width: 32px;
-		height: 32px;
-		cursor: pointer;
-
-		& img {
-			width: 19px;
-			height: 19px;
-		}
+	.modal-form,
+	.success-content {
+		margin-bottom: 20px;
 
 		@include large-only {
-			width: 72px;
-			height: 72px;
+			margin: 0;
 		}
-	}
-
-	.form-content {
 		& h3 {
 			@include typo-36px--400;
 			text-align: left;
@@ -83,6 +64,7 @@
 		}
 
 		& .form-data {
+			position: relative;
 			& label {
 				@include typo-24px--500;
 				font-weight: 400;
@@ -96,30 +78,33 @@
 			& input,
 			textarea {
 				width: 100%;
-				height: 68px;
+				height: 52px;
 				border: none;
 				border-radius: 5px;
 				background-color: $color-white;
 			}
 
 			& input {
-				margin-top: 5px;
+				margin: 5px 0 10px;
 				padding: 20px;
 				@include typo-14px--400;
 
 				@include large-only {
+					height: 68px;
 					margin-top: 0;
 					@include typo-24px--500;
 				}
 			}
 
 			& input#email {
-				margin-bottom: 5px;
+				margin-bottom: 10px;
 			}
 
 			& textarea {
+				// width: 100%;
 				height: 184px;
 				margin-top: 10px;
+				margin-bottom: 5px;
 				padding: 20px;
 				@include typo-14px--400;
 
@@ -129,6 +114,57 @@
 					@include typo-24px--500;
 				}
 			}
+
+			&__submit {
+				// display: flex;
+				text-align: center;
+			}
+
+			& .error-message {
+				// content: attr(data-error);
+				display: block;
+				display: none;
+				position: absolute;
+				bottom: 5px;
+				// left: 10px;
+				right: 10px;
+				margin-top: 7px;
+				margin-bottom: 7px;
+				color: $color-error-form;
+				font-size: 0.8em;
+				transition: 0.3s;
+				font-weight: 500;
+
+				@include large-only {
+					font-size: 0.9em;
+					// padding: 5px;
+				}
+
+				&.hidden {
+					display: none;
+				}
+			}
 		}
 	}
+}
+
+// /* Modal for message success */
+.modal-success {
+	// display: block;
+	display: none;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	@include typo-36px--400;
+	@include typo-64px--400;
+}
+
+/* content for message success */
+.success-content {
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	justify-content: space-between;
+	min-height: 100%;
+	padding-top: 50%;
 }

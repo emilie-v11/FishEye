@@ -18,7 +18,7 @@ const URL = './FishEyeDataFR.json';
 //  Render Photographers' Cards Homepage
 //==================================================================================================
 
-const datas = Utils.getAllPhotographers(URL).then(data =>
+const datasHomepage = Utils.getAllPhotographers(URL).then(data =>
 	renderPhotographers(data)
 );
 

@@ -17,7 +17,7 @@
 	color: $color-white;
 }
 
-// btn contact-btn & submit-btn in form
+// btn btn-contact & btn-submit in form
 @mixin btn--small {
 	color: $color-white;
 	@include typo-18px--700;
@@ -40,4 +40,34 @@
 	width: 170px;
 	height: 69px;
 	padding: 21px 11px;
+}
+
+@mixin button-reset {
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+}
+
+@mixin center-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+//Base for btn Icon
+@mixin btn-icon {
+	background: transparent;
+	border: 1px solid transparent;
+	width: 54px;
+	height: 54px;
+	@include center-icon;
+	cursor: pointer;
+	padding: 0;
+}
+
+//Base for Heart Icon
+@mixin heart {
+	position: absolute;
+	width: inherit;
+	height: inherit;
 }
