@@ -283,7 +283,7 @@ const closemodalSuccess = function () {
 // Regex
 const nameRegExp = /^([A-ZÀ-Ÿa-z-']{2,20})$/;
 const emailRegExp = /^([a-zA-Z0-9.]{2,})+@([a-zA-Z0-9.]{2,})+[.]+([a-zA-Z0-9-]{2,20})$/;
-const messageRegExp = /^([A-ZÀ-Ÿa-z0-9.']{10,200})$/; //TODO vérifier
+const messageRegExp = /[\s\S]{10,300}/; //TODO vérifier
 
 //FIXME penser à changer aria-hidden=false pour visible lecteur
 function checkFirstName() {
@@ -329,7 +329,7 @@ function checkEmail() {
 }
 
 function checkMessage() {
-	const isMessageValid = emailRegExp.test(messageTextarea.value);
+	const isMessageValid = messageRegExp.test(messageTextarea.value);
 
 	if (isMessageValid) {
 		errorMessage.style.display = 'none';
@@ -361,8 +361,6 @@ btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
 //====================
 
 modalFormEl.addEventListener('submit', function (e) {
-    console.log(submit);
-
 	e.preventDefault();
 	const isFormValid =
 		checkFirstName() && checkLastName() && checkEmail() && checkMessage();
@@ -373,17 +371,15 @@ modalFormEl.addEventListener('submit', function (e) {
 	checkMessage();
 
 	if (isFormValid) {
-		modalSuccess.style.display = 'block';
+		modalSuccessEl.style.display = 'block';
 	}
+	return console.log(`
+        Prénom : ${firstNameInput.value}
+        Nom : ${lastNameInput.value}
+        Email : ${emailInput.value}
+        Message : ${messageTextarea.value}
+    `);
 });
-
-// function validate(e) {
-//     e.preventDefault();
-//     let formValid = true;
-//     // let firstName = document.getElementById("first");
-// };
-
-// btnSubmitFormEl.addEventListener("click",validate(e));
 
 //==================================================================================================
 //  DROPDOWN

@@ -89,7 +89,7 @@
                         <br>
                         <input id="first-name" class="text-control" type="text" name="first"
                             aria-labelledby="first-name" />
-                        <span role="alert" class="error-message error-first" aria-hidden="true">
+                        <span role="alert" class="errors-messages error-first" aria-hidden="true">
                             Veuillez entrer un prénom valide, 2 caractères ou plus
                         </span>
                     </div>
@@ -99,7 +99,7 @@
                         <br>
                         <input id="last-name" class="text-control" type="text" name="last"
                             aria-labelledby="last-name" />
-                        <span role="alert" class="error-message error-last" aria-hidden="true">
+                        <span role="alert" class="errors-messages error-last" aria-hidden="true">
                             Veuillez entrer un nom valide, 2 caractères ou plus
                         </span>
                     </div>
@@ -108,7 +108,7 @@
                         <label for="email">Email</label>
                         <br>
                         <input id="email" class="text-control" type="email" name="email" aria-labelledby="email" />
-                        <span role="alert" class="error-message error-email" aria-hidden="true">
+                        <span role="alert" class="errors-messages error-email" aria-hidden="true">
                             Veuillez entrer un email valide
                         </span>
                     </div>
@@ -116,9 +116,10 @@
                     <div class="form-data">
                         <label for="message">Votre message</label>
                         <br>
-                        <textarea id="message" class="text-control" name="message" aria-labelledby="message"></textarea>
-                        <span role="alert" class="error-message error-message" aria-hidden="true">
-                            Veuillez entrer un message
+                        <textarea id="message" class="text-control" type="text" name="message"
+                            aria-labelledby="message"></textarea>
+                        <span role="alert" class="errors-messages error-message" aria-hidden="true">
+                            Veuillez entrer un message entre 10 et 300 caractères
                         </span>
                     </div>
                     <div class="form-data__submit">
@@ -171,6 +172,12 @@
 
         </main>
     </div>
+    <!-- 	return console.log(`
+            Prénom : ${firstNameInput.value}
+            Nom : ${lastNameInput.value}
+            Email : ${emailInput.value}
+            Message : ${messageTextarea.value}
+        `); -->
 
     <script src="./src/app.js"></script>
     <script src="./photographer-page-script.js"></script>
