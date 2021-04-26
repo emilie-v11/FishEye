@@ -71,6 +71,32 @@
 }
 
 /*  Photographer-page:
+    button chevron Dropdown
+*/
+
+.chevron-icon {
+	position: absolute;
+	@include center-icon;
+	width: 32px;
+	height: 32px;
+	padding: 5px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: $color-white;
+
+	&.fa-chevron-down {
+		top: 17px;
+		right: 8px;
+	}
+
+	&.fa-chevron-up {
+		top: 8px;
+		right: 8px;
+	}
+}
+
+/*  Photographer-page:
     btn .btn-like in Cards' Work
 */
 .btn-like {

@@ -1,9 +1,10 @@
 'use strict';
-
+//==================================================================================================
 //DOM ELEMENTS
+//==================================================================================================
+
 // Main
 const mainEl = document.querySelector('.photographer-page');
-
 // Jumbotron photographer
 const jumbotronEl = document.querySelector('.jumbotron');
 const tagsListEl = document.querySelector('.photographers__tags');
@@ -22,7 +23,6 @@ const modalBg = document.querySelector('.modal-bg');
 const modalSuccessEl = document.querySelector('.modal-success');
 const modalFormEl = document.querySelector('.modal-form');
 const photographerNameEl = document.querySelector('.photographer-name');
-const btnSubmitFormEl = document.querySelector('.btn-submit');
 
 const firstNameInput = document.querySelector('#first-name');
 const lastNameInput = document.querySelector('#last-name');
@@ -45,10 +45,14 @@ const lightboxMediaEl = document.querySelector('.lightbox-modal__media');
 const dropdownBtnEl = document.querySelector('.dropdown__item.btn');
 const dropdownExtendEl = document.querySelector('.dropdown-extend');
 const dropdownItemEl = document.querySelectorAll('.dropdown__item');
+const sortItemEl = document.querySelectorAll('.sort-item');
 const chevronIconEl = document.querySelector('.chevron-icon');
-console.log(dropdownItemEl);
+// console.log(dropdownItemEl);
 
 //==================================================================================================
+// FETCH JSON
+//==================================================================================================
+
 const ID = Utils.getIdByUrl();
 console.log(ID);
 
@@ -56,27 +60,27 @@ console.log(ID);
 const URL = './FishEyeDataFR.json';
 
 const datasPhotographerPage = Utils.getAllPhotographers(URL).then(data => {
-	renderJumbotron(data), renderPhotographerWorks(data);
+	displayJumbotron(data),
+		displayPhotographerWorks(data),
+		renderDropdownSort(data);
 });
 
 //==================================================================================================
 //  Render Photographer Jumbotron
 //==================================================================================================
 
-const renderJumbotron = data => {
-	// console.log(data);
+const displayJumbotron = data => {
+	console.log(data);
 	let photographers = data['photographers'];
 	let photographer = photographers.find(photograph => photograph.id == ID);
 	console.log(photographer);
 
-	/*
-	    ASIDE : photographer's total like & price per day
-	 */
 	// Total Likes by each photographer for all works likes
 	let media = data.media;
-	const dataByID = media.filter(media => media['photographerId'] == ID);
+	let dataByID = media.filter(media => media['photographerId'] == ID);
 	console.log(dataByID); // works photographers [10]
 
+	//========================= ASIDE : photographer's total like ==================================
 	// Create an array with all likes of current photographer (ID)
 	let likesByIDList = dataByID.map(likesByID => likesByID.likes);
 	console.log(likesByIDList);
@@ -89,9 +93,7 @@ const renderJumbotron = data => {
 	console.log(totalLikesList);
 	let totalLikes = totalLikesList;
 
-	/*
-	    JUMBOTRON :
-	 */
+	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list
 	let newLiTags = '';
 	let tagsList = photographer['tags'];
@@ -114,7 +116,7 @@ const renderJumbotron = data => {
 	        </nav>
 	    </div>
 	    <div class="photographers__portrait small">
-	        <img class="photographers__portrait small ${photographer.id}" src='./scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="" aria-label=""/>
+	        <img class="photographers__portrait small ${photographer.id}" src='./scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="photo de ${photographer.name}" aria-label=""/>
 	    </div>
 
         <aside class="aside">
@@ -139,16 +141,15 @@ const renderJumbotron = data => {
 //  Render Photographer Works
 //==================================================================================================
 
-// const datasWorks = Utils.getAllPhotographers(URL).then(data =>
-// 	renderPhotographerWorks(data)
-// );
+let workById = [];
 
 // Function render photographers' works
-const renderPhotographerWorks = data => {
+const displayPhotographerWorks = data => {
 	let newWorkCard = '';
 
 	let media = data.media;
-	const workById = media.filter(media => media['photographerId'] == ID);
+	// let workById = [];
+	workById = media.filter(media => media['photographerId'] == ID);
 	console.log(media); // ==> Array with 59 medias
 	console.log(ID); // ==> id of photographer in URL
 	console.log(workById); // ==> array 10 work for Mimi
@@ -160,42 +161,220 @@ const renderPhotographerWorks = data => {
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
 	console.log(totalLikes);
 
-	console.log(likesByIDList);
+	// DROPDOWN - SORT WORKS
+	// const sortByPopular = workById.sort((a, b) => b.likes - a.likes);
+
+	// const sortByTitle = workById.sort((a, b) => a.likes - b.likes);
+	// console.log(sortByTitle);
+
+	//reussi à faire changer
+	// console.log(workById, sortByPopular);
+	// function sortByPopular() {
+	// 	workById.sort((a, b) => b.likes - a.likes);
+	// 	// return workById;
+	// }
+
+	console.log(workById);
+
+	// let sortItemArray = [];
+	// sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+	// console.log(sortItemArray);
+
+	let [first, second, third] = sortItemArray;
+	console.log(first, second, third); // [0]one-Popularité / [1]two-Date / [2]three-Titre
+
+	// let temp = first;
+	// first = second;
+	// second = third;
+	// third = temp;
+	// console.log(first, second, third); // [0]two-Date / [1]three-Titre / [2]one-Popularité
+
+	// sortItemEl.innerHTML = [second, first, third];
+	// console.log(sortItemEl, sortItemArray);
+
+	// let temp = first;
+	// first = second;
+	// second = third;
+	// third = temp;
+	// console.log(first, second, third); // [0]two-Date / [1]three-Titre / [2]one-Popularité
+	// console.log(sortItemEl);
+	// console.log(sortItemArray);
+
+	// let sortItemPopular = sortItemArray[0];
+	// console.log(sortItemPopular);
+
+	// first.addEventListener('click', sortByPopular);
+	// console.log(first);
+
+	const sortByPopular = workById.sort(function (a, b) {
+		return b.likes - a.likes;
+	});
+	console.log(sortByPopular);
+
+	// const sortByDate = workById.sort(function (a, b) {
+	// 	return new Date(b.date).valueOf() - new Date(a.date).valueOf();
+	// });
+	// console.log(sortByDate);
+
+	// second.addEventListener('click', sortByDate);
+
+	// const sortByTitle = workById.sort(function (a, b) {
+	// 	const titleA = a.alt.toUpperCase();
+	// 	const titleB = b.alt.toUpperCase();
+	// 	if (titleA < titleB) return -1;
+	// 	if (titleA > titleB) return 1;
+	// 	return 0;
+	// });
+	// console.log(sortByTitle);
+
+	// const sortPhotographersWorks = (workById, item) => {
+	//     if (item.innerHTML === 'Popularité') {
+	// 		// console.log(item.innerHTML, 'Popularité');
+	// 		return workById.sort((a, b) => b.likes - a.likes);
+	// 	} else if (item.innerHTML === 'Titre') {
+	// 		// console.log(item.innerHTML, 'Titre');
+	// 		return workById.sort((a, b) => new Date(b.date) - new Date(a.date));
+	// 	} else if (item.innerHTML === 'Date') {
+	// 		// console.log(item.innerHTML, 'Date');
+	// 		return workById.sort((a, b) => {
+	// 			const titleA = a.alt.toUpperCase();
+	// 			const titleB = b.alt.toUpperCase();
+	// 			if (titleA < titleB) return -1;
+	// 			if (titleA > titleB) return 1;
+	// 			return 0;
+	// 		});
+	// 	}
+	// };
+
+	// sortItemArray.forEach(item => {
+	// 	item.addEventListener('click', function () {
+	// switch (item) {
+	// 	case 'Popularité':
+	// 		workById.sort((a, b) => b.likes - a.likes);
+	// 		break;
+	// 	case 'Titre':
+	// 		workById.sort(
+	// 			(a, b) => new Date(b.date) - new Date(a.date)
+	// 		);
+	// 		break;
+	// 	case 'Date':
+	// 		workById.sort((a, b) => {
+	// 			const titleA = a.alt.toUpperCase();
+	// 			const titleB = b.alt.toUpperCase();
+	// 			if (titleA < titleB) return -1;
+	// 			if (titleA > titleB) return 1;
+	// 			return 0;
+	// 		});
+	// 		break;
+	// }
+
+	// if (item.innerHTML === 'Popularité') {
+	// 	// console.log(item.innerHTML, 'Popularité');
+	// 	return workById.sort((a, b) => b.likes - a.likes);
+	// } else if (item.innerHTML === 'Titre') {
+	// 	// console.log(item.innerHTML, 'Titre');
+	// 	return workById.sort(
+	// 		(a, b) => new Date(b.date) - new Date(a.date)
+	// 	);
+	// } else if (item.innerHTML === 'Date') {
+	// 	// console.log(item.innerHTML, 'Date');
+	// 	return workById.sort((a, b) => {
+	// 		const titleA = a.alt.toUpperCase();
+	// 		const titleB = b.alt.toUpperCase();
+	// 		if (titleA < titleB) return -1;
+	// 		if (titleA > titleB) return 1;
+	// 		return 0;
+	// 	});
+	// }
+	// 	});
+	// });
+
+	// sortItemArray.forEach(item => {
+	// 	// console.log(sortItemArray);
+	// 	item.addEventListener('click', function () {
+	// 		if (!dropdownBtnEl.classList.contains('active')) {
+	// 			console.log('ok c un filtre!');
+	// 			if (item.innerHTML === 'Popularité') {
+	// 				// console.log(item.innerHTML, 'Popularité');
+	// 				return workById.sort((a, b) => b.likes - a.likes);
+	// 			} else if (item.innerHTML === 'Titre') {
+	// 				// console.log(item.innerHTML, 'Titre');
+	// 				return workById.sort(
+	// 					(a, b) => new Date(b.date) - new Date(a.date)
+	// 				);
+	// 			} else if (item.innerHTML === 'Date') {
+	// 				// console.log(item.innerHTML, 'Date');
+	// 				return workById.sort((a, b) => {
+	// 					const titleA = a.alt.toUpperCase();
+	// 					const titleB = b.alt.toUpperCase();
+	// 					if (titleA < titleB) return -1;
+	// 					if (titleA > titleB) return 1;
+	// 					return 0;
+	// 				});
+	// 			}
+	// 		} else {
+	// 			console.log('Non, c un button, pas un filtre !');
+	// 		}
+	// 		// return workById;
+	// 	});
+	// });
+
+	console.log(workById);
 
 	workById.forEach(work => {
 		// TODO NE PAS EFFACER CETTE LIGNE ' workById.forEach(work => { '
-		console.log(work.likes);
-		console.log(work.image);
+		// console.log(work.image);
 
 		let newMedia = '';
 		newMedia +=
 			work.image !== undefined
-				? (newMedia = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`)
-				: (newMedia = `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`);
+				? (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
+				: (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
 
-		// Lightbox infos
-		lightboxHeadingEl.innerHTML = `${work['alt-text']}`;
-		lightboxMediaEl.innerHTML = `${newMedia}`;
+		// // let newMedia = '';
+		// function FactoryMedia() {
+		// 	this.createMedia = function (type) {
+		// 		let newMedia;
 
-		const workMediaEl = document.querySelector('lightbox-modal__media');
-		for (let i = 0; i < lightboxMediaEl.length; i++) {
-			lightboxMediaEl[i].addEventListener('click', openCloseLightbox);
-		}
-		console.log(lightboxMediaEl);
-		lightboxMediaEl.addEventListener('click', openCloseLightbox);
+		// 		if (work.image !== undefined) {
+		// 			newMedia = new imageMedia();
+		// 		} else {
+		// 			newMedia = new videoMedia();
+		// 		}
+		// 		newMedia.type = type;
+
+		// 		return newMedia;
+		// 	};
+		// }
+
+		// let imageMedia = function () {
+		// 	return `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
+		// };
+
+		// let videoMedia = function () {
+		// 	return `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
+		// };
+
+		// 	if (work.image !== undefined) {
+		// 		return (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
+		// 	} else {
+		// 		return (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
+		// 	}
+		// 	return newMedia;
+		// }
+
+		// console.log(newMedia);
 
 		//=============================================================
 
 		// Works Cards (Image - name - price - numb of like & heart icon)
 		newWorkCard += `
             <article class="work">
-                <a href="#">
-                    <div class="work__media">
+                <a href="#" class="work__media">
                         ${newMedia}
-                    </div>
                 </a>
                 <div class="work__infos">
-                    <h3 class="work__infos__name">${work['alt-text']}</h3>
+                    <h3 class="work__infos__name">${work['alt']}</h3>
                     <p>
                         <span class="work__infos__price">${work.price}€</span>
                         <span class="work__infos__likes">
@@ -210,18 +389,32 @@ const renderPhotographerWorks = data => {
             </article>
         `;
 	});
-	containerWorksEl.innerHTML = newWorkCard;
-	/*
 
-        <img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
-        <video class="work__media video" src="./scss/img/photos/${ID}/${work.video}"></video>
+	containerWorksEl.innerHTML = newWorkCard;
+
+	/*
+        function mediaFactory (type, attr) {
+            return {
+            type,
+            newMedia : function(){
+                if (work.image !== undefined) {
+                    return `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`
+                } else {
+                    return `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`
+                }
+            }
+        }
+                   
+                   
+        <img class="work__media" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
+        <video class="work__media" src="./scss/img/photos/${ID}/${work.video}"></video>
     
         <div class="overlay-lightbox image hidden">
             </div>
             <div class="lightbox image hidden">
                 <div class="lightbox-modal">
                     ${newMedia}
-                    <h3>${work['alt-text']}</h3>
+                    <h3>${work['alt']}</h3>
                     <span class="close-lightbox fas fa-times"></span>
                     <span class="previous fas fa-chevron-left"></span>
                     <span class="next fas fa-chevron-right"></span>
@@ -229,11 +422,17 @@ const renderPhotographerWorks = data => {
             </div>
     */
 
+	// const sortByPopular = workById.sort((a, b) => {
+	// 	return b.likes - a.likes;
+	// });
+	// console.log(sortByPopular);
+	// console.log(workById);
+
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
 	//==================================================================================================
 	let btnLikeEl = Array.from(document.querySelectorAll('.btn-like'));
-	console.log(btnLikeEl);
+	// console.log(btnLikeEl);
 	console.log(totalLikes);
 
 	btnLikeEl.forEach(btn => {
@@ -259,7 +458,6 @@ const renderPhotographerWorks = data => {
 //==================================================================================================
 // OPEN & CLOSE FORM
 //====================
-
 // Function for Open & Close
 const openForm = function () {
 	overlayFormEl.classList.remove('hidden');
@@ -283,7 +481,7 @@ const closemodalSuccess = function () {
 // Regex
 const nameRegExp = /^([A-ZÀ-Ÿa-z-']{2,20})$/;
 const emailRegExp = /^([a-zA-Z0-9.]{2,})+@([a-zA-Z0-9.]{2,})+[.]+([a-zA-Z0-9-]{2,20})$/;
-const messageRegExp = /[\s\S]{10,300}/; //TODO vérifier
+const messageRegExp = /[\s\S]{10,300}/;
 
 //FIXME penser à changer aria-hidden=false pour visible lecteur
 function checkFirstName() {
@@ -418,25 +616,138 @@ const swapchevronIcon = function () {
 // dropdownExtendEl.addEventListener('click', closeDropdown);
 chevronIconEl.addEventListener('click', openCloseDropdown);
 
-// function Dropdown filter
-let dropdownItemArray = Array.from(
-	document.querySelectorAll('.dropdown__item')
-);
-//Array.from(document.querySelectorAll('.dropdown__item'));
-console.log(dropdownItemArray[0].textContent);
-console.log(dropdownItemArray);
+function sortByPopular() {
+	workById.sort((a, b) => b.likes - a.likes);
+}
 
-dropdownItemArray.forEach(btn => {
-	btn.addEventListener('click', function (item) {
-		let sortItem = document.querySelectorAll('.sort-item');
-		if (dropdownItemArray[0].textContent === 'Popularité') {
-			console.log('ok pour titre');
+function sortByDate() {
+	workById.sort(
+		(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+	);
+}
+
+function sortByTitle() {
+	workById.sort(
+		(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
+	);
+}
+
+let sortItemArray = [];
+sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+console.log(sortItemArray);
+
+sortItemArray.forEach(item => {
+	// console.log(sortItemArray);
+	item.addEventListener('click', function () {
+		if (!dropdownBtnEl.classList.contains('active')) {
+			console.log('ok c un filtre!');
+			if (item.innerHTML === 'Popularité') {
+				// console.log(item.innerHTML, 'Popularité');
+				return workById.sort((a, b) => b.likes - a.likes);
+			} else if (item.innerHTML === 'Titre') {
+				// console.log(item.innerHTML, 'Titre');
+				return workById.sort(
+					(a, b) => new Date(b.date) - new Date(a.date)
+				);
+			} else if (item.innerHTML === 'Date') {
+				// console.log(item.innerHTML, 'Date');
+				return workById.sort((a, b) => {
+					const titleA = a.alt.toUpperCase();
+					const titleB = b.alt.toUpperCase();
+					if (titleA < titleB) return -1;
+					if (titleA > titleB) return 1;
+					return 0;
+				});
+			}
+		} else {
+			console.log('Non, c un button, pas un filtre !');
 		}
-
-		// dropdownItemEl.innerHTML = dropdownItemArray[0];
-		// console.log(dropdownItemArray[index].textContent);
+		// return workById;
 	});
 });
+
+console.log(workById);
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// // function Dropdown filter
+// let dropdownItemArray = Array.from(
+// 	document.querySelectorAll('.dropdown__item')
+// );
+// console.log(dropdownItemArray);
+
+// // let [one, two, three] = dropdownItemArray;
+// // console.log(one, two, three); //
+
+//==================================================================================================
+//  DROPDOWN SORT
+//==================================================================================================
+
+const renderDropdownSort = data => {
+	let media = data.media;
+	// const workById = media.filter(media => media['photographerId'] == ID);
+	// console.log(media); // ==> Array with 59 medias
+	// console.log(ID); // ==> id of photographer in URL
+	// console.log(workById); // ==> array 10 work for Mimi
+	// let sortByPopular = '';
+	// sortByPopular = workById.sort((a, b) => {
+	// 	return b.likes - a.likes;
+	// });
+	// console.log(sortByPopular);
+	// 	function sortByPopular() {
+	// 		workById.sort((a, b) => b.likes - a.likes);
+	// 		return;
+	// 	}
+	// 	// 	sortByPopular();
+	// 	let sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+	// 	console.log(sortItemArray);
+	// 	// 	let [first, second, third] = sortItemArray;
+	// 	// 	console.log(first, second, third); // [0]one-Popularité / [1]two-Date / [2]three-Titre
+	// 	// 	// let temp = first;
+	// 	// 	// first = second;
+	// 	// 	// second = third;
+	// 	// 	// third = temp;
+	// 	// 	// console.log(first, second, third); // [0]two-Date / [1]three-Titre / [2]one-Popularité
+	// 	// 	let sortItem = document.querySelectorAll('.sort-item');
+	// 	// 	console.log(sortItem);
+
+	// 	sortItemArray.forEach(item => {
+	// 		console.log(sortItemArray);
+	// 		item.addEventListener('click', function () {
+	// 			if (!dropdownBtnEl.classList.contains('active')) {
+	// 				console.log('ok c un filtre!');
+	// 				if (item.innerHTML === 'Popularité') {
+	// 					return workById.sort((a, b) => b.likes - a.likes);
+
+	// 					console.log(sortByPopular);
+	// 					console.log(item.innerHTML, 'Popularité');
+	// 				} else if (item.innerHTML === 'Titre') {
+	// 					console.log(item.innerHTML, 'Titre');
+	// 				} else if (item.innerHTML === 'Date') {
+	// 					console.log(item.innerHTML, 'Date');
+	// 				}
+	// 				console.log(sortByPopular);
+	// 			} else {
+	// 				console.log('Non, c un button, pas un filtre !');
+	// 			}
+	// 			return workById;
+	// 		});
+	// 	});
+};
+
+// // //Array.from(document.querySelectorAll('.dropdown__item'));
+// // console.log(dropdownItemArray[0].textContent);
+
+// // dropdownItemArray.forEach(btn => {
+// // 	btn.addEventListener('click', function (item) {
+// // 		let sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+// // 		if (dropdownItemArray.textContent === 'Popularité') {
+// // 			console.log('ok pour titre');
+// // 		}
+// // 		// dropdownItemEl.innerHTML = dropdownItemArray[0];
+// // 		// console.log(dropdownItemArray[index].textContent);
+// // 		// console.log(SortItemArray);
+// // 	});
+// // });
 
 //==================================================================================================
 // Lightboxes
@@ -453,19 +764,35 @@ function openCloseLightbox() {
 // for (let i = 0; i < lightboxMediaEl.length; i++) {
 // 	lightboxMediaEl[i].addEventListener('click', openCloseLightbox);
 // }
-console.log(lightboxMediaEl);
+// console.log(lightboxMediaEl);
 
 // workMediaEl.addEventListener('click', openCloseLightbox);
 lightboxMediaEl.addEventListener('click', openCloseLightbox);
 
 // Close lightbox
 btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
-console.log(btnCloseLightboxEl);
+// console.log(btnCloseLightboxEl);
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 //=============================================================
 // BROUILLON
 //============================================================
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// LIGHTBOX
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// // Lightbox infos
+// lightboxHeadingEl.innerHTML = `${work['alt']}`;
+// lightboxMediaEl.innerHTML = `${newMedia}`;
+
+// const workMediaEl = document.querySelector('lightbox-modal__media');
+// for (let i = 0; i < lightboxMediaEl.length; i++) {
+// 	lightboxMediaEl[i].addEventListener('click', openCloseLightbox);
+// }
+// console.log(lightboxMediaEl);
+// lightboxMediaEl.addEventListener('click', openCloseLightbox);
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FACTORY
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -513,18 +840,20 @@ console.log(btnCloseLightboxEl);
 // 	}
 
 // const factoryMedia = (image, video, media) => {
+// 	let newMedia = '';
 // 	if (image in media) {
-// 		return `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`;
+// 		return (newMedia = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
 // 	} else if (video in media) {
-// 		return `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`;
+// 		return (newMedia = `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
 // 	}
-// }
+// 	return newMedia;
+// };
 
 // console.log(newMedia);
 
 // let mediaImage = function () {
-//     `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt-text']}" aria-label=""/>`;
+//     `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
 // }
 // let mediaVideo = function () {
-//     `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt-text']}"></video>`;
+//     `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
 // }

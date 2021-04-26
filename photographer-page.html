@@ -48,26 +48,19 @@
                     <h2>Trier par</h2>
                     <nav class="dropdown">
                         <a href="#" class="dropdown__item btn active">
-                            <span class="sort-item">Popularité
-                                <button class="chevron-icon fas fa-chevron-down"></button>
-                            </span>
+                            <span class="sort-item one" onclick="sortByPopular()">Popularité</span>
+                            <button class="chevron-icon fas fa-chevron-down"></button>
                         </a>
                         <div class="dropdown-extend hidden">
-                            <a href="#" class="dropdown__item"><span class="sort-item">Date</span></a>
-                            <a href="#" class="dropdown__item "><span class="sort-item">Titre</span></a>
+                            <a href="#" class="dropdown__item">
+                                <span class="sort-item two" onclick="sortByDate()">Date</span>
+                            </a>
+                            <a href="#" class="dropdown__item ">
+                                <span class="sort-item three" onclick="sortByTitle()">Titre</span>
+                            </a>
                         </div>
                     </nav>
                 </div>
-                <!-- TODO penser à supprimer après -->
-                <!-- <span class="work__infos__likes">
-                    <a href="#" class="btn-like" type="button">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                    <a href="#" class="btn-like" type="button">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                </span> -->
-
                 <div class="container-works">
 
                 </div>
@@ -107,7 +100,7 @@
                     <div class="form-data">
                         <label for="email">Email</label>
                         <br>
-                        <input id="email" class="text-control" type="email" name="email" aria-labelledby="email" />
+                        <input id="email" class="text-control" name="email" aria-labelledby="email" />
                         <span role="alert" class="errors-messages error-email" aria-hidden="true">
                             Veuillez entrer un email valide
                         </span>
