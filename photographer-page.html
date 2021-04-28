@@ -35,20 +35,25 @@
             <section class="jumbotron">
             </section>
             <button class="btn-contact btn">Contactez-moi</button>
-            <!-- <aside>
-                <p>
-                    <span class="total-likes">297 081<i class="fas fa-heart" aria-label="likes"></i></span>
-                    <span class="price-day">300€ / jour</span>
-                </p>
-            </aside> -->
-            <!-- FIXME h2 en 1er et nav ensuite mettre 1 div à la place 
-                de la nav pour le style -->
+            <aside class="aside">
+                <div class="aside-content">
+                    <p>
+                        <span class='total-likes'></span>
+                        <i class='fas fa-heart aside'></i>
+                    </p>
+                    <p class='price-day'>
+                        <span class="photographer-price"></span> / jour
+                    </p>
+                </div>
+            </aside>
+
             <section class="photographer-works">
                 <div class="sorting-menu">
                     <h2>Trier par</h2>
                     <nav class="dropdown">
                         <a href="#" class="dropdown__item btn active">
-                            <span class="sort-item one" onclick="sortByPopular()">Popularité</span>
+                            <!--  onclick="sortByPopular()" -->
+                            <span class="sort-item one">Popularité</span>
                             <button class="chevron-icon fas fa-chevron-down"></button>
                         </a>
                         <div class="dropdown-extend hidden">
@@ -133,6 +138,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="overlay-lightbox image hidden">
             </div>
             <div class="lightbox image hidden">
@@ -165,15 +171,11 @@
 
         </main>
     </div>
-    <!-- 	return console.log(`
-            Prénom : ${firstNameInput.value}
-            Nom : ${lastNameInput.value}
-            Email : ${emailInput.value}
-            Message : ${messageTextarea.value}
-        `); -->
 
-    <script src="./src/app.js"></script>
-    <script src="./photographer-page-script.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/form-contact.js"></script>
+    <script src="./js/jumbotron.js"></script>
+    <script src="./js/photographer-works.js"></script>
 </body>
 
 </html>

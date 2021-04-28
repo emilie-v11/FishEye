@@ -1,8 +1,10 @@
 'use strict';
-
+//==================================================================================================
 // DOM ELEMENTS
+//==================================================================================================
+
 const photographersListEl = document.querySelector('.container-photographers');
-const tagsListEl = document.querySelector('.photographers__tags');
+// const tagsListEl = document.querySelector('.photographers__tags');
 
 // navigation tags
 const navEl = document.querySelector('.navigation');
@@ -12,13 +14,12 @@ console.log(navItemEl);
 
 // URL JSON
 const URL = './FishEyeDataFR.json';
-// const URL = 'https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Front-End+V2/P5+Javascript+%26+Accessibility/FishEyeDataFR.json';
 
 //==================================================================================================
 //  Render Photographers' Cards Homepage
 //==================================================================================================
 
-const datasHomepage = Utils.getAllPhotographers(URL).then(data =>
+const datasHomepage = Utils.getAllDatas(URL).then(data =>
 	renderPhotographers(data)
 );
 
@@ -52,18 +53,11 @@ const renderPhotographers = data => {
                 </ul>
             </article>
             `;
-		console.log('data is', data);
-		console.log('data.photographers is', data.photographers);
-		console.log(tagsList, newLiTags);
+		// console.log('data is', data);
+		// console.log('data.photographers is', data.photographers);
+		// console.log(tagsList, newLiTags);
 	});
 	photographersListEl.innerHTML = newPhotographer;
-
-	// filter tags
-	// navItemEl.forEach(tags => {
-	// 	tagsNavFilter();
-	// });
-
-	console.log(data.photographers);
 };
 
 // function tagsNavFilter() {

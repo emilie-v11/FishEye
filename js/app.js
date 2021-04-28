@@ -6,13 +6,12 @@ class Utils {
 		return urlId;
 	}
 
-	static getAllPhotographers = async url => {
+	static getAllDatas = async url => {
 		try {
 			let response = await fetch(url);
 			if (response.ok) {
 				let photographers = await response.json();
-                return photographers;
-                
+				return photographers;
 			} else {
 				console.log("La requête n'a pas abouti : " + response.status);
 			}
