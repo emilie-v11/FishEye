@@ -31,7 +31,7 @@ const renderPhotographers = data => {
 		let tagsList = photographers['tags'];
 		for (let i = 0; i < tagsList.length; i++) {
 			newLiTags += `
-                <li class="photographers__tags__item">#${tagsList[i]}</li>
+                <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
                 `;
 		}
 		// Render Photographers' cards
