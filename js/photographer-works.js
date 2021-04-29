@@ -68,9 +68,10 @@ const renderPhotographerWorks = data => {
 	totalLikesEl.innerHTML = totalLikesArray;
 
 	// DROPDOWN - SORT WORKS TODO
+	// FIXME fonctionne seule
 
-	// const sortByPopular = workById.sort((a, b) => b.likes - a.likes);
-	// console.log(sortByPopular);
+	const sortByPopular = workById.sort((a, b) => b.likes - a.likes);
+	console.log(sortByPopular);
 
 	// const sortByTitle = workById.sort((a, b) => a.likes - b.likes);
 	// console.log(sortByTitle);
@@ -122,35 +123,35 @@ const renderPhotographerWorks = data => {
 	// });
 	// console.log(sortByTitle);
 
-	sortItemArray.forEach(item => {
-		// console.log(sortItemArray);
-		item.addEventListener('click', function () {
-			if (!dropdownBtnEl.classList.contains('active')) {
-				console.log('ok c un filtre!');
-				if (item.innerHTML === 'Popularité') {
-					// console.log(item.innerHTML, 'Popularité');
-					return workById.sort((a, b) => b.likes - a.likes);
-				} else if (item.innerHTML === 'Titre') {
-					// console.log(item.innerHTML, 'Titre');
-					return workById.sort(
-						(a, b) => new Date(b.date) - new Date(a.date)
-					);
-				} else if (item.innerHTML === 'Date') {
-					// console.log(item.innerHTML, 'Date');
-					return workById.sort((a, b) => {
-						const titleA = a.alt.toUpperCase();
-						const titleB = b.alt.toUpperCase();
-						if (titleA < titleB) return -1;
-						if (titleA > titleB) return 1;
-						return 0;
-					});
-				}
-			} else {
-				console.log('Non, c un button, pas un filtre !');
-			}
-			// 		// return workById;
-		});
-	});
+	// sortItemArray.forEach(item => {
+	// 	// console.log(sortItemArray);
+	// 	item.addEventListener('click', function () {
+	// 		// if (!dropdownBtnEl.classList.contains('active')) {
+	// 		// 	console.log('ok c un filtre!');
+	// 		if (item.innerHTML === 'Popularité') {
+	// 			// console.log(item.innerHTML, 'Popularité');
+	// 			return workById.sort((a, b) => b.likes - a.likes);
+	// 		} else if (item.innerHTML === 'Titre') {
+	// 			// console.log(item.innerHTML, 'Titre');
+	// 			return workById.sort(
+	// 				(a, b) => new Date(b.date) - new Date(a.date)
+	// 			);
+	// 		} else if (item.innerHTML === 'Date') {
+	// 			// console.log(item.innerHTML, 'Date');
+	// 			return workById.sort((a, b) => {
+	// 				const titleA = a.alt.toUpperCase();
+	// 				const titleB = b.alt.toUpperCase();
+	// 				if (titleA < titleB) return -1;
+	// 				if (titleA > titleB) return 1;
+	// 				return 0;
+	// 			});
+	// 		}
+	// 		// } else {
+	// 		// 	console.log('Non, c un button, pas un filtre !');
+	// 		// }
+	// 		// 		// return workById;
+	// 	});
+	// });
 
 	console.log(workById);
 
@@ -189,21 +190,19 @@ const renderPhotographerWorks = data => {
 	});
 
 	containerWorksEl.innerHTML = newWorkCard;
+	console.log(workById, newWorkCard);
 
 	// FIXME problème entre newWorkCard et workById
 
-	const oneSortItem = document.querySelector('.one');
-	oneSortItem.addEventListener('click', function () {
-		workById.sort(function (a, b) {
-			return b.likes - a.likes;
-		});
-		return newWorkCard;
-	});
-	console.log(oneSortItem);
-	console.log(workById, newWorkCard);
-
-	// <img class="work__media" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>
-	// <video class="work__media" src="./scss/img/photos/${ID}/${work.video}"></video>
+	// const oneSortItem = document.querySelector('.one');
+	// oneSortItem.addEventListener('click', function () {
+	// 	workById.sort(function (a, b) {
+	// 		return b.likes - a.likes;
+	// 	});
+	// 	return newWorkCard;
+	// });
+	// console.log(oneSortItem);
+	// console.log(workById, newWorkCard);
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
