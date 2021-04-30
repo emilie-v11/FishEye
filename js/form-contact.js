@@ -64,6 +64,20 @@ const closemodalSuccess = function () {
 };
 
 //====================
+// EVENTS FORM
+//====================
+
+// Events for Open & Close Form without validation
+btnOpenFormEl.addEventListener('click', openForm);
+btnCloseFormEl.addEventListener('click', closeForm);
+
+// Events for Close the success modal
+// with 'X' Button Icon
+btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
+// with Button 'Fermer'
+btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
+
+//====================
 // VALIDATION FORM
 //====================
 
@@ -128,20 +142,6 @@ function checkMessage() {
 
 	return isMessageValid;
 }
-
-//====================
-// EVENTS FORM
-//====================
-
-// Events for Open & Close Form without validation
-btnOpenFormEl.addEventListener('click', openForm);
-btnCloseFormEl.addEventListener('click', closeForm);
-
-// Events for Close the success modal
-// with 'X' Button Icon
-btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
-// with Button 'Fermer'
-btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
 
 //====================
 // SUBMIT FORM

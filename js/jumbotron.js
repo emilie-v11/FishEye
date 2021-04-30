@@ -11,7 +11,7 @@ const photographerPriceAsideEl = document.querySelector('.photographer-price');
 //==================================================================================================
 
 let ID = Utils.getIdByUrl();
-console.log(ID);
+// console.log(ID);
 
 // URL JSON
 let URL = './FishEyeDataFR.json';
@@ -25,12 +25,11 @@ const datasPhotographerJumbotron = Utils.getAllDatas(URL).then(data =>
 //==================================================================================================
 
 const renderJumbotron = data => {
-	console.log(data);
-
+	// console.log(data);
 	let photographer = data['photographers'].find(
 		photograph => photograph.id == ID
 	);
-	console.log(photographer);
+	// console.log(photographer);
 
 	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list

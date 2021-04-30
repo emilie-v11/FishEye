@@ -15,8 +15,12 @@ const dropdownEl = document.querySelector('.dropdown');
 const dropdownBtnEl = document.querySelector('.dropdown__item.btn');
 const dropdownExtendEl = document.querySelector('.dropdown-extend');
 const dropdownItemEl = document.querySelectorAll('.dropdown__item');
-const sortItemEl = document.querySelectorAll('.sort-item');
 const chevronIconEl = document.querySelector('.chevron-icon');
+
+const sortItemEl = document.querySelectorAll('.sort-item');
+// let oneSortItemEl = document.querySelector('.one');
+// let twoSortItemEl = document.querySelector('.two');
+// let threeSortItemEl = document.querySelector('.three');
 
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
@@ -43,11 +47,26 @@ let workById = [];
 // Function render photographers' works
 const renderPhotographerWorks = data => {
 	let media = data.media;
-	// let workById = [];
 	workById = media.filter(media => media['photographerId'] == ID);
+
 	console.log(media); // ==> Array with 59 medias
 	console.log(ID); // ==> id of photographer in URL
 	console.log(workById); // ==> array 10 work for Mimi
+
+	// sort workById (array works cards) by Popularity by default
+	workById.sort((a, b) => b.likes - a.likes);
+
+	// // Create an array with all likes of current photographer (ID)
+	// let likesByIDList = workById.map(likesByID => likesByID.likes);
+	// console.log(likesByIDList);
+
+	// // Calcul the total of the likes' array
+	// let totalLikesList = likesByIDList.reduce(
+	// 	(total, likes) => total + likes,
+	// 	0
+	// );
+	// console.log(totalLikesList);
+	// let totalLikes = totalLikesList;
 
 	let totalLikesArray = [];
 	let likesByIDArray = [];
@@ -67,96 +86,89 @@ const renderPhotographerWorks = data => {
 
 	totalLikesEl.innerHTML = totalLikesArray;
 
-	// DROPDOWN - SORT WORKS TODO
-	// FIXME fonctionne seule
+	//=============================================================
+	renderWorksCards();
 
-	const sortByPopular = workById.sort((a, b) => b.likes - a.likes);
-	console.log(sortByPopular);
+	// let sortItemArray = [];
+	// sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+	// console.log(sortItemArray);
 
-	// const sortByTitle = workById.sort((a, b) => a.likes - b.likes);
-	// console.log(sortByTitle);
+	//=============================================================
+	// function renderNewWorkCard (data) {
 
-	//reussi à faire changer
-	// console.log(workById, sortByPopular);
-	// function sortByPopular() {
-	// 	workById.sort((a, b) => b.likes - a.likes);
-	// 	// return workById;
+	// 	workById = workById.sort((a, b) => b.likes - a.likes);
+
+	// 	// Render Works Cards (Image - name - price - numb of like & heart icon)
+	// 	let newWorkCard = '';
+	// 	workById.forEach(work => {
+	// 		let newMedia = '';
+	// 		newMedia +=
+	// 			work.image !== undefined
+	// 				? (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
+	// 				: (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
+	// 		// console.log(newMedia);
+
+	// 		newWorkCard += `
+	//         <article class="work">
+	//             <a href="#" class="work__media">
+	//                     ${newMedia}
+	//             </a>
+	//             <div class="work__infos">
+	//                 <h3 class="work__infos__name">${work['alt']}</h3>
+	//                 <p>
+	//                     <span class="work__infos__price">${work.price}€</span>
+	//                     <span class="work__infos__likes">
+	//                         <span class="work-like">${work.likes}</span>
+	//                         <button class="btn-like" aria-label="click for like it">
+	//                             <i class="far fa-heart "></i>
+	//                             <i class="fas fa-heart liked"></i>
+	//                         </button>
+	//                     </span>
+	//                 </p>
+	//             </div>
+	//         </article>
+	//     `;
+	// 	});
+
+	// 	containerWorksEl.innerHTML = newWorkCard;
+	// 	console.log(workById, newWorkCard);
 	// }
+	// renderNewWorkCard();
 
-	console.log(workById);
-
-	let sortItemArray = [];
-	sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
-	console.log(sortItemArray);
-
-	let workLikeEl = document.querySelectorAll('.work-like');
-
-	// const oneSortItem = document.querySelector('.one');
-	// oneSortItem.addEventListener('click', function () {
-	// 	workById.sort(function (a, b) {
-	// 		return b.likes - a.likes;
-	//     });
-	//     return workById;
-	// });
-	// console.log(oneSortItem);
+	//==================================================================================================
+	//  Function & Events for like  each Works & total likes
+	//==================================================================================================
+	let btnLikeEl = Array.from(document.querySelectorAll('.btn-like'));
+	// console.log(btnLikeEl);
+	console.log(totalLikesArray);
 	// console.log(workById);
 
-	// TODO CEUX-LÀ FONCTIONNE AUTOMATIQUEMENT
-	// const sortByPopular = workById.sort(function (a, b) {
-	// 	return b.likes - a.likes;
-	// });
-	// console.log(workById, sortByPopular);
+	btnLikeEl.forEach(btn => {
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
+			if (!btn.classList.contains('liked')) {
+				btn.previousElementSibling.innerHTML++;
+				btn.classList.add('liked');
+				totalLikesArray++;
+			} else {
+				btn.previousElementSibling.innerHTML--;
+				btn.classList.remove('liked');
+				totalLikesArray--;
+			}
+			document.querySelector('.total-likes').innerHTML = totalLikesArray;
+			console.log(totalLikesArray);
+			console.log(btn.previousElementSibling);
+		});
+	});
+};
 
-	// const sortByDate = workById.sort(function (a, b) {
-	// 	return new Date(b.date).valueOf() - new Date(a.date).valueOf();
-	// });
-	// console.log(sortByDate);
+//==================================================================================================
+//  WORKS CARDS
+//==================================================================================================
 
-	// second.addEventListener('click', sortByDate);
-
-	// const sortByTitle = workById.sort(function (a, b) {
-	// 	const titleA = a.alt.toUpperCase();
-	// 	const titleB = b.alt.toUpperCase();
-	// 	if (titleA < titleB) return -1;
-	// 	if (titleA > titleB) return 1;
-	// 	return 0;
-	// });
-	// console.log(sortByTitle);
-
-	// sortItemArray.forEach(item => {
-	// 	// console.log(sortItemArray);
-	// 	item.addEventListener('click', function () {
-	// 		// if (!dropdownBtnEl.classList.contains('active')) {
-	// 		// 	console.log('ok c un filtre!');
-	// 		if (item.innerHTML === 'Popularité') {
-	// 			// console.log(item.innerHTML, 'Popularité');
-	// 			return workById.sort((a, b) => b.likes - a.likes);
-	// 		} else if (item.innerHTML === 'Titre') {
-	// 			// console.log(item.innerHTML, 'Titre');
-	// 			return workById.sort(
-	// 				(a, b) => new Date(b.date) - new Date(a.date)
-	// 			);
-	// 		} else if (item.innerHTML === 'Date') {
-	// 			// console.log(item.innerHTML, 'Date');
-	// 			return workById.sort((a, b) => {
-	// 				const titleA = a.alt.toUpperCase();
-	// 				const titleB = b.alt.toUpperCase();
-	// 				if (titleA < titleB) return -1;
-	// 				if (titleA > titleB) return 1;
-	// 				return 0;
-	// 			});
-	// 		}
-	// 		// } else {
-	// 		// 	console.log('Non, c un button, pas un filtre !');
-	// 		// }
-	// 		// 		// return workById;
-	// 	});
-	// });
-
-	console.log(workById);
-
+function renderWorksCards() {
+	// Render Works Cards (Image - name - price - numb of like & heart icon)
 	let newWorkCard = '';
-
 	workById.forEach(work => {
 		let newMedia = '';
 		newMedia +=
@@ -165,8 +177,6 @@ const renderPhotographerWorks = data => {
 				: (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
 		// console.log(newMedia);
 
-		//=============================================================
-		// Works Cards (Image - name - price - numb of like & heart icon)
 		newWorkCard += `
             <article class="work">
                 <a href="#" class="work__media">
@@ -188,88 +198,22 @@ const renderPhotographerWorks = data => {
             </article>
         `;
 	});
-
 	containerWorksEl.innerHTML = newWorkCard;
-	console.log(workById, newWorkCard);
-
-	// FIXME problème entre newWorkCard et workById
-
-	// const oneSortItem = document.querySelector('.one');
-	// oneSortItem.addEventListener('click', function () {
-	// 	workById.sort(function (a, b) {
-	// 		return b.likes - a.likes;
-	// 	});
-	// 	return newWorkCard;
-	// });
-	// console.log(oneSortItem);
-	// console.log(workById, newWorkCard);
-
-	//==================================================================================================
-	//  Function & Events for like  each Works & total likes
-	//==================================================================================================
-	let btnLikeEl = Array.from(document.querySelectorAll('.btn-like'));
-	// console.log(btnLikeEl);
-	console.log(totalLikesArray);
-	console.log(workById);
-
-	btnLikeEl.forEach(btn => {
-		btn.addEventListener('click', function (e) {
-			e.preventDefault();
-			if (!btn.classList.contains('liked')) {
-				btn.previousElementSibling.innerHTML++;
-				btn.classList.add('liked');
-				totalLikesArray++;
-			} else {
-				btn.previousElementSibling.innerHTML--;
-				btn.classList.remove('liked');
-				totalLikesArray--;
-			}
-			document.querySelector('.total-likes').innerHTML = totalLikesArray;
-			console.log(totalLikesArray);
-			console.log(btn.previousElementSibling);
-		});
-	});
-};
-// // Total Likes by each photographer for all works likes
-// let media = data.media;
-// let dataByID = media.filter(media => media['photographerId'] == ID);
-// console.log(dataByID); // works photographers [10]
-
-// //========================= ASIDE : photographer's total like ==================================
-// // Create an array with all likes of current photographer (ID)
-// let likesByIDList = dataByID.map(likesByID => likesByID.likes);
-// console.log(likesByIDList);
-
-// // Calcul the total of the likes' array
-// let totalLikesList = likesByIDList.reduce(
-// 	(total, likes) => total + likes,
-// 	0
-// );
-// console.log(totalLikesList);
-// let totalLikes = totalLikesList;
+}
 
 //==================================================================================================
 //  DROPDOWN
 //==================================================================================================
+//=========================
+//  DROPDOWN OPEN & CLOSE
+//=========================
 
-// functions for Open & Close Dropdown
-const openCloseDropdown = function () {
-	if (dropdownBtnEl.classList.contains('active')) {
-		dropdownBtnEl.classList.remove('active');
-		dropdownExtendEl.classList.remove('hidden');
-		swapchevronIcon();
-	} else {
-		dropdownExtendEl.classList.add('hidden');
-		dropdownBtnEl.classList.add('active');
-		swapchevronIcon();
-	}
+// functions for Close Dropdown after select sort item
+const closeDropdown = function () {
+	dropdownExtendEl.classList.add('hidden');
+	dropdownBtnEl.classList.add('active');
+	swapchevronIcon();
 };
-
-// const closeDropdown = function () {
-// 	dropdownExtendEl.classList.add('hidden');
-// 	dropdownBtnEl.classList.add('active');
-// 	swapchevronIcon();
-// };
 
 // function for swap chevron icon 'down' or 'up'
 const swapchevronIcon = function () {
@@ -280,32 +224,160 @@ const swapchevronIcon = function () {
 	}
 };
 
-// Events for Open & Close Dropdown
-// dropdownBtnEl.addEventListener('click', openDropdown);
-// dropdownExtendEl.addEventListener('click', closeDropdown);
-chevronIconEl.addEventListener('click', openCloseDropdown);
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// displayPhotographerWorks(data);
-// console.log(workById);
+// functions & Events for Open & Close Dropdown with Chevron Icon
+chevronIconEl.addEventListener('click', function (e) {
+	e.preventDefault();
+	if (dropdownBtnEl.classList.contains('active')) {
+		dropdownBtnEl.classList.remove('active');
+		dropdownExtendEl.classList.remove('hidden');
+		swapchevronIcon();
+	} else {
+		dropdownExtendEl.classList.add('hidden');
+		dropdownBtnEl.classList.add('active');
+		swapchevronIcon();
+	}
+});
 
-function sortByPopular() {
-	workById.sort((a, b) => b.likes - a.likes);
+// // functions for Open & Close Dropdown
+// const openCloseDropdown = function () {
+// 	if (dropdownBtnEl.classList.contains('active')) {
+// 		dropdownBtnEl.classList.remove('active');
+// 		dropdownExtendEl.classList.remove('hidden');
+// 		swapchevronIcon();
+// 	} else {
+// 		dropdownExtendEl.classList.add('hidden');
+// 		dropdownBtnEl.classList.add('active');
+// 		swapchevronIcon();
+// 	}
+// };
+// chevronIconEl.addEventListener('click', openCloseDropdown);
+
+//=========================
+//  DROPDOWN SORT BY ITEM
+//=========================
+
+// function sort by Popularity
+function sortByPopularity() {
+	if (!dropdownBtnEl.classList.contains('active')) {
+		workById.sort((a, b) => b.likes - a.likes);
+		sortItemArray[0].innerHTML = ['Popularité'];
+		sortItemArray[1].innerHTML = ['Date'];
+		sortItemArray[2].innerHTML = ['Titre'];
+	}
 }
 
+// function sort by Date
 function sortByDate() {
 	workById.sort(
 		(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
 	);
+	sortItemArray[0].innerHTML = ['Date'];
+	sortItemArray[1].innerHTML = ['Popularité'];
+	sortItemArray[2].innerHTML = ['Titre'];
 }
 
+// function sort by Title
 function sortByTitle() {
-	workById.sort(
-		(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
-	);
+	workById.sort((a, b) => {
+		const titleA = a.alt.toUpperCase();
+		const titleB = b.alt.toUpperCase();
+		if (titleA < titleB) return -1;
+		if (titleA > titleB) return 1;
+		return 0;
+	});
+	sortItemArray[0].innerHTML = ['Titre'];
+	sortItemArray[1].innerHTML = ['Popularité'];
+	sortItemArray[2].innerHTML = ['Date'];
 }
 
-console.log(workById);
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//=========================
+//  DROPDOWN EVENTS
+//=========================
+let sortItemArray = [];
+sortItemArray = Array.from(sortItemEl);
+console.log(sortItemArray);
+
+// let [one, two, three] = sortItemArray;
+// console.log(sortItemArray);
+// console.log(one, two, three);
+
+sortItemArray.forEach(item => {
+	item.addEventListener('click', function (e) {
+		e.preventDefault();
+		if (!dropdownBtnEl.classList.contains('active')) {
+			if (item.innerHTML === 'Popularité') {
+				sortByPopularity();
+			} else if (item.innerHTML === 'Date') {
+				sortByDate();
+			} else if (item.innerHTML === 'Titre') {
+				sortByTitle();
+			}
+		}
+		closeDropdown();
+		renderWorksCards();
+	});
+});
+
+// sortItemArray.forEach(item => {
+// 	item.addEventListener('click', function (e) {
+// 		e.preventDefault();
+// 		if (!dropdownBtnEl.classList.contains('active')) {
+// 			if (item.innerHTML === 'Popularité') {
+// 				sortByPopularity();
+// 				// sortItemArray[0].innerHTML = ['Popularité'];
+// 				// sortItemArray[1].innerHTML = ['Date'];
+// 				// sortItemArray[2].innerHTML = ['Titre'];
+// 			} else if (item.innerHTML === 'Date') {
+// 				sortByDate();
+// 				// sortItemArray[0].innerHTML = ['Date'];
+// 				// sortItemArray[1].innerHTML = ['Popularité'];
+// 				// sortItemArray[2].innerHTML = ['Titre'];
+// 				// sortItemArray[2].innerHTML = ['Titre'];
+// 			} else if (item.innerHTML === 'Titre') {
+// 				sortByTitle();
+// 				// sortItemArray[0].innerHTML = ['Titre'];
+// 				// sortItemArray[1].innerHTML = ['Popularité'];
+// 				// sortItemArray[2].innerHTML = ['Date'];
+// 			}
+// 		}
+// 		closeDropdown();
+// 		renderWorksCards();
+// 	});
+// });
+
+// oneSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByPopularity();
+// 	closeDropdown();
+// 	// oneSortItemEl.innerHTML = ''
+// 	// sortItemArray = [one, two, three];
+// 	// sortItemArray = sortItemEl.innerHTML;
+
+// 	renderWorksCards();
+// });
+
+// twoSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByDate();
+// 	closeDropdown();
+// 	oneSortItemEl.innerHTML = 'Date';
+// 	twoSortItemEl.innerHTML = 'Popularité';
+// 	threeSortItemEl.innerHTML = 'Title';
+
+// 	renderWorksCards();
+// });
+
+// threeSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByTitle();
+
+// 	closeDropdown();
+// 	renderWorksCards();
+// });
+
+// oneSortItemEl.addEventListener('click', sortByPopularity);
+// twoSortItemEl.addEventListener('click', sortByDate);
+// threeSortItemEl.addEventListener('click', sortByTitle);
 
 //==================================================================================================
 // Lightboxes

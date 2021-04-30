@@ -48,24 +48,24 @@
             </aside>
 
             <section class="photographer-works">
-                <div class="sorting-menu">
+                <nav class="sorting-menu">
                     <h2>Trier par</h2>
-                    <nav class="dropdown">
-                        <a href="#" class="dropdown__item btn active">
+                    <div class="dropdown">
+                        <span class="dropdown__item btn active">
                             <!--  onclick="sortByPopular()" -->
-                            <span class="sort-item one">Popularité</span>
+                            <a href="#" class="sort-item one">Popularité</a>
                             <button class="chevron-icon fas fa-chevron-down"></button>
-                        </a>
+                        </span>
                         <div class="dropdown-extend hidden">
-                            <a href="#" class="dropdown__item">
-                                <span class="sort-item two" onclick="sortByDate()">Date</span>
-                            </a>
-                            <a href="#" class="dropdown__item ">
-                                <span class="sort-item three" onclick="sortByTitle()">Titre</span>
-                            </a>
+                            <span class="dropdown__item">
+                                <a href="#" class="sort-item two">Date</a>
+                            </span>
+                            <span class="dropdown__item ">
+                                <a href="#" class="sort-item three">Titre</a>
+                            </span>
                         </div>
-                    </nav>
-                </div>
+                    </div>
+                </nav>
                 <div class="container-works">
 
                 </div>
@@ -114,8 +114,7 @@
                     <div class="form-data">
                         <label for="message">Votre message</label>
                         <br>
-                        <textarea id="message" class="text-control" type="text" name="message"
-                            aria-labelledby="message"></textarea>
+                        <textarea id="message" class="text-control" name="message" aria-labelledby="message"></textarea>
                         <span role="alert" class="errors-messages error-message" aria-hidden="true">
                             Veuillez entrer un message entre 10 et 300 caractères
                         </span>

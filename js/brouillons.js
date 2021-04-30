@@ -7,6 +7,151 @@
 // URL JSON
 // URL = './FishEyeDataFR.json';
 
+// DROPDOWN SORT le 29/04
+
+// FIXME problème entre newWorkCard et workById
+
+// const oneSortItem = document.querySelector('.one');
+// oneSortItem.addEventListener('click', function () {
+// 	workById.sort(function (a, b) {
+// 		return b.likes - a.likes;
+// 	});
+// 	return newWorkCard;
+// });
+// console.log(oneSortItem);
+// console.log(workById, newWorkCard);
+
+//==========================
+
+// oneSortItemEl.addEventListener('click', function () {
+// 	workById.sort((a, b) => b.likes - a.likes);
+// 	closeDropdown();
+// 	renderWorksCards();
+// });
+
+// twoSortItemEl.addEventListener('click', function () {
+// 	workById.sort((a, b) => new Date(b.date) - new Date(a.date));
+// 	closeDropdown();
+// 	renderWorksCards();
+// });
+
+// threeSortItemEl.addEventListener('click', function () {
+// 	workById.sort((a, b) => {
+// 		const titleA = a.alt.toUpperCase();
+// 		const titleB = b.alt.toUpperCase();
+// 		if (titleA < titleB) return -1;
+// 		if (titleA > titleB) return 1;
+// 		return 0;
+// 	});
+// 	closeDropdown();
+// 	renderWorksCards();
+// });
+let sortItemArray = [];
+sortItemArray = Array.from(sortItemEl);
+console.log(sortItemArray);
+
+sortItemArray.forEach(item => {
+	item.addEventListener('click', function (e) {
+		e.preventDefault();
+		if (!dropdownBtnEl.classList.contains('active')) {
+			if (item.innerHTML === 'Popularité') {
+				sortByPopularity();
+				// sortItemArray[0].innerHTML = ['Popularité'];
+				// sortItemArray[1].innerHTML = ['Date'];
+				// sortItemArray[2].innerHTML = ['Titre'];
+			} else if (item.innerHTML === 'Date') {
+				sortByDate();
+				// sortItemArray[0].innerHTML = ['Date'];
+				// sortItemArray[1].innerHTML = ['Popularité'];
+				// sortItemArray[2].innerHTML = ['Titre'];
+				// sortItemArray[2].innerHTML = ['Titre'];
+			} else if (item.innerHTML === 'Titre') {
+				sortByTitle();
+				// sortItemArray[0].innerHTML = ['Titre'];
+				// sortItemArray[1].innerHTML = ['Popularité'];
+				// sortItemArray[2].innerHTML = ['Date'];
+			}
+		}
+		closeDropdown();
+		renderWorksCards();
+	});
+});
+
+//==========================
+
+// DROPDOWN - SORT WORKS TODO
+// FIXME fonctionne seule
+
+// const sortByPopular = workById.sort((a, b) => b.likes - a.likes);
+// console.log(sortByPopular);
+
+// const sortByTitle = workById.sort((a, b) => a.likes - b.likes);
+// console.log(sortByTitle);
+
+//reussi à faire changer
+// console.log(workById, sortByPopular);
+// function sortByPopular() {
+// 	workById.sort((a, b) => b.likes - a.likes);
+// 	// return workById;
+// }
+
+//==========================
+
+let sortItemArray = [];
+sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
+console.log(sortItemArray);
+
+let workLikeEl = document.querySelectorAll('.work-like');
+
+const oneSortItem = document.querySelector('.one');
+oneSortItem.addEventListener('click', function () {
+	// workById.sort(function (a, b) {
+	// 	return b.likes - a.likes;
+	// });
+	workById.sort((a, b) => a.likes - b.likes);
+	// alert('tout ok');
+});
+console.log(oneSortItem);
+console.log(workById);
+
+console.log(workById);
+
+// // TODO CEUX-LÀ FONCTIONNE AUTOMATIQUEMENT
+const sortByPopular = workById.sort(function (a, b) {
+	return b.likes - a.likes;
+});
+console.log(workById, sortByPopular);
+
+// sortItemArray.forEach(item => {
+// 	// console.log(sortItemArray);
+// 	item.addEventListener('click', function () {
+// 		// if (!dropdownBtnEl.classList.contains('active')) {
+// 		// 	console.log('ok c un filtre!');
+// 		if (item.innerHTML === 'Popularité') {
+// 			// console.log(item.innerHTML, 'Popularité');
+// 			return workById.sort((a, b) => b.likes - a.likes);
+// 		} else if (item.innerHTML === 'Titre') {
+// 			// console.log(item.innerHTML, 'Titre');
+// 			return workById.sort(
+// 				(a, b) => new Date(b.date) - new Date(a.date)
+// 			);
+// 		} else if (item.innerHTML === 'Date') {
+// 			// console.log(item.innerHTML, 'Date');
+// 			return workById.sort((a, b) => {
+// 				const titleA = a.alt.toUpperCase();
+// 				const titleB = b.alt.toUpperCase();
+// 				if (titleA < titleB) return -1;
+// 				if (titleA > titleB) return 1;
+// 				return 0;
+// 			});
+// 		}
+// 		// } else {
+// 		// 	console.log('Non, c un button, pas un filtre !');
+// 		// }
+// 		// 		// return workById;
+// 	});
+// });
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // LIGHTBOX
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -218,6 +363,11 @@
 // console.log(first, second, third); // [0]two-Date / [1]three-Titre / [2]one-Popularité
 // console.log(sortItemEl);
 // console.log(sortItemArray);
+
+// let temp = one;
+// one = two;
+// two = three;
+// three = temp;
 
 // let sortItemPopular = sortItemArray[0];
 // console.log(sortItemPopular);
