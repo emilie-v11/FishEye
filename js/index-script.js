@@ -1,7 +1,12 @@
 'use strict';
+/**
+ * INDEX - HOMEPAGE
+ */
 //==================================================================================================
 // DOM ELEMENTS
 //==================================================================================================
+// scroll Link top of homepage
+const scrollLink = document.querySelector('.scroll-link');
 
 const photographersListEl = document.querySelector('.container-photographers');
 // const tagsListEl = document.querySelector('.photographers__tags');
@@ -39,7 +44,7 @@ const renderPhotographers = data => {
             <article class="photographers" id="${photographers.id}">
                 <a href="photographer-page.html?id=${photographers.id}">
                     <div class="photographers__portrait">
-                        <img class="photographers__portrait ${photographers.id}" src='./scss/img/photos/PhotographersIDPhotos/${photographers.portrait}' alt="" aria-label=""/>
+                        <img class="photographers__portrait ${photographers.id}" src='./img/photos/PhotographersIDPhotos/${photographers.portrait}' alt="" aria-label=""/>
                     </div>
                     <h2 class="photographers__name">${photographers.name}</h2>
                 </a>
@@ -60,59 +65,17 @@ const renderPhotographers = data => {
 	photographersListEl.innerHTML = newPhotographer;
 };
 
-// function tagsNavFilter() {
-// 	if (navItemEl.classList.contains('active')) {
-// 		console.log('ok');
-// 	}
-// }
+// scroll Link top of homepage
+window.addEventListener('scroll', () => {
+	const scrollPosition = window.scrollY;
 
-// Change style for tag selected
+	if (scrollPosition < 20 || scrollPosition > 150) {
+		scrollLink.style.display = 'none';
+	} else {
+		scrollLink.style.display = 'block';
+		scrollLink.focus();
+	}
+});
+console.log(scrollLink);
 
-// navItemEl.forEach(tag => {
-// 	tag.addEventListener('click', function () {
-// 		// let navItemEl = document.querySelectorAll('.navigation__item');
-// 		let tagActive = tag.classList.contains('active');
-// 		let tagActive1 = tag.classList.contains('1');
-// 		let tagSiblings = Array.from(tag.parentNode.children);
-// 		let tagSiblingsActive = tagSiblings.filter(
-// 			element => tag !== tagActive
-// 		);
-// 		console.log(tagSiblings);
-// 		console.log(tagSiblingsActive);
-
-// 		// if (!tagActive && !tagSiblings == tagActive) {
-// 		if (!tagActive) {
-// 			if (tagSiblingsActive) {
-// 				// Quand select 1 tag & autres non select =
-// 				tag.classList.add('active');
-// 				console.log("n'était pas actif & autres non plus"); // ok
-// 				console.log(tagActive); // false
-//                 console.log(tagSiblings); // [8 tags dt 1 avec class'active']
-//                 console.log(tagSiblingsActive);
-// 				// console.log(navItemEl); // [NodeList 8 tags dt 1 avec class'active']
-// 			} else if (tagSiblingsActive == tagActive) {
-// 				// tagSiblings.tag.remove('active');
-// 				console.log('ENFIN !!!!');
-// 				console.log(tagActive);
-// 				console.log(tagSiblings);
-// 				console.log(navItemEl);
-// 			}
-// 		} else if (tagActive) {
-// 			// Qd select 1 tag déjà select et autres non select
-// 			tag.classList.remove('active');
-// 			console.log('était actif'); // ok
-// 			console.log(tagActive); // true
-// 			console.log(tagSiblings); // [8 tags dt 1 sans class'active']
-// 			console.log(navItemEl); // [8 tags dt 1 sans class'active']
-// 		}
-// 	});
-// });
-
-//     .addEventListener('click', function () {
-// 	for (let i = 0; i < navItemEl.length; i++) {
-// 		console.log(navEl, navItemEl[i]);
-// 		let tagActive = navItemEl[i].classList.contains('active');
-// 		console.log(tagActive);
-// 		navItemEl[i].classList.add('active');
-// 	}
-// });
+// if (scrollPosition < 20 || scrollPosition > 200)

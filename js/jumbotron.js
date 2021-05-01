@@ -1,4 +1,7 @@
 'use strict';
+/**
+ *  JUMBOTRON
+ */
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================// Jumbotron photographer
@@ -54,7 +57,7 @@ const renderJumbotron = data => {
 	        </nav>
 	    </div>
 	    <div class="photographers__portrait small">
-	        <img class="photographers__portrait small ${photographer.id}" src='./scss/img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="photo de ${photographer.name}" aria-label=""/>
+	        <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="photo de ${photographer.name}" aria-label=""/>
 	    </div>
 	    `;
 	jumbotronEl.innerHTML = newJumbotron;

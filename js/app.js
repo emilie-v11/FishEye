@@ -1,11 +1,13 @@
-class Utils {
-	// obtenir l'id par l'url
+'use strict';
 
+class Utils {
+	// Render ID by URL
 	static getIdByUrl() {
 		let urlId = new URLSearchParams(document.location.search).get('id');
 		return urlId;
 	}
 
+	// Render all datas JSON
 	static getAllDatas = async url => {
 		try {
 			let response = await fetch(url);

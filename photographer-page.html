@@ -16,7 +16,7 @@
     <!-- link for font-awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- link for favicon -->
-    <link rel="icon" href="./scss/img/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="./img/favicon.png" type="image/png" sizes="32x32" />
 
     <!-- link for main CSS -->
     <link rel="stylesheet" href="./css/main.css">
@@ -27,7 +27,7 @@
 
         <header class="header">
             <a class="header-logo" href="./index.html" aria-label="FishEye Homepage">
-                <img src="./scss/img/logo.png" alt="Logo FishEye" aria-label="Logo FishEye">
+                <img src="./img/logo.png" alt="Logo FishEye" aria-label="Logo FishEye">
             </a>
         </header>
 
@@ -53,15 +53,15 @@
                     <div class="dropdown">
                         <span class="dropdown__item btn active">
                             <!--  onclick="sortByPopular()" -->
-                            <a href="#" class="sort-item one">Popularité</a>
+                            <a href="#" class="sort-item">Popularité</a>
                             <button class="chevron-icon fas fa-chevron-down"></button>
                         </span>
                         <div class="dropdown-extend hidden">
                             <span class="dropdown__item">
-                                <a href="#" class="sort-item two">Date</a>
+                                <a href="#" class="sort-item">Date</a>
                             </span>
                             <span class="dropdown__item ">
-                                <a href="#" class="sort-item three">Titre</a>
+                                <a href="#" class="sort-item">Titre</a>
                             </span>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             </div>
             <div class="modal-bg hidden">
                 <button class="close-form" aria-label="Close the form contact">
-                    <img class="icon-times" src="./scss/img/icon-times.png" alt="icon times">
+                    <img class="icon-times" src="./img/icon-times.png" alt="icon times">
                 </button>
                 <form class="modal-form" name="contact" action="#" method="post">
                     <h3>Contactez-moi <br />
@@ -125,7 +125,7 @@
                 </form>
                 <div class="modal-success">
                     <button class="close-success" aria-label="Close the form contact">
-                        <img class="icon-times" src="./scss/img/icon-times.png" alt="icon times">
+                        <img class="icon-times" src="./img/icon-times.png" alt="icon times">
                     </button>
                     <div class="success-content">
                         <p>
@@ -143,7 +143,7 @@
             <div class="lightbox image hidden">
                 <div class="lightbox-modal">
                     <div class="lightbox-modal content">
-                        <!-- <img class="lightbox-modal__media" src="./scss/img/photos/243/Animals_Rainbow.jpg" alt=""> -->
+                        <!-- <img class="lightbox-modal__media" src="./img/photos/243/Animals_Rainbow.jpg" alt=""> -->
                         <div class="lightbox-modal__media img">
                         </div>
                         <h3 class="lightbox-modal__heading"></h3>
@@ -175,6 +175,7 @@
     <script src="./js/form-contact.js"></script>
     <script src="./js/jumbotron.js"></script>
     <script src="./js/photographer-works.js"></script>
+    <script src="./js/dropdown-sort.js"></script>
 </body>
 
 </html>

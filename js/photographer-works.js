@@ -1,26 +1,17 @@
 'use strict';
+/**
+ *  PHOTOGRAPHER'S WORKS & ASIDE
+ */
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================
-
 // Photographer work
 const containerWorksEl = document.querySelector('.container-works');
 const btnLikeEl = document.querySelector('.btn-like');
+const workLikeEl = document.querySelectorAll('.work-like');
 
 // Aside
 const totalLikesEl = document.querySelector('.total-likes');
-
-// Dropdown
-const dropdownEl = document.querySelector('.dropdown');
-const dropdownBtnEl = document.querySelector('.dropdown__item.btn');
-const dropdownExtendEl = document.querySelector('.dropdown-extend');
-const dropdownItemEl = document.querySelectorAll('.dropdown__item');
-const chevronIconEl = document.querySelector('.chevron-icon');
-
-const sortItemEl = document.querySelectorAll('.sort-item');
-// let oneSortItemEl = document.querySelector('.one');
-// let twoSortItemEl = document.querySelector('.two');
-// let threeSortItemEl = document.querySelector('.three');
 
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
@@ -43,6 +34,9 @@ const datasPhotographerPage = Utils.getAllDatas(URL).then(data => {
 //==================================================================================================
 
 let workById = [];
+let totalLikesArray = [];
+// let likesByIDArray = [];
+let likesByIDList;
 
 // Function render photographers' works
 const renderPhotographerWorks = data => {
@@ -56,9 +50,9 @@ const renderPhotographerWorks = data => {
 	// sort workById (array works cards) by Popularity by default
 	workById.sort((a, b) => b.likes - a.likes);
 
-	// // Create an array with all likes of current photographer (ID)
-	// let likesByIDList = workById.map(likesByID => likesByID.likes);
-	// console.log(likesByIDList);
+	// Create an array with all likes of current photographer (ID)
+	likesByIDList = workById.map(work => work.likes);
+	console.log(likesByIDList);
 
 	// // Calcul the total of the likes' array
 	// let totalLikesList = likesByIDList.reduce(
@@ -68,14 +62,8 @@ const renderPhotographerWorks = data => {
 	// console.log(totalLikesList);
 	// let totalLikes = totalLikesList;
 
-	let totalLikesArray = [];
-	let likesByIDArray = [];
-
-	let likesByIDList = workById.map(likesByID => likesByID.likes);
-	console.log(likesByIDList);
-
-	likesByIDArray.push(likesByIDList);
-	console.log(likesByIDArray);
+	// let totalLikesArray = [];
+	// let likesByIDArray = [];
 
 	// Calcul the total of the likes' array
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
@@ -88,83 +76,13 @@ const renderPhotographerWorks = data => {
 
 	//=============================================================
 	renderWorksCards();
-
-	// let sortItemArray = [];
-	// sortItemArray = Array.from(document.querySelectorAll('.sort-item'));
-	// console.log(sortItemArray);
-
-	//=============================================================
-	// function renderNewWorkCard (data) {
-
-	// 	workById = workById.sort((a, b) => b.likes - a.likes);
-
-	// 	// Render Works Cards (Image - name - price - numb of like & heart icon)
-	// 	let newWorkCard = '';
-	// 	workById.forEach(work => {
-	// 		let newMedia = '';
-	// 		newMedia +=
-	// 			work.image !== undefined
-	// 				? (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
-	// 				: (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
-	// 		// console.log(newMedia);
-
-	// 		newWorkCard += `
-	//         <article class="work">
-	//             <a href="#" class="work__media">
-	//                     ${newMedia}
-	//             </a>
-	//             <div class="work__infos">
-	//                 <h3 class="work__infos__name">${work['alt']}</h3>
-	//                 <p>
-	//                     <span class="work__infos__price">${work.price}€</span>
-	//                     <span class="work__infos__likes">
-	//                         <span class="work-like">${work.likes}</span>
-	//                         <button class="btn-like" aria-label="click for like it">
-	//                             <i class="far fa-heart "></i>
-	//                             <i class="fas fa-heart liked"></i>
-	//                         </button>
-	//                     </span>
-	//                 </p>
-	//             </div>
-	//         </article>
-	//     `;
-	// 	});
-
-	// 	containerWorksEl.innerHTML = newWorkCard;
-	// 	console.log(workById, newWorkCard);
-	// }
-	// renderNewWorkCard();
-
-	//==================================================================================================
-	//  Function & Events for like  each Works & total likes
-	//==================================================================================================
-	let btnLikeEl = Array.from(document.querySelectorAll('.btn-like'));
-	// console.log(btnLikeEl);
-	console.log(totalLikesArray);
-	// console.log(workById);
-
-	btnLikeEl.forEach(btn => {
-		btn.addEventListener('click', function (e) {
-			e.preventDefault();
-			if (!btn.classList.contains('liked')) {
-				btn.previousElementSibling.innerHTML++;
-				btn.classList.add('liked');
-				totalLikesArray++;
-			} else {
-				btn.previousElementSibling.innerHTML--;
-				btn.classList.remove('liked');
-				totalLikesArray--;
-			}
-			document.querySelector('.total-likes').innerHTML = totalLikesArray;
-			console.log(totalLikesArray);
-			console.log(btn.previousElementSibling);
-		});
-	});
 };
 
 //==================================================================================================
 //  WORKS CARDS
 //==================================================================================================
+let likedUp = 0;
+let newLike = '';
 
 function renderWorksCards() {
 	// Render Works Cards (Image - name - price - numb of like & heart icon)
@@ -173,14 +91,30 @@ function renderWorksCards() {
 		let newMedia = '';
 		newMedia +=
 			work.image !== undefined
-				? (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
-				: (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
+				? (newMedia = `<img class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
+                : (newMedia = `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}"></video>`);
+                //TODO remettre qd lightbox controls aux videos
 		// console.log(newMedia);
+		// const workLikeEl = document.querySelectorAll('.work-like');
+		// console.log(workLikeEl);
+		// workLikeEl.value = parseInt(workLikeEl.value) + 1;
+		// console.log(workLikeEl);
 
+		// let newLike = '';
+		// newLike = newLike.nextElementSibling.classList.contains('liked')
+		// 	? (newLike = work.likes + 1)
+		// 	: (newLike = work.likes);
+		// console.log(workLikeEl);
+
+		// likedUp = 0;
+		// newLike = work.likes + likedUp;
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
                 <a href="#" class="work__media">
-                        ${newMedia}
+                    ${newMedia}
                 </a>
                 <div class="work__infos">
                     <h3 class="work__infos__name">${work['alt']}</h3>
@@ -199,185 +133,49 @@ function renderWorksCards() {
         `;
 	});
 	containerWorksEl.innerHTML = newWorkCard;
-}
 
-//==================================================================================================
-//  DROPDOWN
-//==================================================================================================
-//=========================
-//  DROPDOWN OPEN & CLOSE
-//=========================
+	//==================================================================================================
+	//  Function & Events for like  each Works & total likes
+	//==================================================================================================
+	let btnLikeArray = Array.from(document.querySelectorAll('.btn-like'));
+	// console.log(btnLikeArray);
+	console.log(totalLikesArray);
+	// console.log(workById);
+	console.log(workById);
+	console.log(likesByIDList);
 
-// functions for Close Dropdown after select sort item
-const closeDropdown = function () {
-	dropdownExtendEl.classList.add('hidden');
-	dropdownBtnEl.classList.add('active');
-	swapchevronIcon();
-};
-
-// function for swap chevron icon 'down' or 'up'
-const swapchevronIcon = function () {
-	if (!dropdownBtnEl.classList.contains('active')) {
-		chevronIconEl.classList.replace('fa-chevron-down', 'fa-chevron-up');
-	} else {
-		chevronIconEl.classList.replace('fa-chevron-up', 'fa-chevron-down');
-	}
-};
-
-// functions & Events for Open & Close Dropdown with Chevron Icon
-chevronIconEl.addEventListener('click', function (e) {
-	e.preventDefault();
-	if (dropdownBtnEl.classList.contains('active')) {
-		dropdownBtnEl.classList.remove('active');
-		dropdownExtendEl.classList.remove('hidden');
-		swapchevronIcon();
-	} else {
-		dropdownExtendEl.classList.add('hidden');
-		dropdownBtnEl.classList.add('active');
-		swapchevronIcon();
-	}
-});
-
-// // functions for Open & Close Dropdown
-// const openCloseDropdown = function () {
-// 	if (dropdownBtnEl.classList.contains('active')) {
-// 		dropdownBtnEl.classList.remove('active');
-// 		dropdownExtendEl.classList.remove('hidden');
-// 		swapchevronIcon();
-// 	} else {
-// 		dropdownExtendEl.classList.add('hidden');
-// 		dropdownBtnEl.classList.add('active');
-// 		swapchevronIcon();
-// 	}
-// };
-// chevronIconEl.addEventListener('click', openCloseDropdown);
-
-//=========================
-//  DROPDOWN SORT BY ITEM
-//=========================
-
-// function sort by Popularity
-function sortByPopularity() {
-	if (!dropdownBtnEl.classList.contains('active')) {
-		workById.sort((a, b) => b.likes - a.likes);
-		sortItemArray[0].innerHTML = ['Popularité'];
-		sortItemArray[1].innerHTML = ['Date'];
-		sortItemArray[2].innerHTML = ['Titre'];
-	}
-}
-
-// function sort by Date
-function sortByDate() {
-	workById.sort(
-		(a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
-	);
-	sortItemArray[0].innerHTML = ['Date'];
-	sortItemArray[1].innerHTML = ['Popularité'];
-	sortItemArray[2].innerHTML = ['Titre'];
-}
-
-// function sort by Title
-function sortByTitle() {
-	workById.sort((a, b) => {
-		const titleA = a.alt.toUpperCase();
-		const titleB = b.alt.toUpperCase();
-		if (titleA < titleB) return -1;
-		if (titleA > titleB) return 1;
-		return 0;
+	// const workLikeArray = Array.from(workLikeEl);
+	// console.log(workLikeArray);
+	// let workLikeEl = document.querySelectorAll('.work-like');
+	// console.log(workLikeEl);
+	likesByIDList.forEach(like => {
+		// workLikeEl.innerHTML = like;
+		like = workLikeEl.innerHTML;
 	});
-	sortItemArray[0].innerHTML = ['Titre'];
-	sortItemArray[1].innerHTML = ['Popularité'];
-	sortItemArray[2].innerHTML = ['Date'];
-}
+	console.log(workLikeEl);
 
-//=========================
-//  DROPDOWN EVENTS
-//=========================
-let sortItemArray = [];
-sortItemArray = Array.from(sortItemEl);
-console.log(sortItemArray);
-
-// let [one, two, three] = sortItemArray;
-// console.log(sortItemArray);
-// console.log(one, two, three);
-
-sortItemArray.forEach(item => {
-	item.addEventListener('click', function (e) {
-		e.preventDefault();
-		if (!dropdownBtnEl.classList.contains('active')) {
-			if (item.innerHTML === 'Popularité') {
-				sortByPopularity();
-			} else if (item.innerHTML === 'Date') {
-				sortByDate();
-			} else if (item.innerHTML === 'Titre') {
-				sortByTitle();
+	btnLikeArray.forEach(btn => {
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
+			// btnLikeEl.previousElementSibling = newLike;
+			if (!btn.classList.contains('liked')) {
+				btn.previousElementSibling.innerHTML++;
+				// likedUp = 1;
+				// workLikeEl.innerHTML++;
+				btn.classList.add('liked');
+				totalLikesArray++;
+			} else {
+				btn.previousElementSibling.innerHTML--;
+				// likedUp = 0;
+				btn.classList.remove('liked');
+				totalLikesArray--;
 			}
-		}
-		closeDropdown();
-		renderWorksCards();
+			document.querySelector('.total-likes').innerHTML = totalLikesArray;
+			console.log(totalLikesArray);
+			console.log(btn.previousElementSibling);
+		});
 	});
-});
-
-// sortItemArray.forEach(item => {
-// 	item.addEventListener('click', function (e) {
-// 		e.preventDefault();
-// 		if (!dropdownBtnEl.classList.contains('active')) {
-// 			if (item.innerHTML === 'Popularité') {
-// 				sortByPopularity();
-// 				// sortItemArray[0].innerHTML = ['Popularité'];
-// 				// sortItemArray[1].innerHTML = ['Date'];
-// 				// sortItemArray[2].innerHTML = ['Titre'];
-// 			} else if (item.innerHTML === 'Date') {
-// 				sortByDate();
-// 				// sortItemArray[0].innerHTML = ['Date'];
-// 				// sortItemArray[1].innerHTML = ['Popularité'];
-// 				// sortItemArray[2].innerHTML = ['Titre'];
-// 				// sortItemArray[2].innerHTML = ['Titre'];
-// 			} else if (item.innerHTML === 'Titre') {
-// 				sortByTitle();
-// 				// sortItemArray[0].innerHTML = ['Titre'];
-// 				// sortItemArray[1].innerHTML = ['Popularité'];
-// 				// sortItemArray[2].innerHTML = ['Date'];
-// 			}
-// 		}
-// 		closeDropdown();
-// 		renderWorksCards();
-// 	});
-// });
-
-// oneSortItemEl.addEventListener('click', function (e) {
-// 	e.preventDefault();
-// 	sortByPopularity();
-// 	closeDropdown();
-// 	// oneSortItemEl.innerHTML = ''
-// 	// sortItemArray = [one, two, three];
-// 	// sortItemArray = sortItemEl.innerHTML;
-
-// 	renderWorksCards();
-// });
-
-// twoSortItemEl.addEventListener('click', function (e) {
-// 	e.preventDefault();
-// 	sortByDate();
-// 	closeDropdown();
-// 	oneSortItemEl.innerHTML = 'Date';
-// 	twoSortItemEl.innerHTML = 'Popularité';
-// 	threeSortItemEl.innerHTML = 'Title';
-
-// 	renderWorksCards();
-// });
-
-// threeSortItemEl.addEventListener('click', function (e) {
-// 	e.preventDefault();
-// 	sortByTitle();
-
-// 	closeDropdown();
-// 	renderWorksCards();
-// });
-
-// oneSortItemEl.addEventListener('click', sortByPopularity);
-// twoSortItemEl.addEventListener('click', sortByDate);
-// threeSortItemEl.addEventListener('click', sortByTitle);
+}
 
 //==================================================================================================
 // Lightboxes

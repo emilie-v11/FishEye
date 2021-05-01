@@ -1,15 +1,98 @@
 //=============================================================
 // BROUILLON
 //============================================================
+//=============================================================
+// NAVIGATION TAGS HOMEPAGE
+//============================================================
+
+
+// function tagsNavFilter() {
+// 	if (navItemEl.classList.contains('active')) {
+// 		console.log('ok');
+// 	}
+// }
+
+// Change style for tag selected
+
+// navItemEl.forEach(tag => {
+// 	tag.addEventListener('click', function () {
+// 		// let navItemEl = document.querySelectorAll('.navigation__item');
+// 		let tagActive = tag.classList.contains('active');
+// 		let tagActive1 = tag.classList.contains('1');
+// 		let tagSiblings = Array.from(tag.parentNode.children);
+// 		let tagSiblingsActive = tagSiblings.filter(
+// 			element => tag !== tagActive
+// 		);
+// 		console.log(tagSiblings);
+// 		console.log(tagSiblingsActive);
+
+// 		// if (!tagActive && !tagSiblings == tagActive) {
+// 		if (!tagActive) {
+// 			if (tagSiblingsActive) {
+// 				// Quand select 1 tag & autres non select =
+// 				tag.classList.add('active');
+// 				console.log("n'était pas actif & autres non plus"); // ok
+// 				console.log(tagActive); // false
+//                 console.log(tagSiblings); // [8 tags dt 1 avec class'active']
+//                 console.log(tagSiblingsActive);
+// 				// console.log(navItemEl); // [NodeList 8 tags dt 1 avec class'active']
+// 			} else if (tagSiblingsActive == tagActive) {
+// 				// tagSiblings.tag.remove('active');
+// 				console.log('ENFIN !!!!');
+// 				console.log(tagActive);
+// 				console.log(tagSiblings);
+// 				console.log(navItemEl);
+// 			}
+// 		} else if (tagActive) {
+// 			// Qd select 1 tag déjà select et autres non select
+// 			tag.classList.remove('active');
+// 			console.log('était actif'); // ok
+// 			console.log(tagActive); // true
+// 			console.log(tagSiblings); // [8 tags dt 1 sans class'active']
+// 			console.log(navItemEl); // [8 tags dt 1 sans class'active']
+// 		}
+// 	});
+// });
+
+//     .addEventListener('click', function () {
+// 	for (let i = 0; i < navItemEl.length; i++) {
+// 		console.log(navEl, navItemEl[i]);
+// 		let tagActive = navItemEl[i].classList.contains('active');
+// 		console.log(tagActive);
+// 		navItemEl[i].classList.add('active');
+// 	}
+// });
+
+
+
+
+
+
+
 // ID = Utils.getIdByUrl();
 // console.log(ID);
 
 // URL JSON
 // URL = './FishEyeDataFR.json';
-
+//============================================================
 // DROPDOWN SORT le 29/04
+//============================================================
 
 // FIXME problème entre newWorkCard et workById
+
+// // functions for Open & Close Dropdown
+// const openCloseDropdown = function () {
+// 	if (dropdownBtnEl.classList.contains('active')) {
+// 		dropdownBtnEl.classList.remove('active');
+// 		dropdownExtendEl.classList.remove('hidden');
+// 		swapchevronIcon();
+// 	} else {
+// 		dropdownExtendEl.classList.add('hidden');
+// 		dropdownBtnEl.classList.add('active');
+// 		swapchevronIcon();
+// 	}
+// };
+// chevronIconEl.addEventListener('click', openCloseDropdown);
 
 // const oneSortItem = document.querySelector('.one');
 // oneSortItem.addEventListener('click', function () {
@@ -50,6 +133,10 @@ let sortItemArray = [];
 sortItemArray = Array.from(sortItemEl);
 console.log(sortItemArray);
 
+// let [one, two, three] = sortItemArray;
+// console.log(sortItemArray);
+// console.log(one, two, three);
+
 sortItemArray.forEach(item => {
 	item.addEventListener('click', function (e) {
 		e.preventDefault();
@@ -76,6 +163,40 @@ sortItemArray.forEach(item => {
 		renderWorksCards();
 	});
 });
+
+// oneSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByPopularity();
+// 	closeDropdown();
+// 	// oneSortItemEl.innerHTML = ''
+// 	// sortItemArray = [one, two, three];
+// 	// sortItemArray = sortItemEl.innerHTML;
+
+// 	renderWorksCards();
+// });
+
+// twoSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByDate();
+// 	closeDropdown();
+// 	oneSortItemEl.innerHTML = 'Date';
+// 	twoSortItemEl.innerHTML = 'Popularité';
+// 	threeSortItemEl.innerHTML = 'Title';
+
+// 	renderWorksCards();
+// });
+
+// threeSortItemEl.addEventListener('click', function (e) {
+// 	e.preventDefault();
+// 	sortByTitle();
+
+// 	closeDropdown();
+// 	renderWorksCards();
+// });
+
+// oneSortItemEl.addEventListener('click', sortByPopularity);
+// twoSortItemEl.addEventListener('click', sortByDate);
+// threeSortItemEl.addEventListener('click', sortByTitle);
 
 //==========================
 
@@ -188,9 +309,9 @@ console.log(workById, sortByPopular);
 //     type,
 //     newMedia : function(){
 //         if (work.image !== undefined) {
-//             return `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`
+//             return `<img class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`
 //         } else {
-//             return `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`
+//             return `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`
 //         }
 //     }
 // }
@@ -212,17 +333,17 @@ console.log(workById, sortByPopular);
 // }
 
 // let imageMedia = function () {
-// 	return `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
+// 	return `<img class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
 // };
 
 // let videoMedia = function () {
-// 	return `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
+// 	return `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
 // };
 
 // 	if (work.image !== undefined) {
-// 		return (newMedia = `<img class="work__media__item" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
+// 		return (newMedia = `<img class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
 // 	} else {
-// 		return (newMedia = `<video class="work__media__item" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
+// 		return (newMedia = `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
 // 	}
 // 	return newMedia;
 // }
@@ -239,23 +360,23 @@ console.log(workById, sortByPopular);
 // // const mediaType = (image, video, element) => {
 // imageWork.forEach(image => {
 //     newMedia +=
-// 		`<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>`;
+// 		`<img class="work__media image" src='./img/photos/${ID}/${work.image}' alt="" aria-label=""/>`;
 
-// return `<video class="work__media video" src="./scss/img/photos/${ID}/${workById.video}"></video>`;
+// return `<video class="work__media video" src="./img/photos/${ID}/${workById.video}"></video>`;
 
 // if (imageWork in element) {
-// 	return (newMediaChoice = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="" aria-label=""/>`);
+// 	return (newMediaChoice = `<img class="work__media image" src='./img/photos/${ID}/${work.image}' alt="" aria-label=""/>`);
 // } else if (videoWork in element) {
-// 	return (newMediaChoice = `<video class="work__media video" src="./scss/img/photos/${ID}/${work.video}"></video>`);
+// 	return (newMediaChoice = `<video class="work__media video" src="./img/photos/${ID}/${work.video}"></video>`);
 // }
 
 // // switch case
 // let image = '';
 // const mediaChoice = function () {
 // 	if (data.media[media].image) {
-// 		return (image += `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work.alt}" role="img" aria-label=""/>`);
+// 		return (image += `<img class="work__media image" src='./img/photos/${ID}/${work.image}' alt="${work.alt}" role="img" aria-label=""/>`);
 // 	} else {
-// 		return `<video class="work__media video" src="./scss/img/photos/${ID}/${work.video} alt="${work.alt} role="img"">`;
+// 		return `<video class="work__media video" src="./img/photos/${ID}/${work.video} alt="${work.alt} role="img"">`;
 // 	}
 // };
 
@@ -272,9 +393,9 @@ console.log(workById, sortByPopular);
 // const factoryMedia = (image, video, media) => {
 // 	let newMedia = '';
 // 	if (image in media) {
-// 		return (newMedia = `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
+// 		return (newMedia = `<img class="work__media image" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`);
 // 	} else if (video in media) {
-// 		return (newMedia = `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
+// 		return (newMedia = `<video class="work__media video" src='./img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`);
 // 	}
 // 	return newMedia;
 // };
@@ -282,10 +403,10 @@ console.log(workById, sortByPopular);
 // console.log(newMedia);
 
 // let mediaImage = function () {
-//     `<img class="work__media image" src='./scss/img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
+//     `<img class="work__media image" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`;
 // }
 // let mediaVideo = function () {
-//     `<video class="work__media video" src='./scss/img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
+//     `<video class="work__media video" src='./img/photos/${ID}/${work.video}' controls alt="${work['alt']}"></video>`;
 // }
 
 //==================================================================================================

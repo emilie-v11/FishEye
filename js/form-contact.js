@@ -1,8 +1,10 @@
 'use strict';
+/**
+ *  FORM CONTACT
+ */
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================
-
 // Btn Form & Success Message
 const btnOpenFormEl = document.querySelector('.btn-contact');
 const btnCloseFormEl = document.querySelector('.close-form');
@@ -30,9 +32,9 @@ const errorLast = document.querySelector('.error-last');
 const errorEmail = document.querySelector('.error-email');
 const errorMessage = document.querySelector('.error-message');
 
-//========================================
+//==================================================================================================
 // ADD PHOTOGRAPHER'S NAME IN FORM MODAL
-//========================================
+//==================================================================================================
 
 const datasPhotographer = Utils.getAllDatas('./FishEyeDataFR.json').then(
 	data => {
@@ -43,9 +45,9 @@ const datasPhotographer = Utils.getAllDatas('./FishEyeDataFR.json').then(
 	}
 );
 
-//====================
+//==================================================================================================
 // OPEN & CLOSE FORM
-//====================
+//==================================================================================================
 // Function for Open & Close
 const openForm = function () {
 	overlayFormEl.classList.remove('hidden');
@@ -63,9 +65,9 @@ const closemodalSuccess = function () {
 	modalFormEl.reset();
 };
 
-//====================
+//==================================================================================================
 // EVENTS FORM
-//====================
+//==================================================================================================
 
 // Events for Open & Close Form without validation
 btnOpenFormEl.addEventListener('click', openForm);
@@ -77,9 +79,9 @@ btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
 // with Button 'Fermer'
 btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
 
-//====================
+//==================================================================================================
 // VALIDATION FORM
-//====================
+//==================================================================================================
 
 // Regex
 const nameRegExp = /^([A-ZÀ-Ÿa-z-']{2,20})$/;
@@ -143,9 +145,9 @@ function checkMessage() {
 	return isMessageValid;
 }
 
-//====================
+//==================================================================================================
 // SUBMIT FORM
-//====================
+//==================================================================================================
 
 modalFormEl.addEventListener('submit', function (e) {
 	e.preventDefault();
