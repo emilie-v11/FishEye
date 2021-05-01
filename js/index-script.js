@@ -5,9 +5,6 @@
 //==================================================================================================
 // DOM ELEMENTS
 //==================================================================================================
-// scroll Link top of homepage
-const scrollLink = document.querySelector('.scroll-link');
-
 const photographersListEl = document.querySelector('.container-photographers');
 // const tagsListEl = document.querySelector('.photographers__tags');
 
@@ -28,12 +25,17 @@ const datasHomepage = Utils.getAllDatas(URL).then(data =>
 	renderPhotographers(data)
 );
 
+let tagsList;
+let allPhotographersProfiles;
+
 const renderPhotographers = data => {
 	let newPhotographer = '';
-	data['photographers'].forEach(photographers => {
+	console.log(data['photographers']);
+	allPhotographersProfiles = data['photographers'];
+	allPhotographersProfiles.forEach(photographers => {
 		// Render Photographers' Tag list
 		let newLiTags = '';
-		let tagsList = photographers['tags'];
+		tagsList = photographers['tags'];
 		for (let i = 0; i < tagsList.length; i++) {
 			newLiTags += `
                 <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
@@ -60,22 +62,12 @@ const renderPhotographers = data => {
             `;
 		// console.log('data is', data);
 		// console.log('data.photographers is', data.photographers);
-		// console.log(tagsList, newLiTags);
+		console.log(newLiTags);
+		console.log(tagsList);
 	});
 	photographersListEl.innerHTML = newPhotographer;
 };
 
-// scroll Link top of homepage
-window.addEventListener('scroll', () => {
-	const scrollPosition = window.scrollY;
-
-	if (scrollPosition < 20 || scrollPosition > 150) {
-		scrollLink.style.display = 'none';
-	} else {
-		scrollLink.style.display = 'block';
-		scrollLink.focus();
-	}
-});
-console.log(scrollLink);
-
-// if (scrollPosition < 20 || scrollPosition > 200)
+//==================================================================================================
+//
+//==================================================================================================
