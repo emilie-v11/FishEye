@@ -1,6 +1,6 @@
-/*  Photographer-page : 
-    Base Btn for btn-contact & btn-submit
-*/
+//==================================================================================================
+//   Photographer-page : Base Btn for btn-contact & btn-submit
+//==================================================================================================
 .btn {
 	@include btn--small;
 
@@ -8,10 +8,10 @@
 		@include btn--large;
 	}
 }
-/*  Photographer-page:
-    btn .btn-contact in jumbotron(large screen)
-    & fixed bottom page (small screen)
-*/
+//==================================================================================================
+// Photographer-page: button contact in jumbotron(large screen)
+//    & fixed bottom page (small screen)
+//==================================================================================================
 .btn-contact {
 	position: fixed;
 	bottom: 28px;
@@ -31,49 +31,9 @@
 	}
 }
 
-/*  Photographer-page:
-    btn .btn-submit in form (large screen & small screen)
-*/
-.btn-submit {
-	margin: 26px;
-
-	@include large-only {
-		margin: 26px 26px 0;
-	}
-}
-
-// btn in modal success message
-.btn-success {
-	margin: 26px;
-}
-
-// btn 'X' to close form contact & success
-.close-form,
-.close-success {
-	@include button-reset;
-	@include center-icon;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	width: 32px;
-	height: 32px;
-	color: $color-white;
-
-	& img {
-		width: 19px;
-		height: 19px;
-	}
-
-	@include large-only {
-		width: 72px;
-		height: 72px;
-	}
-}
-
-/*  Photographer-page:
-    button chevron Dropdown
-*/
-
+//==================================================================================================
+// Photographer-page: button chevron Dropdown
+//==================================================================================================
 .chevron-icon {
 	position: absolute;
 	@include center-icon;
@@ -81,7 +41,7 @@
 	height: 32px;
 	padding: 5px;
 	background-color: transparent;
-	border: none;
+	border: transparent;
 	cursor: pointer;
 	color: $color-white;
 
@@ -96,9 +56,9 @@
 	}
 }
 
-/*  Photographer-page:
-    btn .btn-like in Cards' Work
-*/
+//==================================================================================================
+//  Photographer-page: button like in Cards' Work
+//==================================================================================================
 .btn-like {
 	@include button-reset;
 	@include center-icon;
@@ -142,6 +102,103 @@
 			background: $color-primary-dark; //$color-linear-gradient;
 			// -webkit-background-clip: text;
 			// -webkit-text-fill-color: transparent;
+		}
+	}
+}
+
+//==================================================================================================
+// Photographer-page: button form (large screen & small screen)
+//==================================================================================================
+// button submit form
+.btn-submit {
+	margin: 26px;
+
+	@include large-only {
+		margin: 26px 26px 0 0; // 26px 26px 0
+	}
+}
+
+// button in modal success message
+.btn-success {
+	margin: 26px;
+}
+
+// button 'X' to close form contact & success
+.close-form,
+.close-success {
+	@include button-reset;
+	@include center-icon;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 32px;
+	height: 32px;
+	color: $color-white;
+
+	@include large-only {
+		width: 72px;
+		height: 72px;
+	}
+
+	& img {
+		width: 19px;
+		height: 19px;
+
+		@include large-only {
+			width: 42px;
+			height: 42px;
+		}
+	}
+}
+
+//==================================================================================================
+// Photographer-page: button lightbox (large screen & small screen)
+//==================================================================================================
+
+.close-lightbox {
+	position: absolute;
+	top: 0;
+	right: 0%; //-30px
+
+	&.fa-times {
+		@include medium-only {
+			font-size: 22px;
+		}
+
+		@include large-only {
+			font-size: 42px;
+		}
+	}
+}
+
+.previous {
+	position: absolute;
+	top: 50%;
+	left: 0%; //-30px
+
+	&.fa-chevron-left {
+		@include medium-only {
+			font-size: 22px;
+		}
+
+		@include large-only {
+			font-size: 42px;
+		}
+	}
+}
+
+.next {
+	position: absolute;
+	top: 50%;
+	right: 0%; //-30px
+
+	&.fa-chevron-right {
+		@include medium-only {
+			font-size: 22px;
+		}
+
+		@include large-only {
+			font-size: 42px;
 		}
 	}
 }

@@ -25,14 +25,14 @@
 			height: 300px;
 		}
 
+		// work's photo or video
 		&__item {
 			width: 335px;
 			height: 190px;
 			border-radius: 5px;
 			object-fit: cover;
-			background-position: right 30% top 18%; // right 50% bottom 58%
+			background-position: right 30% top 18%; // right 50% bottom 58% right 30% top 18%
 			// background-size: 100%; //150
-			// position: relative;
 
 			@include large-only {
 				width: 350px;

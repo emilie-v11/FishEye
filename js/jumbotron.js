@@ -1,11 +1,11 @@
 'use strict';
-/**
- *  JUMBOTRON
+/*
+ *  JUMBOTRON & ASIDE
  */
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================// Jumbotron photographer
-const jumbotronEl = document.querySelector('.jumbotron');
+const containerJumbotronEl = document.querySelector('.container-jumbotron');
 const photographerPriceAsideEl = document.querySelector('.photographer-price');
 // const tagsListEl = document.querySelector('.photographers__tags');
 
@@ -46,21 +46,21 @@ const renderJumbotron = data => {
 	// Render Each Photographer' Jumbotron
 	let newJumbotron = '';
 	newJumbotron = `
-	    <div class="jumbotron-content">
-	        <h1 class="jumbotron__heading">${photographer.name}</h1>
-	        <p class="jumbotron__infos">
-	            <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
-	            <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
-	        </p>
-	        <nav class="photographers__tags">
-	            ${newLiTags}
-	        </nav>
-	    </div>
-	    <div class="photographers__portrait small">
-	        <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="photo de ${photographer.name}" aria-label=""/>
-	    </div>
+        <section class="jumbotron">
+            <h1 class="jumbotron__heading">${photographer.name}</h1>
+            <p class="jumbotron__infos">
+                <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
+                <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
+            </p>
+            <nav class="photographers__tags">
+                ${newLiTags}
+            </nav>
+            <div class="photographers__portrait small">
+                <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="${photographer.name}" aria-label=""/>
+            </div>
+        </section>
 	    `;
-	jumbotronEl.innerHTML = newJumbotron;
+	containerJumbotronEl.innerHTML = newJumbotron;
 
 	// Render photographer price in aside
 	photographerPriceAsideEl.innerHTML = `${photographer.price}`;

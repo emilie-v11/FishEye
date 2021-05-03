@@ -32,9 +32,8 @@
         </header>
 
         <main class="photographer-page">
-            <section class="jumbotron">
-            </section>
-            <button class="btn-contact btn">Contactez-moi</button>
+            <div class="container-jumbotron"></div>
+            <button class="btn-contact btn" aria-label="Contact me">Contactez-moi</button>
             <aside class="aside">
                 <div class="aside-content">
                     <p>
@@ -42,43 +41,42 @@
                         <i class='fas fa-heart aside'></i>
                     </p>
                     <p class='price-day'>
-                        <span class="photographer-price"></span> / jour
+                        <span class="photographer-price"></span> € / jour
                     </p>
                 </div>
             </aside>
 
             <section class="photographer-works">
-                <nav class="sorting-menu">
+                <div class="sorting-menu" role="menubar">
                     <h2>Trier par</h2>
-                    <div class="dropdown">
-                        <span class="dropdown__item btn active">
-                            <!--  onclick="sortByPopular()" -->
-                            <a href="#" class="sort-item">Popularité</a>
+                    <nav class="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Order by">
+                        <span class="dropdown__item btn active" role="menuitem">
+                            <a href="#" class="sort-item" aria-current="true">Popularité</a>
                             <button class="chevron-icon fas fa-chevron-down"></button>
                         </span>
                         <div class="dropdown-extend hidden">
-                            <span class="dropdown__item">
+                            <span class="dropdown__item" role="menuitem">
                                 <a href="#" class="sort-item">Date</a>
                             </span>
-                            <span class="dropdown__item ">
+                            <span class="dropdown__item" role="menuitem">
                                 <a href="#" class="sort-item">Titre</a>
                             </span>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
+                <!-- Photographer's Works Cards -->
                 <div class="container-works">
-
                 </div>
             </section>
 
             <div class="overlay-form hidden">
             </div>
             <div class="modal-bg hidden">
-                <button class="close-form" aria-label="Close the form contact">
+                <button class="close-form" aria-label="Close Contact form">
                     <img class="icon-times" src="./img/icon-times.png" alt="icon times">
                 </button>
                 <form class="modal-form" name="contact" action="#" method="post">
-                    <h3>Contactez-moi <br />
+                    <h3 aria-labelledby="Contact me Mimi Keel">Contactez-moi <br />
                         <span class="photographer-name"></span>
                     </h3>
 
@@ -86,7 +84,7 @@
                         <label for="first-name">Prénom</label>
                         <br>
                         <input id="first-name" class="text-control" type="text" name="first"
-                            aria-labelledby="first-name" />
+                            aria-labelledby="First name" />
                         <span role="alert" class="errors-messages error-first" aria-hidden="true">
                             Veuillez entrer un prénom valide, 2 caractères ou plus
                         </span>
@@ -96,7 +94,7 @@
                         <label for="last-name">Nom</label>
                         <br>
                         <input id="last-name" class="text-control" type="text" name="last"
-                            aria-labelledby="last-name" />
+                            aria-labelledby="Last name" />
                         <span role="alert" class="errors-messages error-last" aria-hidden="true">
                             Veuillez entrer un nom valide, 2 caractères ou plus
                         </span>
@@ -114,17 +112,18 @@
                     <div class="form-data">
                         <label for="message">Votre message</label>
                         <br>
-                        <textarea id="message" class="text-control" name="message" aria-labelledby="message"></textarea>
+                        <textarea id="message" class="text-control" name="message"
+                            aria-labelledby="Your message"></textarea>
                         <span role="alert" class="errors-messages error-message" aria-hidden="true">
                             Veuillez entrer un message entre 10 et 300 caractères
                         </span>
                     </div>
                     <div class="form-data__submit">
-                        <input class="btn-submit btn" type="submit" value="Envoyer" aria-label="Send message" />
+                        <input class="btn-submit btn" type="submit" value="Envoyer" aria-labelledby="Send" />
                     </div>
                 </form>
                 <div class="modal-success">
-                    <button class="close-success" aria-label="Close the form contact">
+                    <button class="close-success" aria-label="Close Contact form">
                         <img class="icon-times" src="./img/icon-times.png" alt="icon times">
                     </button>
                     <div class="success-content">
@@ -137,37 +136,26 @@
                     </div>
                 </div>
             </div>
-
+            <!-- hidden -->
             <div class="overlay-lightbox image hidden">
             </div>
-            <div class="lightbox image hidden">
+            <div class="lightbox hidden" aria-label="image closeup view">
                 <div class="lightbox-modal">
                     <div class="lightbox-modal content">
-                        <!-- <img class="lightbox-modal__media" src="./img/photos/243/Animals_Rainbow.jpg" alt=""> -->
+                        <img class="lightbox-modal__media" src="./img/photos/243/Animals_Rainbow.jpg"
+                            alt="Rainbow (name photo)">
                         <div class="lightbox-modal__media img">
                         </div>
-                        <h3 class="lightbox-modal__heading"></h3>
+                        <h3 class="lightbox-modal__heading">.</h3>
                     </div>
-                    <span class="close-lightbox fas fa-times"></span>
-                    <span class="previous fas fa-chevron-left"></span>
-                    <span class="next fas fa-chevron-right"></span>
+                    <!-- <button class="close-lightbox" aria-label="Close dialog"> -->
+                        <!-- <img class="icon-times" src="./img/icon-times.png" alt="icon times"> -->
+                    <!-- </button> -->
+                    <span class="close-lightbox fas fa-times" aria-label="Close dialog"></span>
+                    <span class="previous fas fa-chevron-left" aria-label="Previous image"></span>
+                    <span class="next fas fa-chevron-right" aria-label="Next image"></span>
                 </div>
             </div>
-
-            <!-- <div class="overlay-lightbox video hidden">
-            </div>
-            <div class="lightbox video hidden">
-                <div class="lightbox-modal">
-                    <span class=""></span>
-                    <span class="previous fas fa-chevron-left"></span>
-                    <span class="next fas fa-chevron-right"></span>
-                    <div class="lightbox-content">
-                        <video src="#" controls></video>
-                        <h3>Wild Horses in the mountains</h3>
-                    </div>
-                </div>
-            </div> -->
-
         </main>
     </div>
 
@@ -176,6 +164,8 @@
     <script src="./js/jumbotron.js"></script>
     <script src="./js/photographer-works.js"></script>
     <script src="./js/dropdown-sort.js"></script>
+    <script src="./js/lightbox.js"></script>
+
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 'use strict';
-/**
+/*
  *  FORM CONTACT
  */
 //==================================================================================================
@@ -94,7 +94,7 @@ function checkFirstName() {
 
 	if (isFirstNameValid) {
 		errorFirst.style.display = 'none';
-		firstNameInput.style.border = 'none';
+		firstNameInput.style.border = 'transparent';
 	} else {
 		errorFirst.style.display = 'block';
 		firstNameInput.style.border = 'red 2px solid';
@@ -108,7 +108,7 @@ function checkLastName() {
 
 	if (isLastNameValid) {
 		errorLast.style.display = 'none';
-		lastNameInput.style.border = 'none';
+		lastNameInput.style.border = 'transparent';
 	} else {
 		errorLast.style.display = 'block';
 		lastNameInput.style.border = 'red 2px solid';
@@ -122,7 +122,7 @@ function checkEmail() {
 
 	if (isEmailValid) {
 		errorEmail.style.display = 'none';
-		emailInput.style.border = 'none';
+		emailInput.style.border = 'transparent';
 	} else {
 		errorEmail.style.display = 'block';
 		emailInput.style.border = 'red 2px solid';
@@ -136,7 +136,7 @@ function checkMessage() {
 
 	if (isMessageValid) {
 		errorMessage.style.display = 'none';
-		messageTextarea.style.border = 'none';
+		messageTextarea.style.border = 'transparent';
 	} else {
 		errorMessage.style.display = 'block';
 		messageTextarea.style.border = 'red 2px solid';

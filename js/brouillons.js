@@ -1,22 +1,39 @@
 //=============================================================
 // BROUILLON
 //============================================================
+
+//=============================================================
+// Increment like
+//=============================================================
+
+// let newLike = '';
+// newLike = newLike.nextElementSibling.classList.contains('liked')
+// 	? (newLike = work.likes + 1)
+// 	: (newLike = work.likes);
+// console.log(workLikeEl);
+// likedUp = 0;
+// newLike = work.likes + likedUp;
+
+// const workLikeArray = Array.from(workLikeEl);
+// console.log(workLikeArray);
+// let workLikeEl = document.querySelectorAll('.work-like');
+// console.log(workLikeEl);
+
 //=============================================================
 // NAVIGATION TAGS HOMEPAGE
 //============================================================
 
-
 // function tagsNavFilter() {
-// 	if (navItemEl.classList.contains('active')) {
+// 	if (navItemsEl.classList.contains('active')) {
 // 		console.log('ok');
 // 	}
 // }
 
 // Change style for tag selected
 
-// navItemEl.forEach(tag => {
+// navItemsEl.forEach(tag => {
 // 	tag.addEventListener('click', function () {
-// 		// let navItemEl = document.querySelectorAll('.navigation__item');
+// 		// let navItemsEl = document.querySelectorAll('.navigation__item');
 // 		let tagActive = tag.classList.contains('active');
 // 		let tagActive1 = tag.classList.contains('1');
 // 		let tagSiblings = Array.from(tag.parentNode.children);
@@ -35,13 +52,13 @@
 // 				console.log(tagActive); // false
 //                 console.log(tagSiblings); // [8 tags dt 1 avec class'active']
 //                 console.log(tagSiblingsActive);
-// 				// console.log(navItemEl); // [NodeList 8 tags dt 1 avec class'active']
+// 				// console.log(navItemsEl); // [NodeList 8 tags dt 1 avec class'active']
 // 			} else if (tagSiblingsActive == tagActive) {
 // 				// tagSiblings.tag.remove('active');
 // 				console.log('ENFIN !!!!');
 // 				console.log(tagActive);
 // 				console.log(tagSiblings);
-// 				console.log(navItemEl);
+// 				console.log(navItemsEl);
 // 			}
 // 		} else if (tagActive) {
 // 			// Qd select 1 tag déjà select et autres non select
@@ -49,25 +66,19 @@
 // 			console.log('était actif'); // ok
 // 			console.log(tagActive); // true
 // 			console.log(tagSiblings); // [8 tags dt 1 sans class'active']
-// 			console.log(navItemEl); // [8 tags dt 1 sans class'active']
+// 			console.log(navItemsEl); // [8 tags dt 1 sans class'active']
 // 		}
 // 	});
 // });
 
 //     .addEventListener('click', function () {
-// 	for (let i = 0; i < navItemEl.length; i++) {
-// 		console.log(navEl, navItemEl[i]);
-// 		let tagActive = navItemEl[i].classList.contains('active');
+// 	for (let i = 0; i < navItemsEl.length; i++) {
+// 		console.log(navEl, navItemsEl[i]);
+// 		let tagActive = navItemsEl[i].classList.contains('active');
 // 		console.log(tagActive);
-// 		navItemEl[i].classList.add('active');
+// 		navItemsEl[i].classList.add('active');
 // 	}
 // });
-
-
-
-
-
-
 
 // ID = Utils.getIdByUrl();
 // console.log(ID);

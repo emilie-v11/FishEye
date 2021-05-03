@@ -23,7 +23,7 @@
 	@include typo-18px--700;
 	text-align: center;
 	background-color: $color-primary-dark;
-	border: none;
+	border: transparent;
 	border-radius: 5px;
 	width: 170px;
 	height: 35px;
@@ -35,7 +35,7 @@
 	@include typo-18px--700;
 	text-align: center;
 	background-color: $color-primary-dark;
-	border: none;
+	border: transparent;
 	border-radius: 5px;
 	width: 170px;
 	height: 69px;
@@ -44,7 +44,7 @@
 
 @mixin button-reset {
 	cursor: pointer;
-	border: none;
+	border: transparent;
 	background-color: transparent;
 }
 

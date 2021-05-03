@@ -1,16 +1,19 @@
 'use strict';
 /*
- **  DROPDOWN
+ *  DROPDOWN
  */
 //==================================================================================================
-//DOM ELEMENTS
+//  DOM ELEMENTS
 //==================================================================================================
 const dropdownEl = document.querySelector('.dropdown');
 const dropdownBtnEl = document.querySelector('.dropdown__item.btn');
 const dropdownExtendEl = document.querySelector('.dropdown-extend');
 const chevronIconEl = document.querySelector('.chevron-icon');
 const sortItemEl = document.querySelectorAll('.sort-item');
-// const dropdownItemEl = document.querySelectorAll('.dropdown__item');
+
+//====================================================================
+const sortItemArray = Array.from(sortItemEl);
+console.log(sortItemArray);
 
 //==================================================================================================
 //  DROPDOWN OPEN & CLOSE
@@ -18,6 +21,7 @@ const sortItemEl = document.querySelectorAll('.sort-item');
 
 // functions for Close Dropdown after select sort item
 const closeDropdown = function () {
+	dropdownEl.ariaExpanded = 'false';
 	dropdownExtendEl.classList.add('hidden');
 	dropdownBtnEl.classList.add('active');
 	swapchevronIcon();
@@ -35,11 +39,14 @@ const swapchevronIcon = function () {
 // functions & Events for Open & Close Dropdown with Chevron Icon
 chevronIconEl.addEventListener('click', function (e) {
 	e.preventDefault();
+	dropdownBtnEl.focus();
 	if (dropdownBtnEl.classList.contains('active')) {
+		dropdownEl.ariaExpanded = 'true';
 		dropdownBtnEl.classList.remove('active');
 		dropdownExtendEl.classList.remove('hidden');
 		sortItemArray[0].focus();
 	} else {
+		dropdownEl.ariaExpanded = 'false';
 		dropdownExtendEl.classList.add('hidden');
 		dropdownBtnEl.classList.add('active');
 	}
@@ -87,11 +94,8 @@ function sortByTitle() {
 //==================================================================================================
 //  DROPDOWN EVENTS
 //==================================================================================================
-let sortItemArray = [];
-sortItemArray = Array.from(sortItemEl);
-console.log(sortItemArray);
 
-sortItemArray.forEach(item => {
+const dropdownSortBy = sortItemArray.forEach(item => {
 	item.addEventListener('click', function (e) {
 		e.preventDefault();
 		if (!dropdownBtnEl.classList.contains('active')) {

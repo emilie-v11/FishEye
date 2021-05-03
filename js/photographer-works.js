@@ -1,6 +1,6 @@
 'use strict';
-/**
- *  PHOTOGRAPHER'S WORKS & ASIDE
+/*
+ *  PHOTOGRAPHER'S WORKS
  */
 //==================================================================================================
 //DOM ELEMENTS
@@ -9,17 +9,10 @@
 const containerWorksEl = document.querySelector('.container-works');
 const btnLikeEl = document.querySelector('.btn-like');
 const workLikeEl = document.querySelectorAll('.work-like');
+console.log(workLikeEl);
 
 // Aside
 const totalLikesEl = document.querySelector('.total-likes');
-
-// Lightbox
-const overlayLightboxEl = document.querySelector('.overlay-lightbox');
-const lightboxEl = document.querySelector('.lightbox');
-const btnCloseLightboxEl = document.querySelector('.close-lightbox');
-
-const lightboxHeadingEl = document.querySelector('.lightbox-modal__heading');
-const lightboxMediaEl = document.querySelector('.lightbox-modal__media');
 
 //==================================================================================================
 // FETCH JSON
@@ -35,47 +28,32 @@ const datasPhotographerPage = Utils.getAllDatas(URL).then(data => {
 
 let workById = [];
 let totalLikesArray = [];
-// let likesByIDArray = [];
 let likesByIDList;
+let workCardsArray = [];
 
 // Function render photographers' works
 const renderPhotographerWorks = data => {
 	let media = data.media;
-	workById = media.filter(media => media['photographerId'] == ID);
+    workById = media.filter(media => media['photographerId'] == ID);
+    
+	// Create a map with all likes of current photographer (ID)
+	likesByIDList = workById.map(work => work.likes);
 
-	console.log(media); // ==> Array with 59 medias
-	console.log(ID); // ==> id of photographer in URL
-	console.log(workById); // ==> array 10 work for Mimi
+	// Calcul the total of the likes' array
+	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
+
+	totalLikesArray.push(totalLikes);
+	totalLikesEl.innerHTML = totalLikesArray;
 
 	// sort workById (array works cards) by Popularity by default
 	workById.sort((a, b) => b.likes - a.likes);
 
-	// Create an array with all likes of current photographer (ID)
-	likesByIDList = workById.map(work => work.likes);
-	console.log(likesByIDList);
-
-	// // Calcul the total of the likes' array
-	// let totalLikesList = likesByIDList.reduce(
-	// 	(total, likes) => total + likes,
-	// 	0
-	// );
-	// console.log(totalLikesList);
-	// let totalLikes = totalLikesList;
-
-	// let totalLikesArray = [];
-	// let likesByIDArray = [];
-
-	// Calcul the total of the likes' array
-	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
-	console.log(totalLikes); // TOTAL EX 680 NUMBER
-
-	totalLikesArray.push(totalLikes);
-	console.log(totalLikesArray); // TOTAL EX 680 DS ARRAY []
-
-	totalLikesEl.innerHTML = totalLikesArray;
-
-	//=============================================================
+	// Render the Works Cards
 	renderWorksCards();
+
+	// console.log(media); // ==> Array with 59 medias
+	// console.log(ID); // ==> id of photographer in URL
+	// console.log(workById); // ==> array 10 work for Mimi
 };
 
 //==================================================================================================
@@ -92,24 +70,8 @@ function renderWorksCards() {
 		newMedia +=
 			work.image !== undefined
 				? (newMedia = `<img class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label=""/>`)
-                : (newMedia = `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}"></video>`);
-                //TODO remettre qd lightbox controls aux videos
-		// console.log(newMedia);
-		// const workLikeEl = document.querySelectorAll('.work-like');
-		// console.log(workLikeEl);
-		// workLikeEl.value = parseInt(workLikeEl.value) + 1;
-		// console.log(workLikeEl);
+				: (newMedia = `<video class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" controls></video>`);
 
-		// let newLike = '';
-		// newLike = newLike.nextElementSibling.classList.contains('liked')
-		// 	? (newLike = work.likes + 1)
-		// 	: (newLike = work.likes);
-		// console.log(workLikeEl);
-
-		// likedUp = 0;
-		// newLike = work.likes + likedUp;
-
-		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
@@ -122,9 +84,9 @@ function renderWorksCards() {
                         <span class="work__infos__price">${work.price}€</span>
                         <span class="work__infos__likes">
                             <span class="work-like">${work.likes}</span>
-                            <button class="btn-like" aria-label="click for like it">
-                                <i class="far fa-heart "></i>
-                                <i class="fas fa-heart liked"></i>
+                            <button class="btn-like" aria-label="likes, click for like this photo">
+                                <i class="far fa-heart" aria-hidden="true"></i>
+                                <i class="fas fa-heart liked" aria-hidden="true"></i>
                             </button>
                         </span>
                     </p>
@@ -132,41 +94,29 @@ function renderWorksCards() {
             </article>
         `;
 	});
+	// workCardsArray.push(newWorkCard);
+	// containerWorksEl.innerHTML = workCardsArray;
 	containerWorksEl.innerHTML = newWorkCard;
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
 	//==================================================================================================
 	let btnLikeArray = Array.from(document.querySelectorAll('.btn-like'));
-	// console.log(btnLikeArray);
-	console.log(totalLikesArray);
-	// console.log(workById);
-	console.log(workById);
-	console.log(likesByIDList);
 
-	// const workLikeArray = Array.from(workLikeEl);
-	// console.log(workLikeArray);
-	// let workLikeEl = document.querySelectorAll('.work-like');
-	// console.log(workLikeEl);
-	likesByIDList.forEach(like => {
-		// workLikeEl.innerHTML = like;
-		like = workLikeEl.innerHTML;
-	});
-	console.log(workLikeEl);
+	// console.log(btnLikeArray);
+	// console.log(totalLikesArray); // [680] for Mimi
+	// console.log(workById); // 10 works for Mimi (all works infos)
+	console.log(likesByIDList); // all likes (10 for Mimi)
 
 	btnLikeArray.forEach(btn => {
 		btn.addEventListener('click', function (e) {
 			e.preventDefault();
-			// btnLikeEl.previousElementSibling = newLike;
 			if (!btn.classList.contains('liked')) {
 				btn.previousElementSibling.innerHTML++;
-				// likedUp = 1;
-				// workLikeEl.innerHTML++;
 				btn.classList.add('liked');
 				totalLikesArray++;
 			} else {
 				btn.previousElementSibling.innerHTML--;
-				// likedUp = 0;
 				btn.classList.remove('liked');
 				totalLikesArray--;
 			}
@@ -176,29 +126,5 @@ function renderWorksCards() {
 		});
 	});
 }
-
-//==================================================================================================
-// Lightboxes
-//  function and events for Open & Close
-//==================================================================================================
-
-// const openCloseLightbox = function () {
-function openCloseLightbox() {
-	overlayLightboxEl.classList.toggle('hidden');
-	lightboxEl.classList.toggle('hidden');
-	console.log(overlayLightboxEl);
-}
-
-// for (let i = 0; i < lightboxMediaEl.length; i++) {
-// 	lightboxMediaEl[i].addEventListener('click', openCloseLightbox);
-// }
-// console.log(lightboxMediaEl);
-
-// workMediaEl.addEventListener('click', openCloseLightbox);
-lightboxMediaEl.addEventListener('click', openCloseLightbox);
-
-// Close lightbox
-btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
-// console.log(btnCloseLightboxEl);
-
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+console.log(workById);
