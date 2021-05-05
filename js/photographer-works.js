@@ -22,6 +22,7 @@ const datasPhotographerPage = Utils.getAllDatas(URL).then(data => {
 	renderPhotographerWorks(data);
 });
 
+console.log(ID);
 //==================================================================================================
 //  Render Photographer Works
 //==================================================================================================
@@ -126,5 +127,3 @@ function renderWorksCards() {
 		});
 	});
 }
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-console.log(workById);

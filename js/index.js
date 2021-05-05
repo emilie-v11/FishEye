@@ -20,9 +20,9 @@ const URL = './FishEyeDataFR.json';
 // FETCH JSON
 //==================================================================================================
 
-const datasHomepage = Utils.getAllDatas(URL).then(data => {
-	renderPhotographers(data), renderTagsNavFilter(data);
-});
+const datasHomepage = Utils.getAllDatas(URL).then(data =>
+	renderPhotographers(data)
+);
 
 //==================================================================================================
 //  Render Photographers' Cards Homepage
@@ -41,7 +41,7 @@ const renderPhotographers = data => {
 
 	// Render Photographers
 	allPhotographersProfiles.forEach(photographers => {
-		console.log(photographers['tags']); //datas tags for each photographer
+		console.log(photographers['tags'], photographers.tags); //datas tags for each photographer
 		// Render Photographers' Tag list
 		let newLiTags = '';
 		tagsList = photographers['tags'];
@@ -69,16 +69,24 @@ const renderPhotographers = data => {
                 </ul>
             </article>
             `;
+		const filterPhotographersbyTag = changeActiveTag();
+
+		const photographersEl = document.querySelectorAll('.photographers');
+		console.log(photographers);
+
 		console.log('data is', data); // all JSON datas (59 medias + 6 photographers)
 		console.log('data.photographers is', data.photographers); // datas of 6 photographers
 		console.log(newLiTags); // innerHTML tags for each photographer
 		console.log(tagsList); // array tags for for each photographer
-		console.log(newPhotographer); // innerHTML cards photographers
+		console.log(photographers.tags);
+
+		// console.log(newPhotographer); // innerHTML cards photographers
 	});
 	photographersArray.push(newPhotographer);
 	photographersListEl.innerHTML = photographersArray;
 
 	console.log(photographersArray);
+	console.log(photographersListEl);
 };
 
 //==================================================================================================
@@ -86,62 +94,87 @@ const renderPhotographers = data => {
 //==================================================================================================
 // console.log(navItemsEl);
 const navItemsEl = navEl.getElementsByClassName('navigation__item');
-let tagActive = navEl.getElementsByClassName('active');
+const activeTag = navEl.getElementsByClassName('active');
+console.log(navItemsEl);
+
+const photographersEl = document.querySelectorAll('.photographers');
+console.log(photographersEl);
+
+const containerPhotographersEl = document.querySelectorAll(
+	'.container-photographers'
+);
+console.log(containerPhotographersEl);
 
 const navItemsArray = Array.from(navItemsEl);
 console.log(navItemsArray);
-// // function oneActiveTag() {
-const oneActiveTag = navItemsArray.forEach((tag, index) => {
-	tag.addEventListener('click', function () {
-		// e.preventDefault();
-		// let tagActive = document.getElementsByClassName('active');
-		if (tagActive.length > 0) {
-			tagActive[0].className = tagActive[0].className.replace(
-				' active',
-				''
-			);
-		}
-		navItemsEl[index].classList.add('active');
-	});
-});
-// oneActiveTag();
-console.log(tagActive);
 
-function sortbyTag() {
-	if (!tagActive.innerHTML) {
-	}
+function changeActiveTag() {
+	navItemsArray.forEach(tag => {
+		tag.addEventListener('click', function () {
+			if (activeTag.length > 0) {
+				activeTag[0].classList.remove('active');
+			}
+			tag.classList.add('active');
+		});
+	});
 }
+
+// function changeActiveTag() {
+// 	navItemsArray.forEach((tag, index) => {
+// 		tag.addEventListener('click', function () {
+// 			// e.preventDefault();
+// 			if (activeTag.length > 0) {
+// 				activeTag[0].classList.remove('active');
+// 			}
+// 			navItemsEl[index].classList.add('active');
+// 		});
+// 	});
+// }
+// changeActiveTag();
+
+console.log(activeTag);
+console.log(photographersTags);
+
+// const idActiveTag = document.getElementById(id).value;;
+// console.log(idActiveTag);
+
+// function filterPhotographersbyTag() {
+// 	changeActiveTag();
+
+// 	if (!activeTag.innerHTML) {
+// 	}
+// }
 
 // Get the container element
 // const navEl = document.querySelector('.navigation');
 // // Get all tags with class="navigation__item" inside the container
 // const navItemsEl = navEl.getElementsByClassName('navigation__item');
-// let tagActive = navEl.getElementsByClassName('active');
+// let activeTag = navEl.getElementsByClassName('active');
 // //Loop through the tags and add the active class to the current/clicked button
 // for (let i = 0; i < navItemsEl.length; i++) {
 // 	navItemsEl[i].addEventListener('click', function () {
-// 		// tagActive = document.getElementsByClassName('active');
+// 		// activeTag = document.getElementsByClassName('active');
 // 		// If there's no active class
-// 		if (tagActive.length > 0) {
+// 		if (activeTag.length > 0) {
 // 			// current[0].className = current[0].className.replace(' active', '');
-// 			tagActive[0].classList.remove('active');
+// 			activeTag[0].classList.remove('active');
 // 		}
 // 		navItemsEl[i].classList.add('active');
 // 	});
-// 	console.log(tagActive);
+// 	console.log(activeTag);
 // }
 const renderTagsNavFilter = data => {
-	console.log(allPhotographersProfiles, data['photographers']);
-	// console.log(newPhotographer); // not defined
-	// console.log(photographers['tags']); undefined
-    console.log(tagsList);
-    console.log(photographersListEl);
-    allPhotographersProfiles.forEach(photographers => {
-        let photographerFilterbyTag = 
-		console.log(allPhotographersProfiles, photographers['tags']); //datas tags for each photographer
-		// if (photographers.tags !== tagActive) {
-		// 	photographersArray.slice()
-		// }
-	});
-	console.log(tagActive);
+	changeActiveTag();
+
+	// allPhotographersProfiles.forEach(photographers => {
+	// 	let photographerFilterbyTag = console.log(photographers['tags']); //datas tags for each photographer
+	// 	// if (photographers.tags !== activeTag) {
+	// 	// 	photographersArray.slice()
+	// 	// }
+	// });
+	// console.log(tagsList);
+	// console.log(photographersListEl);
+	// console.log(allPhotographersProfiles); // = data['photographers']
+	// console.log(activeTag); //
+	// console.log(photographersEl); // [] empty
 };

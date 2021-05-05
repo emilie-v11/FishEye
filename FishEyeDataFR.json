@@ -307,7 +307,7 @@
 		{
 			"id": 92352352,
 			"photographerId": 527,
-			"image": "portrait_Sunkissed.jpg",
+			"image": "Portrait_Sunkissed.jpg",
 			"tags": ["portrait"],
 			"likes": 66,
 			"date": "2018-05-24",
@@ -317,7 +317,7 @@
 		{
 			"id": 34513453,
 			"photographerId": 527,
-			"image": "portrait_Shaw.jpg",
+			"image": "Portrait_Shaw.jpg",
 			"tags": ["portait"],
 			"likes": 52,
 			"date": "2017-04-21",
@@ -327,7 +327,7 @@
 		{
 			"id": 23523533,
 			"photographerId": 527,
-			"image": "portrait_Alexandra.jpg",
+			"image": "Portrait_Alexandra.jpg",
 			"tags": ["portait"],
 			"likes": 95,
 			"date": "2018-11-02",
@@ -337,7 +337,7 @@
 		{
 			"id": 525834234,
 			"photographerId": 527,
-			"image": "portrait_AfternoonBreak.jpg",
+			"image": "Portrait_AfternoonBreak.jpg",
 			"tags": ["portait"],
 			"likes": 25,
 			"date": "2019-01-02",
@@ -368,7 +368,7 @@
 		{
 			"id": 2525345343,
 			"photographerId": 243,
-			"image": "portrait_Wednesday.jpg",
+			"image": "Portrait_Wednesday.jpg",
 			"tags": ["portait"],
 			"likes": 34,
 			"date": "2019-04-07",
@@ -378,7 +378,7 @@
 		{
 			"id": 2523434634,
 			"photographerId": 243,
-			"image": "portrait_Nora.jpg",
+			"image": "Portrait_Nora.jpg",
 			"tags": ["portait"],
 			"likes": 63,
 			"date": "2019-04-07",
@@ -388,7 +388,7 @@
 		{
 			"id": 398847109,
 			"photographerId": 243,
-			"image": "portrait_Background.jpg",
+			"image": "Portrait_Background.jpg",
 			"tags": ["portait"],
 			"likes": 55,
 			"date": "2019-06-20",
