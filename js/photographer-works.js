@@ -18,9 +18,9 @@ const totalLikesEl = document.querySelector('.total-likes');
 // FETCH JSON
 //==================================================================================================
 
-const datasPhotographerPage = Utils.getAllDatas(URL).then(data => {
-	renderPhotographerWorks(data);
-});
+const datasPhotographerPage = Utils.getAllDatas(URL).then(data =>
+	renderPhotographerWorks(data)
+);
 
 console.log(ID);
 //==================================================================================================

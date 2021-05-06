@@ -3,6 +3,196 @@
 //============================================================
 
 //=============================================================
+// NAVIGATION TAGS HOMEPAGE
+//============================================================
+
+//==================================================================================================
+// DOM ELEMENTS
+//==================================================================================================
+let containerPhotographersEl = document.querySelector(
+	'.container-photographers'
+);
+// const tagsListEl = document.querySelector('.photographers__tags');
+// navigation tags
+const navEl = document.querySelector('.navigation');
+// const navItemsEl = document.querySelectorAll('.navigation__item');
+// console.log(navEl);
+
+// NAV ITEMS TAGS
+const navItemsEl = navEl.getElementsByClassName('navigation__item');
+console.log(navItemsEl);
+
+// const photographersEl = document.getElementsByClassName('.photographers');
+// console.log(photographersEl);
+
+// const photographersEl = document.querySelectorAll('.photographers');
+// console.log(photographers);
+// const containerPhotographersEl = document.querySelectorAll(
+// 	'.container-photographers'
+// );
+console.log(containerPhotographersEl);
+
+// URL JSON
+const URL = './FishEyeDataFR.json';
+
+//==================================================================================================
+// FETCH JSON
+//==================================================================================================
+
+const datasHomepage = Utils.getAllDatas(URL).then(data => {
+	renderPhotographers(data);
+	// , renderTagsNavFilter(data)
+});
+
+//==================================================================================================
+//  Render Photographers' Cards Homepage
+//==================================================================================================
+
+let allPhotographersProfiles;
+let tagsList;
+let photographersCards = [];
+let photographersTags;
+// let containerPhotographersEl;
+
+const renderPhotographers = data => {}
+
+//==================================================================================================
+// Filter Photographers by Tags with Navigation Tags
+//==================================================================================================
+// console.log(navItemsEl);
+const navItemsEl = navEl.getElementsByClassName('navigation__item');
+const activeTag = navEl.getElementsByClassName('active');
+console.log(navItemsEl);
+
+const photographersEl = document.querySelectorAll('.photographers');
+console.log(photographersEl);
+
+//
+const containerPhotographersEl = document.querySelectorAll(
+	'.container-photographers'
+);
+console.log(containerPhotographersEl);
+
+const navItemsArray = Array.from(navItemsEl);
+console.log(navItemsArray);
+
+//=============================================================
+// Function render Photographers Cards filter by categories
+const renderTagsNavFilter = data => {
+	allPhotographersProfiles.forEach(photographers => {
+		console.log(photographers.tags);
+		// 	let photographerFilterbyTag = console.log(photographers['tags']); //datas tags for each photographer
+		// if (photographers.tags !== activeTag) {
+		// 	photographersArray.slice()
+		// }
+	});
+	console.log(containerPhotographersEl);
+	console.log(allPhotographersProfiles); // = data['photographers']
+	console.log(activeTag); //
+
+	const cardMimi = document.getElementById('243');
+	console.log(cardMimi);
+};
+//=============================================================
+
+console.log(photographersEl); // [] empty
+
+// function changeActiveTag() {
+// 	navItemsArray.forEach(tag => {
+// 		tag.addEventListener('click', function () {
+// 			if (
+// 				navItemsEl.target.classList.contains('active')
+// 				// && activeTag == tag.target
+// 			) {
+// 				tag.target.classList.remove('active');
+// 				tag.classList.remove('active');
+// 			}
+// 		});
+// 		tag.target.classList.add('active');
+
+// let activeTagId = activeTag.getElementById('id');
+// console.log(tagId);
+// if (tagId == 'portrait') {
+// 	containerPhotographersEl.style.display = 'none';
+// 	if (photographersEl.id == 'portrait') {
+// 		photographersEl.style.display = 'block';
+// 	}
+// }
+// 	});
+// }
+
+function changeActiveTag() {
+	navItemsArray.forEach((tag, index) => {
+		tag.addEventListener('click', function () {
+			// e.preventDefault();
+			if (activeTag.length > 0) {
+				activeTag[0].classList.remove('active');
+			}
+			navItemsEl[index].classList.add('active');
+		});
+	});
+	// cardsMimi.style.display = 'none';
+}
+changeActiveTag();
+
+console.log(activeTag);
+console.log(photographersTags);
+
+// const idActiveTag = document.getElementById(id).value;;
+// console.log(idActiveTag);
+
+// function filterPhotographersbyTag() {
+// 	changeActiveTag();
+
+// 	if (!activeTag.innerHTML) {
+// 	}
+// }
+
+// Get the container element
+// const navEl = document.querySelector('.navigation');
+// // Get all tags with class="navigation__item" inside the container
+// const navItemsEl = navEl.getElementsByClassName('navigation__item');
+// let activeTag = navEl.getElementsByClassName('active');
+// //Loop through the tags and add the active class to the current/clicked button
+// for (let i = 0; i < navItemsEl.length; i++) {
+// 	navItemsEl[i].addEventListener('click', function () {
+// 		// activeTag = document.getElementsByClassName('active');
+// 		// If there's no active class
+// 		if (activeTag.length > 0) {
+// 			// current[0].className = current[0].className.replace(' active', '');
+// 			activeTag[0].classList.remove('active');
+// 		}
+// 		navItemsEl[i].classList.add('active');
+// 	});
+// 	console.log(activeTag);
+// }
+
+// containerPhotographersEl.style.display = 'block'; // all cards block
+
+// function tagsNavFilter() {
+// 	if (navItemsEl.classList.contains('active')) {
+// 		console.log('ok');
+// 	}
+// }
+
+// Change style for tag selected
+
+// navItemsEl.forEach(tag => {
+// 	tag.addEventListener('click', function () {
+// 		// let navItemsEl = document.querySelectorAll('.navigation__item');
+// 		let tagActive = tag.classList.contains('active');
+// 		);
+
+//     navEl.addEventListener('click', function () {
+// 	    for (let i = 0; i < navItemsEl.length; i++) {
+// 		console.log(navEl, navItemsEl[i]);
+// 		let tagActive = navItemsEl[i].classList.contains('active');
+// 		console.log(tagActive);
+// 		navItemsEl[i].classList.add('active');
+// 	}
+// });
+
+//=============================================================
 // Increment like
 //=============================================================
 
@@ -20,65 +210,7 @@
 // console.log(workLikeEl);
 
 //=============================================================
-// NAVIGATION TAGS HOMEPAGE
-//============================================================
-
-// function tagsNavFilter() {
-// 	if (navItemsEl.classList.contains('active')) {
-// 		console.log('ok');
-// 	}
-// }
-
-// Change style for tag selected
-
-// navItemsEl.forEach(tag => {
-// 	tag.addEventListener('click', function () {
-// 		// let navItemsEl = document.querySelectorAll('.navigation__item');
-// 		let tagActive = tag.classList.contains('active');
-// 		let tagActive1 = tag.classList.contains('1');
-// 		let tagSiblings = Array.from(tag.parentNode.children);
-// 		let tagSiblingsActive = tagSiblings.filter(
-// 			element => tag !== tagActive
-// 		);
-// 		console.log(tagSiblings);
-// 		console.log(tagSiblingsActive);
-
-// 		// if (!tagActive && !tagSiblings == tagActive) {
-// 		if (!tagActive) {
-// 			if (tagSiblingsActive) {
-// 				// Quand select 1 tag & autres non select =
-// 				tag.classList.add('active');
-// 				console.log("n'était pas actif & autres non plus"); // ok
-// 				console.log(tagActive); // false
-//                 console.log(tagSiblings); // [8 tags dt 1 avec class'active']
-//                 console.log(tagSiblingsActive);
-// 				// console.log(navItemsEl); // [NodeList 8 tags dt 1 avec class'active']
-// 			} else if (tagSiblingsActive == tagActive) {
-// 				// tagSiblings.tag.remove('active');
-// 				console.log('ENFIN !!!!');
-// 				console.log(tagActive);
-// 				console.log(tagSiblings);
-// 				console.log(navItemsEl);
-// 			}
-// 		} else if (tagActive) {
-// 			// Qd select 1 tag déjà select et autres non select
-// 			tag.classList.remove('active');
-// 			console.log('était actif'); // ok
-// 			console.log(tagActive); // true
-// 			console.log(tagSiblings); // [8 tags dt 1 sans class'active']
-// 			console.log(navItemsEl); // [8 tags dt 1 sans class'active']
-// 		}
-// 	});
-// });
-
-//     .addEventListener('click', function () {
-// 	for (let i = 0; i < navItemsEl.length; i++) {
-// 		console.log(navEl, navItemsEl[i]);
-// 		let tagActive = navItemsEl[i].classList.contains('active');
-// 		console.log(tagActive);
-// 		navItemsEl[i].classList.add('active');
-// 	}
-// });
+//=============================================================
 
 // ID = Utils.getIdByUrl();
 // console.log(ID);
