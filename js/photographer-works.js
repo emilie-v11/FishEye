@@ -42,7 +42,6 @@ const renderPhotographerWorks = data => {
 
 	// Calcul the total of the likes' array
 	let totalLikes = likesByIDList.reduce((total, likes) => total + likes, 0);
-
 	totalLikesArray.push(totalLikes);
 	totalLikesEl.innerHTML = totalLikesArray;
 
@@ -60,12 +59,11 @@ const renderPhotographerWorks = data => {
 //==================================================================================================
 //  WORKS CARDS
 //==================================================================================================
-let likedUp = 0;
-let newLike = '';
 
 function renderWorksCards() {
 	// Render Works Cards (Image - name - price - numb of like & heart icon)
-	let newWorkCard = '';
+    let newWorkCard = '';
+    
 	workById.forEach(work => {
 		let newMedia = '';
 		newMedia +=
@@ -97,7 +95,8 @@ function renderWorksCards() {
 	});
 	// workCardsArray.push(newWorkCard);
 	// containerWorksEl.innerHTML = workCardsArray;
-	containerWorksEl.innerHTML = newWorkCard;
+    containerWorksEl.innerHTML = newWorkCard;
+    console.log(containerWorksEl);
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
