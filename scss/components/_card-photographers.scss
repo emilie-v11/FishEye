@@ -13,6 +13,7 @@
 		align-items: center;
 		justify-items: center;
 		margin: 0;
+		justify-content: left;
 	}
 }
 
@@ -128,43 +129,3 @@
 		}
 	}
 }
-
-/* Photos selon maquettes
-            &.MK {
-				// Mimi Keel
-				background-image: url('../img/photos/Mimi/Portrait_Nora.jpg');
-				background-position: right 50% bottom 58%;
-				background-size: 150%;
-				// object-fit: cover;
-			}
-			&.ERW {
-				// Ellie-Rose Wilkens
-				background-image: url('../img/photos/EllieRose/Architecture_Horseshoe.jpg');
-				background-position: right 50% bottom 58%;
-				background-size: 105%;
-			}
-			&.TG {
-				// Tracy Galindo
-				background-image: url('../img/photos/Tracy/Fashion_Urban_Jungle.jpg');
-				background-position: right 50% bottom 56%;
-				background-size: 265%;
-			}
-			&.NB {
-				// Nabeel Bradford
-				background-image: url('../img/photos/Nabeel/Travel_Outdoor_Baths.jpg');
-				background-position: right 50% bottom 56%;
-				background-size: 265%;
-			}
-			&.RD {
-				// Rhode Dubois
-				background-image: url('../img/photos/Rhode/Fashion_Melody_Red_on_Stripes.jpg');
-				background-position: left 40% top 15%;
-				background-size: 265%;
-			}
-			&.MN {
-				// Marcel Nikolic
-				background-image: url('../img/photos/Marcel/Travel_Tower.jpg');
-				background-position: right 50% top 32%;
-				background-size: 270%;
-			}
-*/
