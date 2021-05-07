@@ -5,10 +5,147 @@
 //=============================================================
 // NAVIGATION TAGS HOMEPAGE
 //============================================================
+//=============================================================
+function filterCards(activeTag) {
+	// let filterCards = allPhotographersProfiles.filter(item =>
+	// 	item.tags.includes(activeTag)
+	// );
+	// console.log(filterCards); // TODO photographers json filtrer
+	// // TODO filtrage fonctionne mais pas apparition
+
+	const photographersEl = document.getElementsByClassName('photographers');
+	console.log(photographersEl);
+
+	let photographersArray = Array.from(photographersEl);
+	console.log(photographersArray);
+
+	let tagToCompare = '#' + activeTag;
+
+	photographersArray.forEach(card => {
+		let tags = Array.from(
+			card.querySelectorAll('.photographers__tags__item')
+		);
+		let tagsText = [];
+
+		tags.forEach(tag => {
+			let tagText = tag.textContent;
+			tagsText.push(tagText);
+		});
+		console.log(tagsText);
+		console.log(tagToCompare);
+
+		// card.classList.add('hidden');
+		// // card.style.display = 'none';
+		// console.log('add hidden all');
+		// if (filterCards.length == 0) {
+		// 	card[i].classList.remove('hidden');
+		// 	// card[i].style.display = 'block';
+		// 	console.log('remove hidden all');
+		// } else {
+		// 	for (let i in filterCards) {
+		// 		if (filterCards[i].tagsList == activeTag || tag == '') {
+		// 			//BUG filterCards[i].id == tag.id //tagsList
+		// 			card[i].classList.remove('hidden');
+		// 			// card[i].style.display = 'block';
+		// 			console.log('remove hidden of match cards / activeTag');
+		// 		}
+		// 	}
+		// }
+
+		if (tagsText.includes(tagToCompare)) {
+			card.style.display = 'block';
+		} else {
+			card.style.display = 'none';
+		}
+	});
+}
 
 //==================================================================================================
 // DOM ELEMENTS
 //==================================================================================================
+function filterCards(activeTag) {
+	// let filterCards = allPhotographersProfiles.filter(item =>
+	// 	item.tags.includes(activeTag)
+	// );
+	// console.log(filterCards); // TODO photographers json filtrer
+	// // TODO filtrage fonctionne mais pas apparition
+	const photographersEl = document.getElementsByClassName('.photographers');
+	console.log(photographersEl);
+
+	let photographersArray = Array.from(photographersEl);
+	console.log(photographersArray);
+
+	let tagToCompare = '#' + activeTag;
+
+	photographersArray.forEach(card => {
+		let tags = Array.from(
+			card.querySelectorAll('.photographers__tags__item')
+		);
+		let tagsText = [];
+
+		tags.forEach(tag => {
+			let tagText = tag.textContent;
+			tagsText.push(tagText);
+		});
+		console.log(tagsText);
+		console.log(tagToCompare);
+
+		// card.classList.add('hidden');
+		// // card.style.display = 'none';
+		// console.log('add hidden all');
+		// if (filterCards.length == 0) {
+		// 	card[i].classList.remove('hidden');
+		// 	// card[i].style.display = 'block';
+		// 	console.log('remove hidden all');
+		// } else {
+		// 	for (let i in filterCards) {
+		// 		if (filterCards[i].tagsList == activeTag || tag == '') {
+		// 			//BUG filterCards[i].id == tag.id //tagsList
+		// 			card[i].classList.remove('hidden');
+		// 			// card[i].style.display = 'block';
+		// 			console.log('remove hidden of match cards / activeTag');
+		// 		}
+		// 	}
+		// }
+
+		if (tagsText.includes(tagToCompare)) {
+			card.style.display = 'block';
+		} else {
+			card.style.display = 'none';
+		}
+	});
+}
+
+// let activeTag = ''; // FIXME current tag activeTag ???
+
+//==================================================================================================
+//  SORT PHOTOGRAPHERS' CARDS EVENTS
+//==================================================================================================
+
+// Event for tags
+const photographersCardsSortByTags = navItemsArray.forEach(tag => {
+	tag.addEventListener('click', function (e) {
+		e.preventDefault();
+		if (tag.classList.contains('active')) {
+			tag.classList.remove('active');
+			filterCards(activeTag);
+		} else {
+			navItemsArray.forEach(item => {
+				item.classList.remove('active');
+			});
+			tag.classList.add('active');
+			activeTag = tag.getAttribute('id');
+			filterCards(activeTag);
+		}
+		console.log(activeTag); // TODO fonctionne valeur ID tag active apparait
+		// filterCards(activeTag);
+		// renderPhotographersCards();
+		console.log(containerPhotographersEl);
+	});
+});
+console.log(containerPhotographersEl); // ok innerHTML du container + toutes les cards
+
+
 let containerPhotographersEl = document.querySelector(
 	'.container-photographers'
 );
