@@ -1,6 +1,14 @@
 //=============================================================
 // BROUILLON
 //============================================================
+// Function render photographers' cards
+// const renderPhotographers = data => {
+// 	allPhotographersProfiles = data['photographers']; 
+// console.log(allPhotographersProfiles); // datas of 6 photographers
+
+// 	renderPhotographersCards();
+// };
+
 
 //=============================================================
 // NAVIGATION TAGS HOMEPAGE
@@ -122,6 +130,28 @@ function filterCards(activeTag) {
 //  SORT PHOTOGRAPHERS' CARDS EVENTS
 //==================================================================================================
 
+// function changeActiveTag() {
+// 	navItemsArray.forEach((tag, index) => {
+// 		tag.addEventListener('click', function (e) {
+// 			e.preventDefault();
+// 			if (tag.classList.contains('active')) {
+// 	tag.classList.remove('active');
+// 	filterCards(activeTag);
+// } else {
+// 	navItemsArray.forEach(item => {
+// 		item.classList.remove('active');
+// 	});
+// 	tag.classList.add('active');
+// 		});
+// 	});
+// }
+// changeActiveTag();
+
+// console.log(activeTag);
+// console.log(photographersTags);
+
+// containerPhotographersEl.style.display = 'block'; // all cards block
+//=============================================================
 // Event for tags
 const photographersCardsSortByTags = navItemsArray.forEach(tag => {
 	tag.addEventListener('click', function (e) {
