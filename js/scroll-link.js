@@ -37,4 +37,4 @@ window.addEventListener('scroll', () => {
 // 		containerPhotographersEl.focus();
 // 	}
 // });
-// if (scrollPosition < 20 || scrollPosition > 200)
+// if (scrollPosition < 10 || scrollPosition > 100) // 20 - 200
