@@ -38,6 +38,15 @@ const renderJumbotron = data => {
 	);
 	console.log(photographer);
 
+	let media = data.media;
+	console.log(media);
+
+	let tagsMedia = media.tags;
+	console.log(tagsMedia);
+
+	workById = media.filter(media => media['photographerId'] == ID);
+	console.log(workById);
+
 	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list
 	let newLiTags = '';
@@ -45,7 +54,7 @@ const renderJumbotron = data => {
 	for (let i = 0; i < tagsList.length; i++) {
 		newLiTags += `
         <li class="navigation__item nav-card">
-            <a href="#" onclick="filterBytagsJumbotron()" class="photographers__tags__item tags tags-card">#${tagsList[i]}</a>
+            <a href="#" class="photographers__tags__item tags tags-card">#${tagsList[i]}</a>
             <span class="sr-only">${tagsList[i]}</span>
         </li>   
         `;
@@ -83,14 +92,13 @@ function filterBytagsJumbotron() {
 
 	tagsCardArray.forEach(tag => {
 		tag.addEventListener('click', function () {
-			tag.classList.add('active');
-			// activeTag = tag.getAttribute('id');
-			activeTag = tag.textContent.replace(/#/, '').toLowerCase();
-			// filterByTagsNav(activeTag);
-			// location.href = './index.html'
-            
-			let newPage = window.open('./index.html');
-			newPage.onload = tag.classList.add('active');
+			location.href = `./index.html?tag=${tag.innerHTML.replace(
+				/#/,
+				''
+			)}`;
+			// let newPage = (window.location.href = './index.html/');
+			// // let newPage = window.open('./index.html');
 		});
 	});
 }
+console.log(activeTag);

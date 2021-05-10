@@ -54,7 +54,7 @@
 
 		&__name {
 			@include typo-14px--400;
-			max-width: 228px;
+			// max-width: 228px;
 
 			@include large-only {
 				@include typo-24px--500;
@@ -63,26 +63,21 @@
 			}
 		}
 
-		& p {
-			// min-width: 126px;
-			min-width: 129px;
-			text-align: right;
-		}
+		// &__price {
+		// 	@include typo-12px--500;
 
-		&__price {
-			@include typo-12px--500;
-
-			@include large-only {
-				@include typo-24px--500;
-			}
-		}
+		// 	@include large-only {
+		// 		@include typo-24px--500;
+		// 	}
+		// }
 
 		&__likes {
+			position: relative;
 			@include typo-14px--400;
 			font-weight: 500;
 			padding-left: 8px;
 			padding-right: 18px;
-			position: relative;
+			text-align: right;
 
 			@include large-only {
 				@include typo-24px--500;

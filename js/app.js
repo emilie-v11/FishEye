@@ -7,6 +7,11 @@ class Utils {
 		return urlId;
 	}
 
+	static getTagByUrl() {
+		let urlTag = new URLSearchParams(document.location.search).get('tag');
+		return urlTag;
+	}
+
 	// Render all datas JSON
 	static getAllDatas = async url => {
 		try {

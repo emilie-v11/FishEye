@@ -137,23 +137,31 @@
                 </div>
             </div>
             <!-- hidden -->
-            <div class="overlay-lightbox image hidden">
+            <div class="overlay-lightbox hidden">
             </div>
             <div class="lightbox hidden" aria-label="image closeup view">
-                <div class="lightbox-modal">
-                    <div class="lightbox-modal content">
+                <!-- fas fa-times -->
+                <button class="lightbox__close " aria-label="Close dialog"><span class="sr-only">Fermer</span>
+                </button>
+                <!--  fas fa-chevron-right -->
+                <button class="lightbox__next" aria-label="Next image">
+                    <span class="sr-only">Suivant</span>
+                </button>
+                <!-- fas fa-chevron-left -->
+                <button class="lightbox__prev " aria-label="Previous image">
+                    <span class="sr-only">Précedent</span>
+                </button>
+                <div class="lightbox__container">
+                    <!-- <div class="lightbox-modal content"> -->
+                    <div class="lightbox-modal__media">
                         <img class="lightbox-modal__media" src="./img/photos/243/Animals_Rainbow.jpg"
                             alt="Rainbow (name photo)">
-                        <div class="lightbox-modal__media img">
-                        </div>
-                        <h3 class="lightbox-modal__heading">.</h3>
                     </div>
+                    <h3 class="lightbox-modal__heading"></h3>
+                    <!-- </div> -->
                     <!-- <button class="close-lightbox" aria-label="Close dialog"> -->
                     <!-- <img class="icon-times" src="./img/icon-times.png" alt="icon times"> -->
                     <!-- </button> -->
-                    <span class="close-lightbox fas fa-times" aria-label="Close dialog"></span>
-                    <span class="previous fas fa-chevron-left" aria-label="Previous image"></span>
-                    <span class="next fas fa-chevron-right" aria-label="Next image"></span>
                 </div>
             </div>
         </main>

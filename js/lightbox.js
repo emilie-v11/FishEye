@@ -8,7 +8,7 @@
 // Lightbox
 const overlayLightboxEl = document.querySelector('.overlay-lightbox');
 const lightboxEl = document.querySelector('.lightbox');
-const btnCloseLightboxEl = document.querySelector('.close-lightbox');
+const btnCloseLightboxEl = document.querySelector('.lightbox__close');
 
 const lightboxHeadingEl = document.querySelector('.lightbox-modal__heading');
 const lightboxMediaEl = document.querySelector('.lightbox-modal__media');

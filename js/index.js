@@ -24,7 +24,6 @@ let photographersTags;
 
 // URL JSON
 const URL = './FishEyeDataFR.json';
-
 //==================================================================================================
 // FETCH JSON
 //==================================================================================================
@@ -32,6 +31,12 @@ const URL = './FishEyeDataFR.json';
 //  Render Photographers' Cards Homepage
 const datasHomepage = Utils.getAllDatas(URL).then(data => {
 	allPhotographersProfiles = data['photographers'];
+
+	let tagUrl = Utils.getTagByUrl();
+	console.log(tagUrl);
+	if (tagUrl !== null) {
+		filterByTagsNav('#' + tagUrl);
+	}
 
 	renderPhotographersCards();
 
@@ -90,4 +95,12 @@ function renderPhotographersCards() {
 
 	filterByTagsNav(activeTag);
 	// console.log(activeTag);
+
+	let tagUrl = Utils.getTagByUrl();
+	console.log(tagUrl);
+	if (tagUrl !== null) {
+		activeTag = tagUrl;
+		// filterByTagsNav(tagUrl);
+		filterByTagsNav(activeTag);
+	}
 }

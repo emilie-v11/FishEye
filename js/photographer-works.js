@@ -31,10 +31,10 @@ let workById = [];
 let totalLikesArray = [];
 let likesByIDList;
 let workCardsArray = [];
-
+let media;
 // Function render photographers' works
 const renderPhotographerWorks = data => {
-	let media = data.media;
+	media = data.media;
 	workById = media.filter(media => media['photographerId'] == ID);
 
 	// Create a map with all likes of current photographer (ID)
@@ -79,19 +79,17 @@ function renderWorksCards() {
                 </a>
                 <div class="work__infos">
                     <h2 class="work__infos__name">${work['alt']}</h2>
-                    <p>
-                        <span class="work__infos__price">${work.price}€</span>
-                        <span class="work__infos__likes">
-                            <span class="work-like">${work.likes}</span>
-                            <button class="btn-like" aria-label="likes, click for like this photo">
-                                <i class="far fa-heart" aria-hidden="true"></i>
-                                <i class="fas fa-heart liked" aria-hidden="true"></i>
-                            </button>
-                        </span>
+                    <p class="work__infos__likes">
+                        <span class="work-like">${work.likes}</span>
+                        <button class="btn-like" aria-label="likes, click for like this photo">
+                            <i class="far fa-heart" aria-hidden="true"></i>
+                            <i class="fas fa-heart liked" aria-hidden="true"></i>
+                        </button>
                     </p>
                 </div>
             </article>
         `;
+		// <span class="work__infos__price">${work.price}€</span>
 	});
 	// workCardsArray.push(newWorkCard);
 	// containerWorksEl.innerHTML = workCardsArray;
