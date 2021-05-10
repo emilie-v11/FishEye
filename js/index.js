@@ -8,16 +8,19 @@
 const containerPhotographersEl = document.querySelector(
 	'.container-photographers'
 );
-const photographersEl = document.getElementsByClassName('.photographers');
+const photographersEl = document.getElementsByClassName('photographers');
 const tagsListEl = document.querySelector('.photographers__tags');
 const navEl = document.querySelector('.navigation');
-const navItemsEl = navEl.getElementsByClassName('navigation__item');
+const navItemsEl = document.getElementsByClassName('navigation__item');
+// const tagsEl = document.getElementsByClassName('tags');
+const tagsEl = document.querySelectorAll('.tags');
 
 // Variables
 let allPhotographersProfiles;
 let tagsList;
 let photographersTags;
-let activeTag;
+// let tagsCard;
+// let activeTag;
 
 // URL JSON
 const URL = './FishEyeDataFR.json';
@@ -53,12 +56,16 @@ function renderPhotographersCards() {
 		tagsList = photographers['tags']; // console.log(photographers['tags'], photographers.tags); //datas tags for each photographer
 		for (let i = 0; i < tagsList.length; i++) {
 			newLiTags += `
-                <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
-                `;
+            <li class="navigation__item nav-card">
+                <a href="#" class="tags tags-card">#${tagsList[i]}</a>
+                <span class="sr-only">${tagsList[i]}</span>
+            </li>
+            `;
 		}
+
 		// Render Photographers' cards
 		newPhotographer += `
-            <article class="photographers" id="${photographers.id}" data-tags="${tagsList}">
+            <article class="photographers" id="${photographers.id}" data-id="${tagsList}">
                 <a href="photographer-page.html?id=${photographers.id}">
                     <div class="photographers__portrait">
                         <img class="photographers__portrait ${photographers.id}" src='./img/photos/PhotographersIDPhotos/${photographers.portrait}' alt="" aria-label=""/>
@@ -79,67 +86,8 @@ function renderPhotographersCards() {
 	containerPhotographersEl.innerHTML = newPhotographer;
 	// console.log(containerPhotographersEl);
 
-	filterPhotographersCards(activeTag);
+	filterBytagsCards();
+
+	filterByTagsNav(activeTag);
 	// console.log(activeTag);
 }
-
-//==================================================================================================
-// FUNCTION FILTER PHOTOGRAPHERS CARDS BY CATEGORIES WITH NAVIGATION'S TAGS
-//==================================================================================================
-
-function filterPhotographersCards(activeTag) {
-	let filterCards = allPhotographersProfiles.filter(item =>
-		item.tags.includes(activeTag)
-	);
-	let photographersEl = document.getElementsByClassName('photographers');
-	let photographersArray = Array.from(photographersEl);
-	let tagToCompare = '#' + activeTag;
-
-	photographersArray.forEach(card => {
-		let tags = Array.from(
-			card.querySelectorAll('.photographers__tags__item')
-		);
-		let tagsText = [];
-
-		tags.forEach(tag => {
-			let tagText = tag.textContent;
-			tagsText.push(tagText);
-		});
-		// console.log(tagsText);
-		// console.log(tagToCompare);
-
-		for (let i = 0; i < filterCards.length; i++) {
-			if (tagsText.includes(tagToCompare)) {
-				card.style.display = 'block';
-			} else if (!activeTag) {
-				card.style.display = 'block';
-			} else {
-				card.style.display = 'none';
-			}
-		}
-	});
-}
-
-//==================================================================================================
-//  EVENT FOR FILTER PHOTOGRAPHERS' CARDS
-//==================================================================================================
-let navItemsArray = Array.from(navItemsEl);
-
-const photographersCardsSortByTags = navItemsArray.forEach(tag => {
-	tag.addEventListener('click', function () {
-		// e.preventDefault(); // function (e)
-		if (tag.classList.contains('active')) {
-			tag.classList.remove('active');
-			window.location.reload();
-		} else {
-			navItemsArray.forEach(item => {
-				item.classList.remove('active');
-			});
-			tag.classList.add('active');
-			activeTag = tag.getAttribute('id');
-			filterPhotographersCards(activeTag);
-		}
-		console.log(activeTag);
-		renderPhotographersCards();
-	});
-});

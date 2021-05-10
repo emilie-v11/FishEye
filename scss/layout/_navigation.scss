@@ -1,3 +1,12 @@
+.navbar {
+	@include xlarge-only {
+		display: flex;
+		align-items: center;
+		justify-content: left;
+		width: 60%;
+	}
+}
+
 .navigation {
 	padding-top: 40px;
 	display: flex;
@@ -12,10 +21,11 @@
 	}
 
 	@include xlarge-only {
-		width: 60%;
+		width: 100%; //60%
 	}
 
-	&__item {
+	// &__item,
+	& .tags {
 		@include tag-item;
 
 		&:hover,

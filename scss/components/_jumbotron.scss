@@ -40,6 +40,11 @@
 		max-width: 80%;
 
 		@include large-only {
+			font-size: 42px;
+			line-height: 58px;
+		}
+
+		@include xlarge-only {
 			@include typo-64px--400;
 		}
 	}

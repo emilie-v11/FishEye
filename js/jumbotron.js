@@ -7,7 +7,7 @@
 //==================================================================================================// Jumbotron photographer
 const containerJumbotronEl = document.querySelector('.container-jumbotron');
 const photographerPriceAsideEl = document.querySelector('.photographer-price');
-// const tagsListEl = document.querySelector('.photographers__tags');
+// const tags = document.querySelectorAll('.tags');
 
 //==================================================================================================
 // FETCH JSON
@@ -26,13 +26,17 @@ const datasPhotographerJumbotron = Utils.getAllDatas(URL).then(data =>
 //==================================================================================================
 //  Render Photographer Jumbotron
 //==================================================================================================
+let allPhotographersProfiles;
 
 const renderJumbotron = data => {
 	// console.log(data);
-	let photographer = data['photographers'].find(
+	allPhotographersProfiles = data['photographers'];
+	console.log(allPhotographersProfiles);
+
+	let photographer = allPhotographersProfiles.find(
 		photograph => photograph.id == ID
 	);
-	// console.log(photographer);
+	console.log(photographer);
 
 	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list
@@ -40,7 +44,10 @@ const renderJumbotron = data => {
 	let tagsList = photographer['tags'];
 	for (let i = 0; i < tagsList.length; i++) {
 		newLiTags += `
-            <a href="#" class="photographers__tags__item">#${tagsList[i]}</a>
+        <li class="navigation__item nav-card">
+            <a href="#" onclick="filterBytagsJumbotron()" class="photographers__tags__item tags tags-card">#${tagsList[i]}</a>
+            <span class="sr-only">${tagsList[i]}</span>
+        </li>   
         `;
 	}
 	// Render Each Photographer' Jumbotron
@@ -52,9 +59,9 @@ const renderJumbotron = data => {
                 <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
                 <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
             </p>
-            <nav class="photographers__tags">
+            <ul class="photographers__tags">
                 ${newLiTags}
-            </nav>
+            </ul>
             <div class="photographers__portrait small">
                 <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="${photographer.name}" aria-label=""/>
             </div>
@@ -64,4 +71,26 @@ const renderJumbotron = data => {
 
 	// Render photographer price in aside
 	photographerPriceAsideEl.innerHTML = `${photographer.price}`;
+
+	filterBytagsJumbotron();
 };
+
+function filterBytagsJumbotron() {
+	let tagsCard = document.querySelectorAll('.tags');
+	console.log(tagsCard);
+	let tagsCardArray = Array.from(tagsCard);
+	console.log(tagsCardArray);
+
+	tagsCardArray.forEach(tag => {
+		tag.addEventListener('click', function () {
+			tag.classList.add('active');
+			// activeTag = tag.getAttribute('id');
+			activeTag = tag.textContent.replace(/#/, '').toLowerCase();
+			// filterByTagsNav(activeTag);
+			// location.href = './index.html'
+            
+			let newPage = window.open('./index.html');
+			newPage.onload = tag.classList.add('active');
+		});
+	});
+}

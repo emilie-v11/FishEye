@@ -46,6 +46,8 @@
 
 		&.243 {
 			// Mimi Keel MK
+			width: 100%;
+			height: 100%;
 			background-position: right 30% bottom 50%; // right 50% bottom 58%
 			background-size: 100%; //150
 		}
@@ -88,12 +90,14 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+
 		&--place {
 			@include typo-13px--400;
 			text-align: center;
 			padding-bottom: 3px;
 			color: $color-primary-dark;
 		}
+
 		&--tagline {
 			font-size: 10px;
 			font-weight: 400;
@@ -103,6 +107,7 @@
 			padding-bottom: 3px;
 			color: $color-black;
 		}
+
 		&--price {
 			font-size: 9px;
 			font-style: normal;
@@ -120,12 +125,18 @@
 		align-items: center;
 		justify-content: center;
 
-		&__item {
+		& .tags {
 			@include tag-item;
 
-			// &:hover {
-			// 	@include tag-item--hover;
-			// }
+			&:hover,
+			&:active {
+				@include tag-item--hover;
+			}
+		}
+
+		& .active {
+			color: $color-white;
+			background-color: $color-primary-dark;
 		}
 	}
 }

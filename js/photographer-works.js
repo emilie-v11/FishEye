@@ -35,8 +35,8 @@ let workCardsArray = [];
 // Function render photographers' works
 const renderPhotographerWorks = data => {
 	let media = data.media;
-    workById = media.filter(media => media['photographerId'] == ID);
-    
+	workById = media.filter(media => media['photographerId'] == ID);
+
 	// Create a map with all likes of current photographer (ID)
 	likesByIDList = workById.map(work => work.likes);
 
@@ -62,8 +62,8 @@ const renderPhotographerWorks = data => {
 
 function renderWorksCards() {
 	// Render Works Cards (Image - name - price - numb of like & heart icon)
-    let newWorkCard = '';
-    
+	let newWorkCard = '';
+
 	workById.forEach(work => {
 		let newMedia = '';
 		newMedia +=
@@ -74,11 +74,11 @@ function renderWorksCards() {
 		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
-                <a href="#" class="work__media">
+                <a href="./img/photos/${ID}/${work.image}" class="work__media" alt="${work['alt']}, open closeup view">
                     ${newMedia}
                 </a>
                 <div class="work__infos">
-                    <h3 class="work__infos__name">${work['alt']}</h3>
+                    <h2 class="work__infos__name">${work['alt']}</h2>
                     <p>
                         <span class="work__infos__price">${work.price}€</span>
                         <span class="work__infos__likes">
@@ -95,8 +95,8 @@ function renderWorksCards() {
 	});
 	// workCardsArray.push(newWorkCard);
 	// containerWorksEl.innerHTML = workCardsArray;
-    containerWorksEl.innerHTML = newWorkCard;
-    console.log(containerWorksEl);
+	containerWorksEl.innerHTML = newWorkCard;
+	console.log(containerWorksEl);
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
