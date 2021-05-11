@@ -1,5 +1,5 @@
 'use strict';
-/*
+/**
  *  JUMBOTRON & ASIDE
  */
 //==================================================================================================
@@ -92,13 +92,11 @@ function filterBytagsJumbotron() {
 
 	tagsCardArray.forEach(tag => {
 		tag.addEventListener('click', function () {
-			location.href = `./index.html?tag=${tag.innerHTML.replace(
-				/#/,
-				''
-			)}`;
-			// let newPage = (window.location.href = './index.html/');
-			// // let newPage = window.open('./index.html');
+			location.href = `./index.html?tag=${tag.innerHTML
+				.substr(1)
+				.toLowerCase()}`;
+			// location.href = `./index.html?tag=${tag.innerHTML.replace(/#/, '')}`;
 		});
 	});
 }
-console.log(activeTag);
+// console.log(activeTag);

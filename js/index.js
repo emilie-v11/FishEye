@@ -1,5 +1,5 @@
 'use strict';
-/*
+/**
  * INDEX - HOMEPAGE
  */
 //==================================================================================================
@@ -15,6 +15,7 @@ const navItemsEl = document.getElementsByClassName('navigation__item');
 // const tagsEl = document.getElementsByClassName('tags');
 const tagsEl = document.querySelectorAll('.tags');
 
+//==================================================================================================
 // Variables
 let allPhotographersProfiles;
 let tagsList;
@@ -32,13 +33,16 @@ const URL = './FishEyeDataFR.json';
 const datasHomepage = Utils.getAllDatas(URL).then(data => {
 	allPhotographersProfiles = data['photographers'];
 
-	let tagUrl = Utils.getTagByUrl();
-	console.log(tagUrl);
-	if (tagUrl !== null) {
-		filterByTagsNav('#' + tagUrl);
-	}
-
+	// Render Photographers'cards
 	renderPhotographersCards();
+
+	let tagUrl = Utils.getTagByUrl();
+	// console.log(tagUrl);
+	if (tagUrl !== null) {
+		activeTag = tagUrl;
+		// filterByTagsNav(tagUrl);
+		filterByTagsNav(activeTag);
+	}
 
 	// console.log('data is', data); // all JSON datas (59 medias + 6 photographers)
 	// console.log('data.photographers is', data.photographers); // datas of 6 photographers
@@ -95,12 +99,4 @@ function renderPhotographersCards() {
 
 	filterByTagsNav(activeTag);
 	// console.log(activeTag);
-
-	let tagUrl = Utils.getTagByUrl();
-	console.log(tagUrl);
-	if (tagUrl !== null) {
-		activeTag = tagUrl;
-		// filterByTagsNav(tagUrl);
-		filterByTagsNav(activeTag);
-	}
 }

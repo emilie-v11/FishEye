@@ -1,5 +1,5 @@
 'use strict';
-/*
+/**
  *  FORM CONTACT
  */
 //==================================================================================================
@@ -85,7 +85,8 @@ btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
 
 // Regex
 const nameRegExp = /^([A-ZÀ-Ÿa-z-']{2,20})$/;
-const emailRegExp = /^([a-zA-Z0-9.]{2,})+@([a-zA-Z0-9.]{2,})+[.]+([a-zA-Z0-9-]{2,20})$/;
+const emailRegExp =
+	/^([a-zA-Z0-9.]{2,})+@([a-zA-Z0-9.]{2,})+[.]+([a-zA-Z0-9-]{2,20})$/;
 const messageRegExp = /[\s\S]{10,300}/;
 
 // Functions to check valid input

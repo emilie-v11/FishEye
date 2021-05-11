@@ -155,57 +155,31 @@
 // Photographer-page: button lightbox (large screen & small screen)
 //==================================================================================================
 
-// .lightbox__close {
-// 	position: absolute;
-// 	top: 0;
-// 	right: 0%; //-30px
-
-// 	&.fa-times {
-// 		@include medium-only {
-// 			font-size: 22px;
-// 		}
-
-// 		@include large-only {
-// 			font-size: 42px;
-// 		}
-// 	}
-// }
-
-// // .previous {
-// .lightbox__prev {
-// 	position: absolute;
-// 	top: 50%;
-// 	left: 0%; //-30px
-
-// // .next {
-// .lightbox__next {
-// 	position: absolute;
-// 	top: 50%;
-// 	right: 0%; //-30px
-
-// }
-
+// buttons '>' and '<' in lightbox
 .lightbox__next,
 .lightbox__prev {
 	border: transparent;
 	background: url(/img/icon-arrow.svg) center center / 9px 14px no-repeat;
 	width: 26px;
-	height: 26px; // 14px
+	height: 26px; // poss 100% toute la hauteur
 	position: fixed;
 	top: 50%;
 	right: 0;
 	margin-top: -7px;
 	z-index: 101;
-	// text-indent: -3000px;
-
+	// text-indent: -3000px; // replace by 'sr-only' class
 
 	@include medium-only {
 		background: url(/img/icon-arrow.svg) center center / 22px 30px no-repeat;
+		width: 66px;
+		height: 66px; // poss 100% toute la hauteur
 		margin-top: -15px;
 	}
 
 	@include large-only {
 		background: url(/img/icon-arrow.svg) center center / 30px 48px no-repeat;
+		width: 96px;
+		height: 96px; // poss 100% toute la hauteur
 		margin-top: -24px;
 	}
 }
@@ -215,33 +189,33 @@
 	left: 0;
 	transform: rotate(180deg);
 }
-
+// 'X' close the lightbox
 .lightbox__close {
 	background: url(/img/icon-times.svg) center center / 12px 12px no-repeat;
-	width: 12px;
-	height: 12px;
+	width: 20px;
+	height: 20px;
 	border: transparent;
 	position: fixed;
-	top: 20px;
-	right: 20px;
+	top: 0px;
+	right: 0px;
 	color: $color-primary-dark;
 	z-index: 102;
 
 	@include medium-only {
 		background: url(/img/icon-times.svg) center center / 26px 26px no-repeat;
-		width: 26px;
-		height: 26px;
-		// margin-top: -13px;
+		width: 46px;
+		height: 46px;
 	}
 
 	@include large-only {
 		background: url(/img/icon-times.svg) center center / 42px 42px no-repeat;
-		width: 42px;
-		height: 42px;
-		// margin-top: -21px;
+		width: 72px;
+		height: 72px;
+		width: 96px;
+		// height: 96px;
 	}
 }
-
+// All buttons' lightbox
 .lightbox button {
 	opacity: 0.5;
 	cursor: pointer;
