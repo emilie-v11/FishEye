@@ -13,14 +13,20 @@ console.log(btnCloseLightboxEl);
 const lightboxHeadingEl = document.querySelector('.lightbox__heading');
 // const lightboxMediaEl = document.querySelector('.lightbox__media');
 
+class Lightbox {
+	static init() {}
+}
+
+Lightbox.init();
+
 //==================================================================================================
 // Lightboxes
 //  function and events for Open & Close
 //==================================================================================================
 
 // const openCloseLightbox = function () {
-function openCloseLightbox() {
-	overlayLightboxEl.classList.toggle('hidden');
+function closeLightbox() {
+	overlayLightboxEl.classList.add('hidden');
 	// lightboxEl.classList.toggle('hidden');
 	// console.log(overlayLightboxEl);
 }
@@ -34,5 +40,12 @@ function openCloseLightbox() {
 // lightboxMediaEl.addEventListener('click', openCloseLightbox);
 
 // Close lightbox
-btnCloseLightboxEl.addEventListener('click', openCloseLightbox);
+btnCloseLightboxEl.addEventListener('click', closeLightbox);
 // console.log(btnCloseLightboxEl);
+
+document.addEventListener('keydown', function (e) {
+	// console.log(e.key);
+	if (e.key === 'Escape') {
+		closeLightbox();
+	}
+});

@@ -1,5 +1,5 @@
 .overlay-lightbox {
-	position: fixed; //BUG
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -9,7 +9,7 @@
 }
 
 .lightbox {
-	position: fixed; //BUG
+	position: fixed;
 	top: 0%;
 	left: 0%;
 	width: 100%;
@@ -19,6 +19,8 @@
 	z-index: 100;
 	display: flex;
 	flex-direction: column;
+	// min-height: 100vh;
+	animation: lightboxIn 500ms;
 
 	padding: 0 17px;
 
@@ -35,31 +37,33 @@
 			padding: 0 66px;
 		}
 
-		// @include large-only {
-		// 	padding: 0 70px;
-		// }
-
 		@include large-only {
 			padding: 0 96px;
 		}
 	}
 
+	&__loader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 38px;
+		height: 38px;
+		opacity: 0.5;
+		background: url(/img/loader.svg) center center no-repeat;
+		display: none;
+	}
+
 	&__content {
-		// position: relative; //BUG
 		border-radius: 5px;
 		width: 290px;
 		height: 248px;
-		height: auto; // for full img
+		// height: auto; // for full img
 
 		@include medium-only {
 			width: 590px;
 			height: 510px;
 		}
-
-		// @include large-only {
-		// 	width: 590px;
-		// 	height: 500px;
-		// }
 
 		@include large-only {
 			width: 790px;
@@ -75,10 +79,13 @@
 			border-radius: 5px;
 			align-items: center;
 
-			// & img,
-			// & video {
-			// border-radius: 5px;
-			// }
+			& img,
+			& video {
+				max-width: 100%;
+				// height: auto;
+				border-radius: 5px;
+				animation: lightboxIn 500ms;
+			}
 		}
 	}
 
@@ -101,5 +108,14 @@
 			font-weight: 400;
 			// padding-left: 50px;
 		}
+	}
+}
+
+@keyframes lightboxIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }

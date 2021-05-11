@@ -79,6 +79,14 @@ btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
 // with Button 'Fermer'
 btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
 
+document.addEventListener('keydown', function (e) {
+	// console.log(e.key);
+	if (e.key === 'Escape') {
+		closeForm();
+		closemodalSuccess();
+	}
+});
+
 //==================================================================================================
 // VALIDATION FORM
 //==================================================================================================
