@@ -193,8 +193,7 @@
 }
 // 'X' close the lightbox
 .lightbox__close {
-	background: url(../../img/icon-times.svg) center center / 12px 12px
-		no-repeat;
+	background: url(../img/icon-times.svg) center center / 12px 12px no-repeat;
 	width: 20px;
 	height: 20px;
 	border: transparent;
@@ -205,13 +204,15 @@
 	z-index: 102;
 
 	@include medium-only {
-		background: url(/img/icon-times.svg) center center / 26px 26px no-repeat;
+		background: url(../img/icon-times.svg) center center / 26px 26px
+			no-repeat;
 		width: 46px;
 		height: 46px;
 	}
 
 	@include large-only {
-		background: url(/img/icon-times.svg) center center / 42px 42px no-repeat;
+		background: url(../img/icon-times.svg) center center / 42px 42px
+			no-repeat;
 		width: 72px;
 		height: 72px;
 	}

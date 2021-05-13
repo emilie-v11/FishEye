@@ -34,6 +34,8 @@ let workCardsArray = [];
 let media;
 let newMedia = '';
 let workMediaEl;
+let currentMedia;
+
 console.log(workMediaEl);
 
 // Function render photographers' works

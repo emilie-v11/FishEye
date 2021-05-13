@@ -15,7 +15,8 @@ console.log(lightboxContentEl);
 const lightboxHeadingEl = document.querySelector('.lightbox__heading');
 
 // VARIABLE
-let currentMedia = '';
+// let currentMedia = '';
+// let currentMedia;
 
 //==================================================================================================
 // FETCH JSON
