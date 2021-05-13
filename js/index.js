@@ -81,11 +81,11 @@ function renderPhotographersCards() {
                     </div>
                     <h2 class="photographers__name">${photographers.name}</h2>
                 </a>
-                <p class="photographers__infos">
-                    <span class="photographers__infos--place">${photographers.city}, ${photographers.country}</span>
-                    <span class="photographers__infos--tagline">${photographers.tagline}</span>
-                    <span class="photographers__infos--price">${photographers.price}€/jour</span>
-                </p>
+                <div class="photographers__infos">
+                    <p class="photographers__infos--place">${photographers.city}, ${photographers.country}</p>
+                    <p class="photographers__infos--tagline">${photographers.tagline}</p>
+                    <p class="photographers__infos--price">${photographers.price}€/jour</p>
+                </div>
                 <ul class="photographers__tags">
                     ${newLiTags}
                 </ul>

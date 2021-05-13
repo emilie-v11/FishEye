@@ -52,7 +52,9 @@
                     <nav class="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Order by">
                         <span class="dropdown__item btn active" role="menuitem">
                             <a href="#" class="sort-item" aria-current="true">Popularité</a>
-                            <button class="chevron-icon fas fa-chevron-down"></button>
+                            <button class="chevron-icon fas fa-chevron-down"
+                                aria-label="click on for open the dropdown">
+                            </button>
                         </span>
                         <div class="dropdown-extend hidden">
                             <span class="dropdown__item" role="menuitem">
@@ -137,8 +139,7 @@
                 </div>
             </div>
 
-            <!-- hidden -->
-            <div class="overlay-lightbox ">
+            <div class="overlay-lightbox hidden">
                 <div class="lightbox " aria-label="image closeup view">
                     <div class="lightbox__container">
                         <button class="lightbox__close " aria-label="Close dialog">
@@ -152,12 +153,8 @@
                         </button>
                         <div class="lightbox__loader"></div>
                         <div class="lightbox__content">
-                            <!-- <img class="lightbox__content__media" src="./img/photos/243/Animals_Rainbow.jpg"
-                            alt="Rainbow (name photo)"> -->
-                            <img class="lightbox__content__media" src="./img/photos/243/Travel_Lonesome.jpg"
-                                alt="Lonesome (name photo)">
                         </div>
-                        <h2 class="lightbox__heading">Rainbow</h2>
+                        <h2 class="lightbox__heading"></h2>
                     </div>
                 </div>
             </div>
@@ -172,7 +169,6 @@
     <script src="./js/photographer-works.js"></script>
     <script src="./js/dropdown-sort.js"></script>
     <script src="./js/lightbox.js"></script>
-
 
 </body>
 

@@ -9,12 +9,14 @@ const containerJumbotronEl = document.querySelector('.container-jumbotron');
 const photographerPriceAsideEl = document.querySelector('.photographer-price');
 // const tags = document.querySelectorAll('.tags');
 
+// VARIABLE
+let ID = Utils.getIdByUrl();
+// console.log(ID);
+
+let allPhotographersProfiles;
 //==================================================================================================
 // FETCH JSON
 //==================================================================================================
-
-let ID = Utils.getIdByUrl();
-// console.log(ID);
 
 // URL JSON
 let URL = './FishEyeDataFR.json';
@@ -26,26 +28,22 @@ const datasPhotographerJumbotron = Utils.getAllDatas(URL).then(data =>
 //==================================================================================================
 //  Render Photographer Jumbotron
 //==================================================================================================
-let allPhotographersProfiles;
 
 const renderJumbotron = data => {
 	// console.log(data);
 	allPhotographersProfiles = data['photographers'];
-	console.log(allPhotographersProfiles);
+	// console.log(allPhotographersProfiles);
 
 	let photographer = allPhotographersProfiles.find(
 		photograph => photograph.id == ID
 	);
-	console.log(photographer);
+	// console.log(photographer);
 
 	let media = data.media;
-	console.log(media);
-
-	let tagsMedia = media.tags;
-	console.log(tagsMedia);
+	// console.log(media);
 
 	workById = media.filter(media => media['photographerId'] == ID);
-	console.log(workById);
+	// console.log(workById);
 
 	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list
@@ -64,10 +62,10 @@ const renderJumbotron = data => {
 	newJumbotron = `
         <section class="jumbotron">
             <h1 class="jumbotron__heading">${photographer.name}</h1>
-            <p class="jumbotron__infos">
-                <span class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</span>
-                <span class="jumbotron__infos--tagline">${photographer.tagline}</span>
-            </p>
+            <div class="jumbotron__infos">
+                <p class="jumbotron__infos--place">${photographer.city}, ${photographer.country}</p>
+                <p class="jumbotron__infos--tagline">${photographer.tagline}</p>
+            </div>
             <ul class="photographers__tags">
                 ${newLiTags}
             </ul>
@@ -86,9 +84,9 @@ const renderJumbotron = data => {
 
 function filterBytagsJumbotron() {
 	let tagsCard = document.querySelectorAll('.tags');
-	console.log(tagsCard);
+	// console.log(tagsCard);
 	let tagsCardArray = Array.from(tagsCard);
-	console.log(tagsCardArray);
+	// console.log(tagsCardArray);
 
 	tagsCardArray.forEach(tag => {
 		tag.addEventListener('click', function () {

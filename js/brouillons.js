@@ -3,12 +3,61 @@
 //============================================================
 // Function render photographers' cards
 // const renderPhotographers = data => {
-// 	allPhotographersProfiles = data['photographers']; 
+// 	allPhotographersProfiles = data['photographers'];
 // console.log(allPhotographersProfiles); // datas of 6 photographers
 
 // 	renderPhotographersCards();
 // };
 
+newMedia +=
+	work.image !== undefined
+		? (newMedia = `<img id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label="${work['alt']}"/>`)
+		: (newMedia = `<video id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" aria-label="${work['alt']}">
+                <p class="video-alt">${work['alt']}</p>
+            </video>`);
+
+//=============================================================
+// LIGHTBOX
+//============================================================
+
+function renderLightbox() {
+	// Render Lightbox Media
+	let mediaLightbox = '';
+	mediaLightbox +=
+		lightboxMediaEl.tagName === 'VIDEO'
+			? (mediaLightbox = `<video id="${work['id']}" class="lightbox__content__media" src='' alt="" controls></video>`)
+			: (mediaLightbox = `<img id="${work['id']}" class="lightbox__content__media" src='' alt="" aria-label=""/>`);
+	// FIXME add controls on videos in lightbox
+
+	// Render Lightbox
+	newLightbox += `
+            <div class="overlay-lightbox hidden">
+                <div class="lightbox " aria-label="image closeup view">
+                    <div class="lightbox__container">
+                        <button class="lightbox__close " aria-label="Close dialog">
+                            <span class="sr-only">Fermer</span>
+                        </button>
+                        <button class="lightbox__next" aria-label="Next image">
+                            <span class="sr-only">Suivant</span>
+                        </button>
+                        <button class="lightbox__prev " aria-label="Previous image">
+                            <span class="sr-only">Précedent</span>
+                        </button>
+                        <div class="lightbox__loader"></div>
+                        <div class="lightbox__content">
+                            <!-- <img class="lightbox__content__media" src="./img/photos/243/Animals_Rainbow.jpg"
+                            alt="Rainbow (name photo)"> -->                            
+                            <img class="lightbox__content__media" src=""
+                                alt="">
+
+                        </div>
+                        <h2 class="lightbox__heading">Rainbow</h2>
+                    </div>
+                </div>
+            </div>
+        `;
+	lightboxContainerEl.innerHTML = mediaLightbox;
+}
 
 //=============================================================
 // NAVIGATION TAGS HOMEPAGE
@@ -175,7 +224,6 @@ const photographersCardsSortByTags = navItemsArray.forEach(tag => {
 });
 console.log(containerPhotographersEl); // ok innerHTML du container + toutes les cards
 
-
 let containerPhotographersEl = document.querySelector(
 	'.container-photographers'
 );
@@ -221,7 +269,7 @@ let photographersCards = [];
 let photographersTags;
 // let containerPhotographersEl;
 
-const renderPhotographers = data => {}
+const renderPhotographers = data => {};
 
 //==================================================================================================
 // Filter Photographers by Tags with Navigation Tags
