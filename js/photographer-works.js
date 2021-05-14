@@ -14,6 +14,22 @@ const workLikeEl = document.querySelectorAll('.work-like');
 // Aside
 const totalLikesEl = document.querySelector('.total-likes');
 
+// VARIABLE
+let workById = [];
+let totalLikesArray = [];
+let likesByIDList;
+let workCardsArray = [];
+let media;
+let newMedia = '';
+
+let workMediaEl;
+let workMediaArray;
+let lightboxMedia;
+let activeMedia;
+
+console.log(workMediaEl);
+console.log(workMediaArray);
+
 //==================================================================================================
 // FETCH JSON
 //==================================================================================================
@@ -26,17 +42,6 @@ console.log(ID);
 //==================================================================================================
 //  Render Photographer Works
 //==================================================================================================
-
-let workById = [];
-let totalLikesArray = [];
-let likesByIDList;
-let workCardsArray = [];
-let media;
-let newMedia = '';
-let workMediaEl;
-let currentMedia;
-
-console.log(workMediaEl);
 
 // Function render photographers' works
 const renderPhotographerWorks = data => {
@@ -84,13 +89,17 @@ function renderWorksCards() {
 		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
-                <a href="#" class="work__media" alt="${work['alt']}, open closeup view">
+                <a href="#" class="work__media" alt="${
+					work['alt']
+				}, open closeup view">
                     ${mediaFactory()}
                 </a>
                 <div class="work__infos">
                     <h2 class="work__infos__name">${work['alt']}</h2>
                     <div class="work__infos__likes">
-                        <p class="work-like" aria-label="number of like">${work.likes}</p>
+                        <p class="work-like" aria-label="number of like">${
+							work.likes
+						}</p>
                         <button class="btn-like" aria-label="likes, click for like this photo">
                             <i class="far fa-heart" aria-hidden="true"></i>
                             <i class="fas fa-heart liked" aria-hidden="true"></i>
@@ -102,20 +111,20 @@ function renderWorksCards() {
 		// <span class="work__infos__price">${work.price}€</span>
 	});
 	containerWorksEl.innerHTML = newWorkCard;
-	// console.log(containerWorksEl);
 	let workMediaEl = document.querySelectorAll('.work__media__item');
-    console.log(workMediaEl);
-    
-    workMediaEl.forEach(work => {
-		work.addEventListener('click', e => {
-            e.preventDefault();
-			currentMedia = e.target;
-			mediaFactoryLightbox();
+
+	workMediaArray = Array.from(workMediaEl);
+	console.log(workMediaArray);
+
+	workMediaArray.forEach((image, index) => {
+		image.addEventListener('click', e => {
 			openLightbox();
-			// console.log(e.target.tagName);
-			// console.log(e.target.src);
+			setActiveMedia(image);
+			activeMedia = index;
 		});
 	});
+	// console.log(e.target.src, e.target.tagName);
+    // console.log(image, index);
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
@@ -144,5 +153,3 @@ function renderWorksCards() {
 		});
 	});
 }
-
-

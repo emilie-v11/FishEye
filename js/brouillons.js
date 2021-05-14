@@ -16,6 +16,13 @@ newMedia +=
                 <p class="video-alt">${work['alt']}</p>
             </video>`);
 
+let mediaLightbox = '';
+mediaLightbox +=
+	lightboxMediaEl.tagName === 'VIDEO'
+		? (mediaLightbox = `<video id="${work['id']}" class="lightbox__content__media" src='' alt="" controls></video>`)
+		: (mediaLightbox = `<img id="${work['id']}" class="lightbox__content__media" src='' alt="" aria-label=""/>`);
+lightboxContentEl.innerHTML = mediaLightbox;
+
 //=============================================================
 // LIGHTBOX
 //============================================================
