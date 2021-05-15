@@ -47,16 +47,19 @@
             </aside>
 
             <section class="photographer-works">
+                <!-- SORTING MENU (title & dropdown) -->
                 <div class="sorting-menu" role="menubar">
                     <h2>Trier par</h2>
-                    <nav class="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Order by">
+                    <!-- DROPDOWN -->
+                    <nav id="dropdown" class="dropdown" aria-haspopup="true" aria-expanded="false"
+                        aria-label="Order by">
                         <span class="dropdown__item btn active" role="menuitem">
-                            <a href="#" class="sort-item" aria-current="true">Popularité</a>
                             <button class="chevron-icon fas fa-chevron-down"
                                 aria-label="click on for open the dropdown">
                             </button>
+                            <a href="#" class="sort-item" aria-current="true">Popularité</a>
                         </span>
-                        <div class="dropdown-extend hidden">
+                        <div class="dropdown-extend hidden" aria-hidden="true">
                             <span class="dropdown__item" role="menuitem">
                                 <a href="#" class="sort-item">Date</a>
                             </span>
@@ -66,6 +69,7 @@
                         </div>
                     </nav>
                 </div>
+
                 <!-- Photographer's Works Cards -->
                 <div class="container-works">
                 </div>
@@ -73,11 +77,11 @@
 
             <div class="overlay-form hidden">
             </div>
-            <div class="modal-bg hidden">
-                <button class="close-form" aria-label="Close Contact form">
-                    <img class="icon-times" src="./img/icon-times.png" alt="icon times">
-                </button>
-                <form class="modal-form" name="contact" action="#" method="post">
+            <div id="modal-bg" class="modal-bg hidden" role="dialog" aria-labelledby="modal-bgLabel" aria-hidden="true">
+                <form id="modal-form" class="modal-form" name="contact" action="#" method="post" aria-hidden="true">
+                    <button class="close-form" aria-label="Close Contact form">
+                        <img class="icon-times" src="./img/icon-times.png" alt="icon times">
+                    </button>
                     <h3 aria-labelledby="Contact me Mimi Keel">Contactez-moi <br />
                         <span class="photographer-name"></span>
                     </h3>
@@ -124,7 +128,7 @@
                         <input class="btn-submit btn" type="submit" value="Envoyer" aria-labelledby="Send" />
                     </div>
                 </form>
-                <div class="modal-success">
+                <div id="modal-success" class="modal-success" aria-hidden="true" tabindex="0">
                     <button class="close-success" aria-label="Close Contact form">
                         <img class="icon-times" src="./img/icon-times.png" alt="icon times">
                     </button>

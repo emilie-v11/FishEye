@@ -23,12 +23,10 @@ let media;
 let newMedia = '';
 
 let workMediaEl;
-let workMediaArray;
+let workMediaItemsEl;
+let workMediaItemsArray;
 let lightboxMedia;
 let activeMedia;
-
-console.log(workMediaEl);
-console.log(workMediaArray);
 
 //==================================================================================================
 // FETCH JSON
@@ -78,22 +76,23 @@ function renderWorksCards() {
 	workById.forEach(work => {
 		function mediaFactory() {
 			if (work.image !== undefined) {
-				return (newMedia = `<img id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label="${work['alt']}"/>`);
+				return (newMedia = `<img id="${work['id']}" class="work__media__item" tabindex="0" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label="${work['alt']}"/>`);
 			} else {
-				return (newMedia = `<video id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" aria-label="${work['alt']}">
+				return (newMedia = `<video id="${work['id']}" class="work__media__item" tabindex="0" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" aria-label="${work['alt']}">
                         <p class="video-alt">${work['alt']}</p>
                     </video>`);
 			}
 		}
+		/**
+         *  <a href="#" class="work__media" alt="${work['alt']}, open closeup view">
+                    ${mediaFactory()}
+            </a>
+         */
 
 		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
-                <a href="#" class="work__media" alt="${
-					work['alt']
-				}, open closeup view">
-                    ${mediaFactory()}
-                </a>
+                ${mediaFactory()}
                 <div class="work__infos">
                     <h2 class="work__infos__name">${work['alt']}</h2>
                     <div class="work__infos__likes">
@@ -111,20 +110,29 @@ function renderWorksCards() {
 		// <span class="work__infos__price">${work.price}€</span>
 	});
 	containerWorksEl.innerHTML = newWorkCard;
-	let workMediaEl = document.querySelectorAll('.work__media__item');
 
-	workMediaArray = Array.from(workMediaEl);
-	console.log(workMediaArray);
+	let workMediaItemsEl = document.querySelectorAll('.work__media__item');
 
-	workMediaArray.forEach((image, index) => {
-		image.addEventListener('click', e => {
+	workMediaItemsArray = Array.from(workMediaItemsEl);
+	console.log(workMediaItemsArray);
+
+	workMediaItemsArray.forEach((image, index) => {
+		image.addEventListener('click', () => {
 			openLightbox();
 			setActiveMedia(image);
 			activeMedia = index;
 		});
+		image.addEventListener('keydown', e => {
+			if (e.key === 'Enter') {
+				openLightbox();
+				setActiveMedia(image);
+				activeMedia = index;
+			}
+		});
 	});
+
 	// console.log(e.target.src, e.target.tagName);
-    // console.log(image, index);
+	// console.log(image, index);
 
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
@@ -132,7 +140,6 @@ function renderWorksCards() {
 	let btnLikeArray = Array.from(document.querySelectorAll('.btn-like'));
 	// console.log(btnLikeArray);
 	// console.log(totalLikesArray); // [680] for Mimi
-	// console.log(workById); // 10 works for Mimi (all works infos)
 	// console.log(likesByIDList); // all likes (10 for Mimi)
 
 	btnLikeArray.forEach(btn => {

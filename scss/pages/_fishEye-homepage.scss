@@ -7,7 +7,7 @@
 
 .container {
 	@include large-only {
-		padding-top: 4rem;
+		padding-top: 3rem; // 4rem 3.5rem
 	}
 }
 

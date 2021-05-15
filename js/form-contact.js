@@ -13,7 +13,7 @@ const btnSuccessMessageEl = document.querySelector('.btn-success');
 
 // Modal Form, Overlay & Modal Success Message
 const overlayFormEl = document.querySelector('.overlay-form');
-const modalBg = document.querySelector('.modal-bg');
+const modalBgEl = document.querySelector('.modal-bg');
 const modalFormEl = document.querySelector('.modal-form');
 const modalSuccessEl = document.querySelector('.modal-success');
 
@@ -46,23 +46,86 @@ const datasPhotographer = Utils.getAllDatas('./FishEyeDataFR.json').then(
 );
 
 //==================================================================================================
+// NAVIGATION IN FORM MODAL
+//==================================================================================================
+
+// add all the elements inside modal which you want to make focusable
+let focusableElements =
+	'button, [href], input, textarea, [tabindex]:not([tabindex="-1"])';
+let modal;
+let firstFocusableElement;
+let focusableContent;
+let lastFocusableElement;
+
+// trap the focus inside the form
+function trapFocusForm() {
+	modal = document.querySelector('#modal-form'); // select the modal by id
+	firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+	focusableContent = modal.querySelectorAll(focusableElements);
+	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+	trapFocus();
+}
+
+// trap the focus inside the success message
+function trapFocusSuccess() {
+	modal = document.querySelector('#modal-success'); // select the modal by id
+	firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+	focusableContent = modal.querySelectorAll(focusableElements);
+	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+	trapFocus();
+}
+
+// Function for trap the focus
+function trapFocus() {
+	document.addEventListener('keydown', function (e) {
+		let isTabPressed = e.key === 'Tab' || e.key === 9;
+		if (!isTabPressed) {
+			return;
+		}
+		if (e.shiftKey) {
+			// if shift key pressed for shift + tab combination
+			if (document.activeElement === firstFocusableElement) {
+				e.preventDefault();
+				lastFocusableElement.focus(); // add focus for the last focusable element
+			}
+		} else {
+			// if tab key is pressed
+			if (document.activeElement === lastFocusableElement) {
+				e.preventDefault();
+				// if focused has reached to last focusable element then focus first focusable element after pressing tab
+				firstFocusableElement.focus(); // add focus for the first focusable element
+			}
+		}
+	});
+	firstFocusableElement.focus();
+}
+
+//==================================================================================================
 // OPEN & CLOSE FORM
 //==================================================================================================
 // Function for Open & Close
 const openForm = function () {
+	modalBgEl.ariaHidden = 'false';
+	modalFormEl.ariaHidden = 'false';
 	overlayFormEl.classList.remove('hidden');
-	modalBg.classList.remove('hidden');
+	modalBgEl.classList.remove('hidden');
+	// modalBgEl.focus();
+	trapFocusForm();
 };
 
 const closeForm = function () {
+	modalBgEl.ariaHidden = 'true';
+	modalFormEl.ariaHidden = 'true';
 	overlayFormEl.classList.add('hidden');
-	modalBg.classList.add('hidden');
+	modalBgEl.classList.add('hidden');
+	btnOpenFormEl.focus();
 };
 
 const closemodalSuccess = function () {
-	closeForm();
+	modalSuccessEl.ariaHidden = 'true';
 	modalSuccessEl.style.display = 'none';
 	modalFormEl.reset();
+	closeForm();
 };
 
 //==================================================================================================
@@ -102,9 +165,11 @@ function checkFirstName() {
 	const isFirstNameValid = nameRegExp.test(firstNameInput.value);
 
 	if (isFirstNameValid) {
+		errorFirst.ariaHidden = 'true';
 		errorFirst.style.display = 'none';
 		firstNameInput.style.border = 'transparent';
 	} else {
+		errorFirst.ariaHidden = 'false';
 		errorFirst.style.display = 'block';
 		firstNameInput.style.border = 'red 2px solid';
 	}
@@ -116,9 +181,11 @@ function checkLastName() {
 	const isLastNameValid = nameRegExp.test(lastNameInput.value);
 
 	if (isLastNameValid) {
+		errorLast.ariaHidden = 'true';
 		errorLast.style.display = 'none';
 		lastNameInput.style.border = 'transparent';
 	} else {
+		errorLast.ariaHidden = 'false';
 		errorLast.style.display = 'block';
 		lastNameInput.style.border = 'red 2px solid';
 	}
@@ -130,9 +197,11 @@ function checkEmail() {
 	const isEmailValid = emailRegExp.test(emailInput.value);
 
 	if (isEmailValid) {
+		errorEmail.ariaHidden = 'true';
 		errorEmail.style.display = 'none';
 		emailInput.style.border = 'transparent';
 	} else {
+		errorEmail.ariaHidden = 'false';
 		errorEmail.style.display = 'block';
 		emailInput.style.border = 'red 2px solid';
 	}
@@ -144,9 +213,11 @@ function checkMessage() {
 	const isMessageValid = messageRegExp.test(messageTextarea.value);
 
 	if (isMessageValid) {
+		errorMessage.ariaHidden = 'true';
 		errorMessage.style.display = 'none';
 		messageTextarea.style.border = 'transparent';
 	} else {
+		errorMessage.ariaHidden = 'false';
 		errorMessage.style.display = 'block';
 		messageTextarea.style.border = 'red 2px solid';
 	}
@@ -169,12 +240,15 @@ modalFormEl.addEventListener('submit', function (e) {
 	checkMessage();
 
 	if (isFormValid) {
+		modalFormEl.ariaHidden = 'true';
+		modalSuccessEl.ariaHidden = 'false';
 		modalSuccessEl.style.display = 'block';
+		trapFocusSuccess();
+		return console.log(`
+            Prénom : ${firstNameInput.value}
+            Nom : ${lastNameInput.value}
+            Email : ${emailInput.value}
+            Message : ${messageTextarea.value}
+        `);
 	}
-	return console.log(`
-        Prénom : ${firstNameInput.value}
-        Nom : ${lastNameInput.value}
-        Email : ${emailInput.value}
-        Message : ${messageTextarea.value}
-    `);
 });

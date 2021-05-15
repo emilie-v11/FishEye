@@ -16,6 +16,19 @@ const sortItemArray = Array.from(sortItemEl);
 // console.log(sortItemArray);
 
 //==================================================================================================
+// NAVIGATION IN DROPDOWN
+//==================================================================================================
+
+// trap the focus inside the Dropdown
+function trapFocusDropdown() {
+	modal = document.querySelector('#dropdown'); // select the modal by id
+	firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+	focusableContent = modal.querySelectorAll(focusableElements);
+	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+	trapFocus();
+}
+
+//==================================================================================================
 //  DROPDOWN OPEN & CLOSE
 //==================================================================================================
 
@@ -24,6 +37,7 @@ const closeDropdown = function () {
 	dropdownEl.ariaExpanded = 'false';
 	dropdownExtendEl.classList.add('hidden');
 	dropdownBtnEl.classList.add('active');
+	dropdownExtendEl.ariaHidden = 'true';
 	swapchevronIcon();
 };
 
@@ -44,10 +58,13 @@ chevronIconEl.addEventListener('click', function (e) {
 		dropdownEl.ariaExpanded = 'true';
 		dropdownBtnEl.classList.remove('active');
 		dropdownExtendEl.classList.remove('hidden');
-		sortItemArray[0].focus();
+		dropdownExtendEl.ariaHidden = 'false';
+		// sortItemArray[0].focus();
+		trapFocusDropdown();
 	} else {
 		dropdownEl.ariaExpanded = 'false';
 		dropdownExtendEl.classList.add('hidden');
+		dropdownExtendEl.ariaHidden = 'true';
 		dropdownBtnEl.classList.add('active');
 	}
 	swapchevronIcon();
@@ -95,6 +112,7 @@ function sortByTitle() {
 //  DROPDOWN EVENTS
 //==================================================================================================
 
+// event for sort the works's card with the dropdown
 const dropdownSortBy = sortItemArray.forEach(item => {
 	item.addEventListener('click', function (e) {
 		e.preventDefault();
