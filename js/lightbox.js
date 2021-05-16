@@ -25,10 +25,10 @@ const nextBtnLightboxEl = document.querySelector('.lightbox__next');
 
 function mediaFactoryLightbox() {
 	if (lightboxMedia.tagName == 'IMG') {
-		lightboxContentEl.innerHTML = `<a href="#"><img class="lightbox__content__media" src="${lightboxMedia.src}" alt="${lightboxMedia.alt}"></a>`;
+		lightboxContentEl.innerHTML = `<img class="lightbox__content__media" src="${lightboxMedia.src}" alt="${lightboxMedia.alt}, closeup view" tabindex="0">`;
 		lightboxHeadingEl.innerHTML = `${lightboxMedia.alt}`;
 	} else {
-		lightboxContentEl.innerHTML = `<a href="#"><video class="lightbox__content__media" src="${lightboxMedia.src}" type="video/mp4" controls aria-label="${lightboxMedia['aria-label']}"></video></a>`;
+		lightboxContentEl.innerHTML = `<video class="lightbox__content__media" src="${lightboxMedia.src}" type="video/mp4" controls aria-label="${lightboxMedia['aria-label']}" tabindex="0"></video>`;
 		lightboxHeadingEl.textContent = `${lightboxMedia.textContent}`;
 	}
 }
@@ -41,7 +41,6 @@ function setActiveMedia(image) {
 	lightboxMedia = image; //e.currentTarget; // e.target
 	activeMedia = workMediaItemsArray.indexOf(lightboxMedia);
 	mediaFactoryLightbox(lightboxMedia);
-	// image.focus();
 	console.log(image, activeMedia);
 }
 
@@ -49,16 +48,15 @@ function setActiveMedia(image) {
 // NAVIGATION IN MEDIA LIGHTBOX
 //==============================================
 
-// // trap the focus inside the lightbox
-// function trapFocusLightbox() {
-// 	modal = document.querySelector('.lightboxContainerEl'); // select the modal by class
-// 	firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-// 	focusableContent = modal.querySelectorAll(focusableElements);
-// 	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-// 	trapFocus();
-// 	console.log(firstFocusableElement, focusableContent, lastFocusableElement);
-// }
-// trapFocusLightbox();
+// trap the focus inside the lightbox
+function trapFocusLightbox() {
+	modal = document.querySelector('#lightbox__container'); // select the modal by ID
+	firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+	focusableContent = modal.querySelectorAll(focusableElements);
+	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+	trapFocus();
+	console.log(firstFocusableElement, focusableContent, lastFocusableElement);
+}
 
 function nextMedia() {
 	if (activeMedia === workMediaItemsArray.length - 1) {
@@ -89,8 +87,10 @@ nextBtnLightboxEl.addEventListener('click', nextMedia);
 document.addEventListener('keydown', function (e) {
 	if (e.key === 'ArrowRight') {
 		nextMedia();
+		trapFocusLightbox();
 	} else if (e.key === 'ArrowLeft') {
 		prevMedia();
+		trapFocusLightbox();
 	}
 });
 
@@ -100,10 +100,18 @@ document.addEventListener('keydown', function (e) {
 
 function openLightbox() {
 	overlayLightboxEl.classList.remove('hidden');
+	headerEl.ariaHidden = 'true';
+	mainEl.ariaHidden = 'true';
+	overlayLightboxEl.ariaHidden = 'false';
+	trapFocusLightbox();
 }
 
 function closeLightbox() {
 	overlayLightboxEl.classList.add('hidden');
+	headerEl.ariaHidden = 'false';
+	mainEl.ariaHidden = 'false';
+	overlayLightboxEl.ariaHidden = 'true';
+	lightboxMedia.focus();
 }
 
 // Close with button 'X'
@@ -114,5 +122,6 @@ document.addEventListener('keydown', function (e) {
 	// console.log(e.key);
 	if (e.key === 'Escape') {
 		closeLightbox();
+		lightboxMedia.focus();
 	}
 });

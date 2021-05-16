@@ -16,7 +16,7 @@ const mainEl = document.querySelector('#main-homepage');
 window.addEventListener('scroll', () => {
 	const scrollPosition = window.scrollY;
 
-	if (scrollPosition < 10 || scrollPosition > 100) {
+	if (scrollPosition < 10 || scrollPosition > 80) {
 		scrollLink.style.display = 'none';
 	} else {
 		scrollLink.style.display = 'block';

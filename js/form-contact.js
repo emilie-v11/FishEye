@@ -5,6 +5,10 @@
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================
+// header & main
+const mainEl = document.querySelector('#main');
+const headerEl = document.querySelector('.header');
+
 // Btn Form & Success Message
 const btnOpenFormEl = document.querySelector('.btn-contact');
 const btnCloseFormEl = document.querySelector('.close-form');
@@ -103,17 +107,22 @@ function trapFocus() {
 //==================================================================================================
 // OPEN & CLOSE FORM
 //==================================================================================================
-// Function for Open & Close
+
+// Function for Open
 const openForm = function () {
+	headerEl.ariaHidden = 'true';
+	mainEl.ariaHidden = 'true';
 	modalBgEl.ariaHidden = 'false';
 	modalFormEl.ariaHidden = 'false';
 	overlayFormEl.classList.remove('hidden');
 	modalBgEl.classList.remove('hidden');
-	// modalBgEl.focus();
 	trapFocusForm();
 };
 
+// Function for Close
 const closeForm = function () {
+	headerEl.ariaHidden = 'false';
+	mainEl.ariaHidden = 'false';
 	modalBgEl.ariaHidden = 'true';
 	modalFormEl.ariaHidden = 'true';
 	overlayFormEl.classList.add('hidden');
@@ -121,27 +130,12 @@ const closeForm = function () {
 	btnOpenFormEl.focus();
 };
 
-const closemodalSuccess = function () {
-	modalSuccessEl.ariaHidden = 'true';
-	modalSuccessEl.style.display = 'none';
-	modalFormEl.reset();
-	closeForm();
-};
-
-//==================================================================================================
-// EVENTS FORM
-//==================================================================================================
-
 // Events for Open & Close Form without validation
 btnOpenFormEl.addEventListener('click', openForm);
 btnCloseFormEl.addEventListener('click', closeForm);
 
-// Events for Close the success modal
-// with 'X' Button Icon
-btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
-// with Button 'Fermer'
-btnSuccessMessageEl.addEventListener('click', closemodalSuccess);
-
+// Events with keyboard key 'ESCAPE'
+// for close the modal form & the modal success
 document.addEventListener('keydown', function (e) {
 	// console.log(e.key);
 	if (e.key === 'Escape') {
@@ -252,3 +246,25 @@ modalFormEl.addEventListener('submit', function (e) {
         `);
 	}
 });
+
+//====================================================
+// Close the modal success message when form is valid
+//====================================================
+
+function closemodalSuccess() {
+	headerEl.ariaHidden = 'false';
+	mainEl.ariaHidden = 'false';
+	modalBgEl.ariaHidden = 'true';
+	modalSuccessEl.ariaHidden = 'true';
+	modalSuccessEl.ariaHidden = 'true';
+	modalSuccessEl.style.display = 'none';
+	modalFormEl.reset();
+	closeForm();
+}
+
+// Events for Close the success modal
+// with 'X' Button Icon
+btnXCloseSuccessEl.addEventListener('click', closemodalSuccess);
+
+// with Button 'Fermer'
+btnSuccessMessageEl.addEventListener('click', closemodalSuccess);

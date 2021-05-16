@@ -5,6 +5,7 @@
 //==================================================================================================
 //DOM ELEMENTS
 //==================================================================================================
+
 // Photographer work
 const containerWorksEl = document.querySelector('.container-works');
 const btnLikeEl = document.querySelector('.btn-like');
@@ -76,9 +77,10 @@ function renderWorksCards() {
 	workById.forEach(work => {
 		function mediaFactory() {
 			if (work.image !== undefined) {
-				return (newMedia = `<img id="${work['id']}" class="work__media__item" tabindex="0" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" aria-label="${work['alt']}"/>`);
+				return (newMedia = `
+                <img id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" role="button" tabindex="0" aria-label="${work['alt']}"/>`);
 			} else {
-				return (newMedia = `<video id="${work['id']}" class="work__media__item" tabindex="0" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" aria-label="${work['alt']}">
+				return (newMedia = `<video id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" role="button" tabindex="0" aria-label="${work['alt']}">
                         <p class="video-alt">${work['alt']}</p>
                     </video>`);
 			}
@@ -118,15 +120,15 @@ function renderWorksCards() {
 
 	workMediaItemsArray.forEach((image, index) => {
 		image.addEventListener('click', () => {
-			openLightbox();
-			setActiveMedia(image);
 			activeMedia = index;
+			setActiveMedia(image);
+			openLightbox();
 		});
-		image.addEventListener('keydown', e => {
+		image.addEventListener('keydown', function (e) {
 			if (e.key === 'Enter') {
-				openLightbox();
-				setActiveMedia(image);
 				activeMedia = index;
+				setActiveMedia(image);
+				openLightbox();
 			}
 		});
 	});
