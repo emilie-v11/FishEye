@@ -1,22 +1,4 @@
-// cards photgraphers.container homepage
-
-//TODO deplacer dans 'layout' ou 'pages'
-.container-photographers {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-
-	@include medium-only {
-		width: 100%;
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-items: center;
-		margin: 0;
-		justify-content: left;
-	}
-}
-
+// Cards' Photographers
 .photographers {
 	min-width: 301px;
 	width: 100%;
@@ -33,50 +15,13 @@
 		padding: 2% 0;
 	}
 
-	//========================================================================
-
 	&__portrait {
 		width: 200px;
 		height: 200px;
-		// clip-path: ellipse(50% 50%);
-		border-radius: 50%;
+		border-radius: 50%; // clip-path: ellipse(50% 50%);
 		margin: 0 auto 20px;
 		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 		object-fit: cover;
-
-		// &.243 {
-		// 	// Mimi Keel MK
-		// 	width: 100%;
-		// 	height: 100%;
-		// 	background-position: right 30% bottom 50%; // right 50% bottom 58%
-		// 	// background-size: 100%; //150
-		// }
-		// &.930 {
-		// 	// Ellie-Rose Wilkens ERW
-		// 	background-position: right 50% bottom 58%;
-		// 	background-size: 180%;
-		// }
-		// &.82 {
-		// 	// Tracy Galindo TG
-		// 	background-position: right 50% bottom 56%;
-		// 	background-size: 100%;
-		// }
-		// &.527 {
-		// 	// Nabeel Bradford NB
-		// 	background-position: right 30% bottom 56%;
-		// 	background-size: 140%;
-		// }
-		// &.925 {
-		// 	// Rhode Dubois RD
-		// 	background-position: left 40% top 0%; //left 40% top 15%
-		// 	background-size: 180%;
-		// }
-
-		// &.195 {
-		// 	// Marcel Nikolic MN
-		// 	background-position: left 50% top 0%;
-		// 	background-size: 180%;
-		// }
 	}
 
 	&__name {

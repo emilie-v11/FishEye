@@ -1,14 +1,10 @@
 .work {
 	width: 335px;
-	// padding-bottom: 30px;
-	// margin: 20px auto;
 	margin: 20px;
 
 	@include large-only {
 		width: 350px;
 		margin: 20px;
-		// min-width: 25%;
-		// margin-left: 70px;
 	}
 	@include xlarge-only {
 		margin: 20px 50px;
@@ -29,8 +25,7 @@
 			height: 190px;
 			border-radius: 5px;
 			object-fit: cover;
-			background-position: right 30% top 18%; // right 50% bottom 58% right 30% top 18%
-			// background-size: 100%; //150
+			background-position: right 30% top 18%;
 
 			@include large-only {
 				width: 350px;

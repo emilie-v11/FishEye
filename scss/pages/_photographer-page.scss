@@ -6,37 +6,25 @@
 }
 
 .photographer-page {
-	// padding: 10px 20px 20px;
 	margin: 0 auto;
 	padding-bottom: 10px;
 }
-
-// FIXME corriger la taille et dispo image
-// BUG image *3 et collées!
 
 .container-works {
 	margin: 10px auto 60px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	// margin: 0 auto;
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 10;
 
-	// @include small-only {
-	// 	padding: 40px 20px;
-	// }
-
 	@include large-only {
-		// padding: 40px 40px;
 		justify-content: space-between;
-		// justify-content: center;
 		margin: 40px 40px;
 	}
 
 	@include xlarge-only {
-		// padding: 40px 80px;
 		justify-content: flex-start;
 		margin: 40px 45px 60px;
 		padding: 0;

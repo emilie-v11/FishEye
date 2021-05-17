@@ -7,7 +7,7 @@
 
 .container {
 	@include large-only {
-		padding-top: 3rem; // 4rem 3.5rem
+		padding-top: 3rem;
 	}
 }
 
@@ -50,5 +50,22 @@
 			@include typo-36px--400;
 			line-height: 7px;
 		}
+	}
+}
+
+// cards photgraphers.container homepage
+.container-photographers {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	@include medium-only {
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-items: center;
+		margin: 0;
+		justify-content: left;
 	}
 }

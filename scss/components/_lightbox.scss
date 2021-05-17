@@ -14,24 +14,21 @@
 	left: 0%;
 	width: 100%;
 	height: 100%;
+	// min-height: 100vh;
 	z-index: 100;
-	// background-color: $color-white;
 	z-index: 100;
 	display: flex;
 	flex-direction: column;
-	// min-height: 100vh;
 	animation: lightboxIn 500ms;
 
 	padding: 0 17px;
 
 	&__container {
-		position: relative; //BUG
+		position: relative;
 		top: 50%;
 		transform: translateY(-50%);
 		padding: 0 26px;
 		margin: 0 auto;
-
-		// background-color: lightcoral; // for try
 
 		@include medium-only {
 			padding: 0 66px;
@@ -58,7 +55,6 @@
 		border-radius: 5px;
 		width: 290px;
 		height: 248px;
-		// height: auto; // for full img
 
 		@include medium-only {
 			width: 590px;
@@ -73,16 +69,13 @@
 		&__media {
 			width: 100%;
 			height: 100%;
-			// height: auto;
 			object-fit: cover;
-			// object-fit: contain;
 			border-radius: 5px;
 			align-items: center;
 
 			& img,
 			& video {
 				max-width: 100%;
-				// height: auto;
 				border-radius: 5px;
 				animation: lightboxIn 500ms;
 			}
@@ -91,8 +84,6 @@
 
 	&__heading {
 		position: absolute;
-		// bottom: 0;
-		// bottom: -22px; // TODO bottom: -22px ou rien, juste position abso.
 		@include typo-14px--400;
 		text-align: left;
 		color: $color-primary-dark;
@@ -106,7 +97,6 @@
 		@include large-only {
 			@include typo-24px--500;
 			font-weight: 400;
-			// padding-left: 50px;
 		}
 	}
 }

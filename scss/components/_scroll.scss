@@ -2,9 +2,8 @@
 link fixed top page to scroll to main content
 "Passer au contenu"
 */
-// FIXME mettre animation + show/hidden scroll
+
 .scroll-link {
-	// width: 100%;
 	display: flex;
 	justify-content: center;
 
@@ -18,17 +17,10 @@ link fixed top page to scroll to main content
 	font-size: 16px;
 	font-weight: 700;
 	text-align: center;
-	// visibility: hidden;
 	display: none;
-
-	// @include small-only {
-	// 	visibility: hidden;
-	// 	// display: none;
-	// }
 
 	@include large-only {
 		@include typo-18px--700;
-		// visibility: visible;
 		display: block;
 	}
 }

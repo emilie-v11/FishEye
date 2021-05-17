@@ -1,12 +1,12 @@
 /*
-** Hidden in small screen
-*/
+ ** Hidden in small screen
+ */
 aside {
 	display: none;
 	z-index: 5;
 	position: fixed;
-	bottom: -16px; // -3% -18px
-	right: 8%; // 36px
+	bottom: -16px;
+	right: 8%;
 	width: 376px;
 	height: 89px;
 	background-color: $color-beige;
@@ -15,7 +15,6 @@ aside {
 	@include typo-24px--500;
 
 	@include large-only {
-		// display: block;
 		display: flex;
 	}
 
@@ -24,6 +23,6 @@ aside {
 		align-items: center;
 		justify-content: space-around;
 		padding-bottom: 10px;
-        width: 100%;
+		width: 100%;
 	}
 }

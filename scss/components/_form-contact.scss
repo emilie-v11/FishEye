@@ -22,7 +22,7 @@
 	transform: translate(-50%);
 	z-index: 100;
 	width: 375px;
-	height: auto; //812px
+	height: auto; 
 	border-radius: 5px;
 	padding: 17px;
 	background-color: $color-beige;
@@ -30,7 +30,6 @@
 	@include medium-only {
 		top: 0;
 		left: 50%;
-		// transform: translate(-50%, -50%);
 		transform: translateX(-50%);
 	}
 
@@ -38,7 +37,6 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		// height: 930px;
 		width: 669px;
 		padding: 15px 35px 35px;
 		box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
@@ -101,7 +99,6 @@
 			}
 
 			& textarea {
-				// width: 100%;
 				height: 184px;
 				margin-top: 10px;
 				margin-bottom: 5px;
@@ -150,7 +147,6 @@
 
 // /* Modal for message success */
 .modal-success {
-	// display: block;
 	display: none;
 	width: 100%;
 	height: 100%;
@@ -163,7 +159,6 @@
 .success-content {
 	display: flex;
 	flex-direction: column;
-	// justify-content: center;
 	justify-content: space-between;
 	min-height: 100%;
 	padding-top: 50%;

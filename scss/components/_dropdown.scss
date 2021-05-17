@@ -1,11 +1,10 @@
 /* 
-** Sorting-menu with dropdown 
-** Hidden in small screen
-*/
+ ** Sorting-menu with dropdown 
+ ** Hidden in small screen
+ */
 
 .sorting-menu {
 	display: none;
-	// position: relative;
 
 	@include large-only {
 		display: flex;
@@ -42,8 +41,6 @@
 
 			& .sort-item {
 				display: flex;
-				// position: relative;
-				// border-bottom: #fff solid 1px;
 				text-align: left;
 				padding: 14px 14px;
 				width: 100%;
@@ -54,18 +51,12 @@
 				width: 170px;
 				height: 53px;
 				border-bottom: 2px solid transparent;
-				// position: relative;
-				// align-items: center;
 
 				&.active {
 					border-radius: 5px;
 					height: 69px;
 					padding: 14px;
 				}
-
-				// &.hidden {
-				// 	display: none;
-				// }
 			}
 		}
 
