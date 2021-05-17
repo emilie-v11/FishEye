@@ -8,18 +8,17 @@ body {
 }
 
 * {
-// ::before,
-// ::after 
+	// ::before,
+	// ::after
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'DM Sans', sans-serif;
-	// outline: none;
 }
 
 a {
 	text-decoration: none;
-    color: inherit;
+	color: inherit;
 }
 
 li {
@@ -27,5 +26,5 @@ li {
 }
 
 .hidden {
-    display: none;
+	display: none;
 }

@@ -77,7 +77,7 @@ function renderPhotographersCards() {
             <article class="photographers" id="${photographers.id}" data-id="${tagsList}">
                 <a href="photographer-page.html?id=${photographers.id}">
                     <div class="photographers__portrait">
-                        <img class="photographers__portrait ${photographers.id}" src='./img/photos/PhotographersIDPhotos/${photographers.portrait}' alt="" aria-label=""/>
+                        <img class="photographers__portrait ${photographers.id}" src='./img/photos/PhotographersIDPhotos/${photographers.portrait}' width="200" height="200" alt="" aria-label=""/>
                     </div>
                     <h2 class="photographers__name">${photographers.name}</h2>
                 </a>

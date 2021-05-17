@@ -1,5 +1,7 @@
-// Mixins
-
+/**
+ *  Mixins
+ */
+ 
 @mixin tag-item {
 	color: $color-primary-dark;
 	@include typo-12px--500;

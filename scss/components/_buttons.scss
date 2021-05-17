@@ -91,15 +91,15 @@
 	}
 
 	&i.fas.fa-heart.liked {
-		background: $color-primary-dark; //$color-linear-gradient;
+		background: $color-primary-dark;
 		transform: scale(0);
-		transition: 350ms ease-in-out; //600ms 350ms
+		transition: 350ms ease-in-out;
 		// -webkit-background-clip: text;
 		// -webkit-text-fill-color: transparent;
 
 		// add for safari otherwise the heart is transparent
 		&::before {
-			background: $color-primary-dark; //$color-linear-gradient;
+			background: $color-primary-dark;
 			// -webkit-background-clip: text;
 			// -webkit-text-fill-color: transparent;
 		}
