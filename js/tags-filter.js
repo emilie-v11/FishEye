@@ -4,7 +4,6 @@
  */
 //==================================================================================================
 let tagsArray = Array.from(document.querySelectorAll('.tags'));
-// console.log(tagsArray);
 let activeTag = '';
 
 //==================================================================================================
@@ -16,7 +15,6 @@ function filterByTagsNav(activeTag) {
 	let filterCards = allPhotographersProfiles.filter(item =>
 		item.tags.includes(activeTag)
 	);
-	// console.log(filterCards);
 
 	// Each photographers's cards
 	let photographersEl = document.getElementsByClassName('photographers');
@@ -36,8 +34,6 @@ function filterByTagsNav(activeTag) {
 			let tagText = tag.textContent;
 			tagsText.push(tagText);
 		});
-		// console.log(tagsText);
-		// console.log(tagToCompare); // tag selected, #undefined when no tag is selected just when refresh
 
 		for (let i = 0; i < filterCards.length; i++) {
 			if (tagsText.includes(tagToCompare)) {
@@ -46,8 +42,6 @@ function filterByTagsNav(activeTag) {
 				card.style.display = 'none';
 			}
 		}
-		// console.log(filterCards);
-		// console.log(activeTag);
 	});
 }
 
@@ -57,29 +51,21 @@ function filterByTagsNav(activeTag) {
 
 function filterBytagsCards() {
 	let tagsCard = document.querySelectorAll('.tags');
-	// console.log(tagsCard);
 	let tagsCardArray = Array.from(tagsCard);
-	// console.log(tagsCardArray);
 
 	tagsCardArray.forEach(tag =>
 		tag.addEventListener('click', function () {
 			if (tag.classList.contains('active')) {
 				tag.classList.remove('active');
 				window.location.href = './index.html';
-				// window.location.reload();
 			} else {
 				tagsCardArray.forEach(item => {
 					item.classList.remove('active');
 				});
 				tag.classList.add('active');
-				// activeTag = tag.textContent.replace(/#/, '').toLowerCase();
 				activeTag = tag.textContent.substr(1).toLowerCase();
-				// .replace(/#/, '')
 				filterByTagsNav(activeTag);
-				// console.log(activeTag);
 			}
 		})
 	);
 }
-
-// idea for activeTag all if same innerHTML

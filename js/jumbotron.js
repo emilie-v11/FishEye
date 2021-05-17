@@ -7,11 +7,9 @@
 //==================================================================================================// Jumbotron photographer
 const containerJumbotronEl = document.querySelector('.container-jumbotron');
 const photographerPriceAsideEl = document.querySelector('.photographer-price');
-// const tags = document.querySelectorAll('.tags');
 
 // VARIABLE
 let ID = Utils.getIdByUrl();
-// console.log(ID);
 
 let allPhotographersProfiles;
 //==================================================================================================
@@ -30,20 +28,12 @@ const datasPhotographerJumbotron = Utils.getAllDatas(URL).then(data =>
 //==================================================================================================
 
 const renderJumbotron = data => {
-	// console.log(data);
 	allPhotographersProfiles = data['photographers'];
-	// console.log(allPhotographersProfiles);
-
 	let photographer = allPhotographersProfiles.find(
 		photograph => photograph.id == ID
 	);
-	// console.log(photographer);
-
 	let media = data.media;
-	// console.log(media);
-
 	workById = media.filter(media => media['photographerId'] == ID);
-	// console.log(workById);
 
 	//========================= JUMBOTRON ==========================================================
 	// Render Photographers' Tag list
@@ -93,8 +83,6 @@ function filterBytagsJumbotron() {
 			location.href = `./index.html?tag=${tag.innerHTML
 				.substr(1)
 				.toLowerCase()}`;
-			// location.href = `./index.html?tag=${tag.innerHTML.replace(/#/, '')}`;
 		});
 	});
 }
-// console.log(activeTag);

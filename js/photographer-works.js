@@ -60,15 +60,12 @@ const renderPhotographerWorks = data => {
 
 	// Render the Works Cards
 	renderWorksCards();
-
-	// console.log(media); // ==> Array with 59 medias
-	// console.log(ID); // ==> id of photographer in URL
-	// console.log(workById); // ==> array 10 work for Mimi
 };
 
-//==================================================================================================
-//  WORKS CARDS
-//==================================================================================================
+//==============================================
+// FACTORY FUNCTION FOR MEDIA IN WORKS' CARDS
+//==============================================
+
 function mediaFactory(media) {
 	if (media.image !== undefined) {
 		return (newMedia = `
@@ -82,6 +79,10 @@ function mediaFactory(media) {
         `);
 	}
 }
+
+//==================================================================================================
+//  WORKS CARDS
+//==================================================================================================
 
 function renderWorksCards() {
 	// Render Works Cards (Image - name - price - numb of like & heart icon)
@@ -130,16 +131,10 @@ function renderWorksCards() {
 		});
 	});
 
-	// console.log(e.target.src, e.target.tagName);
-	// console.log(image, index);
-
 	//==================================================================================================
 	//  Function & Events for like  each Works & total likes
 	//==================================================================================================
 	let btnLikeArray = Array.from(document.querySelectorAll('.btn-like'));
-	// console.log(btnLikeArray);
-	// console.log(totalLikesArray); // [680] for Mimi
-	// console.log(likesByIDList); // all likes (10 for Mimi)
 
 	btnLikeArray.forEach(btn => {
 		btn.addEventListener('click', function (e) {
@@ -154,8 +149,6 @@ function renderWorksCards() {
 				totalLikesArray--;
 			}
 			document.querySelector('.total-likes').innerHTML = totalLikesArray;
-			// console.log(totalLikesArray);
-			// console.log(btn.previousElementSibling);
 		});
 	});
 }

@@ -13,7 +13,6 @@ const sortItemEl = document.querySelectorAll('.sort-item');
 
 //====================================================================
 const sortItemArray = Array.from(sortItemEl);
-// console.log(sortItemArray);
 
 //==================================================================================================
 // NAVIGATION IN DROPDOWN

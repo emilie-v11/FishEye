@@ -119,7 +119,6 @@ closeBtnLightboxEl.addEventListener('click', closeLightbox);
 
 // Close with keyboard 'ESCAPE'
 document.addEventListener('keydown', function (e) {
-	// console.log(e.key);
 	if (e.key === 'Escape') {
 		closeLightbox();
 		lightboxMedia.focus();

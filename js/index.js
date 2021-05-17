@@ -12,7 +12,6 @@ const photographersEl = document.getElementsByClassName('photographers');
 const tagsListEl = document.querySelector('.photographers__tags');
 const navEl = document.querySelector('.navigation');
 const navItemsEl = document.getElementsByClassName('navigation__item');
-// const tagsEl = document.getElementsByClassName('tags');
 const tagsEl = document.querySelectorAll('.tags');
 
 //==================================================================================================
@@ -20,8 +19,6 @@ const tagsEl = document.querySelectorAll('.tags');
 let allPhotographersProfiles;
 let tagsList;
 let photographersTags;
-// let tagsCard;
-// let activeTag;
 
 // URL JSON
 const URL = './FishEyeDataFR.json';
@@ -43,12 +40,6 @@ const datasHomepage = Utils.getAllDatas(URL).then(data => {
 		// filterByTagsNav(tagUrl);
 		filterByTagsNav(activeTag);
 	}
-
-	// console.log('data is', data); // all JSON datas (59 medias + 6 photographers)
-	// console.log('data.photographers is', data.photographers); // datas of 6 photographers
-	// console.log(tagsList); // array tags for for each photographer
-	// console.log(allPhotographersProfiles); // datas of 6 photographers
-	// console.log(photographers.tags);
 });
 
 //==================================================================================================
@@ -93,10 +84,8 @@ function renderPhotographersCards() {
             `;
 	});
 	containerPhotographersEl.innerHTML = newPhotographer;
-	// console.log(containerPhotographersEl);
 
 	filterBytagsCards();
 
 	filterByTagsNav(activeTag);
-	// console.log(activeTag);
 }
