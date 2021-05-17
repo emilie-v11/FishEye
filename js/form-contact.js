@@ -256,7 +256,6 @@ function closemodalSuccess() {
 	mainEl.ariaHidden = 'false';
 	modalBgEl.ariaHidden = 'true';
 	modalSuccessEl.ariaHidden = 'true';
-	modalSuccessEl.ariaHidden = 'true';
 	modalSuccessEl.style.display = 'none';
 	modalFormEl.reset();
 	closeForm();

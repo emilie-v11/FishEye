@@ -8,8 +8,9 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.6);
-	backdrop-filter: blur(3px);
+	// background-color: rgba(0, 0, 0, 0.6);
+	// backdrop-filter: blur(3px);
+    background: rgba(196, 196, 196, 0.4);
 	// background-color: $color-white;
 	z-index: 99;
 }
@@ -51,7 +52,7 @@
 		@include large-only {
 			margin: 0;
 		}
-		& h3 {
+		& h2 {
 			@include typo-36px--400;
 			text-align: left;
 			padding-bottom: 26px;

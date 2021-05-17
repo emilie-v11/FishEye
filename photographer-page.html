@@ -86,65 +86,68 @@
         <!-- overlay form + form -->
         <div class="overlay-form hidden">
         </div>
-        <div id="modal-bg" class="modal-bg hidden" role="dialog" aria-labelledby="modal-bgLabel" aria-hidden="true">
-            <form id="modal-form" class="modal-form" name="contact" action="#" method="post" aria-hidden="true">
-                <button class="close-form" aria-label="Close Contact form">
-                    <img class="icon-times" src="./img/icon-times.png" alt="icon times">
+        <div id="modal-bg" class="modal-bg hidden" role="dialog" aria-hidden="true">
+            <form id="modal-form" class="modal-form" name="contact" action="#" method="post" aria-hidden="true"
+                aria-label="Contact me form" aria-labelledby="form-title">
+                <button class="close-form" aria-label="Close Contact me form">
+                    <img class="icon-times" src="./img/icon-times.png" alt="icon times" aria-hidden="true">
                 </button>
-                <h3 aria-labelledby="Contact me Mimi Keel">Contactez-moi <br />
+                <h2 id="form-title">Contactez-moi <br/>
                     <span class="photographer-name"></span>
-                </h3>
+                </h2>
 
                 <div class="form-data">
-                    <label for="first-name">Prénom</label>
+                    <label for="first-name" id="label-firstname">Prénom</label>
                     <br>
-                    <input id="first-name" class="text-control" type="text" name="first" aria-labelledby="First name" />
+                    <input id="first-name" class="text-control" type="text" name="first"
+                        aria-labelledby="label-firstname" />
                     <span role="alert" class="errors-messages error-first" aria-hidden="true">
                         Veuillez entrer un prénom valide, 2 caractères ou plus
                     </span>
                 </div>
 
                 <div class="form-data">
-                    <label for="last-name">Nom</label>
+                    <label for="last-name" id="label-lastname">Nom</label>
                     <br>
-                    <input id="last-name" class="text-control" type="text" name="last" aria-labelledby="Last name" />
+                    <input id="last-name" class="text-control" type="text" name="last"
+                        aria-labelledby="label-lastname" />
                     <span role="alert" class="errors-messages error-last" aria-hidden="true">
                         Veuillez entrer un nom valide, 2 caractères ou plus
                     </span>
                 </div>
 
                 <div class="form-data">
-                    <label for="email">Email</label>
+                    <label for="email" id="label-email">Email</label>
                     <br>
-                    <input id="email" class="text-control" name="email" aria-labelledby="email" />
+                    <input id="email" class="text-control" name="email" aria-labelledby="label-email" />
                     <span role="alert" class="errors-messages error-email" aria-hidden="true">
                         Veuillez entrer un email valide
                     </span>
                 </div>
 
                 <div class="form-data">
-                    <label for="message">Votre message</label>
+                    <label for="message" id="label-message">Votre message</label>
                     <br>
                     <textarea id="message" class="text-control" name="message"
-                        aria-labelledby="Your message"></textarea>
+                        aria-labelledby="label-message"></textarea>
                     <span role="alert" class="errors-messages error-message" aria-hidden="true">
                         Veuillez entrer un message entre 10 et 300 caractères
                     </span>
                 </div>
                 <div class="form-data__submit">
-                    <input class="btn-submit btn" type="submit" value="Envoyer" aria-labelledby="Send" />
+                    <input class="btn-submit btn" type="submit" value="Envoyer" aria-label="Send the form contact me" />
                 </div>
             </form>
             <div id="modal-success" class="modal-success" aria-hidden="true" tabindex="0">
                 <button class="close-success" aria-label="Close Contact form">
-                    <img class="icon-times" src="./img/icon-times.png" alt="icon times">
+                    <img class="icon-times" src="./img/icon-times.png" alt="icon times" aria-hidden="true">
                 </button>
                 <div class="success-content">
                     <p>
                         Votre message a bien été envoyé !
                     </p>
                     <div>
-                        <input class="btn btn-success" type="button" value="Fermer" />
+                        <input class="btn btn-success" type="button" value="Fermer" aria-label="Close Contact form" />
                     </div>
                 </div>
             </div>
@@ -152,7 +155,7 @@
 
         <!-- Lightbox -->
         <div class="overlay-lightbox hidden" aria-hidden="true">
-            <div class="lightbox " aria-label="image closeup view">
+            <div class="lightbox ">
                 <div id="lightbox__container" class="lightbox__container">
                     <div class="lightbox__content">
                     </div>
