@@ -69,32 +69,29 @@ const renderPhotographerWorks = data => {
 //==================================================================================================
 //  WORKS CARDS
 //==================================================================================================
+function mediaFactory(media) {
+	if (media.image !== undefined) {
+		return (newMedia = `
+            <img id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.image}' alt="${media['alt']}" role="button" tabindex="0" aria-label="${media['alt']}"/>
+        `);
+	} else {
+		return (newMedia = `
+            <video id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.video}' alt="${media['alt']}" role="button" tabindex="0" aria-label="${media['alt']}">
+                <p class="video-alt">${media['alt']}</p>
+            </video>
+        `);
+	}
+}
 
 function renderWorksCards() {
 	// Render Works Cards (Image - name - price - numb of like & heart icon)
 	let newWorkCard = '';
 
 	workById.forEach(work => {
-		function mediaFactory() {
-			if (work.image !== undefined) {
-				return (newMedia = `
-                <img id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.image}' alt="${work['alt']}" role="button" tabindex="0" aria-label="${work['alt']}"/>`);
-			} else {
-				return (newMedia = `<video id="${work['id']}" class="work__media__item" src='./img/photos/${ID}/${work.video}' alt="${work['alt']}" role="button" tabindex="0" aria-label="${work['alt']}">
-                        <p class="video-alt">${work['alt']}</p>
-                    </video>`);
-			}
-		}
-		/**
-         *  <a href="#" class="work__media" alt="${work['alt']}, open closeup view">
-                    ${mediaFactory()}
-            </a>
-         */
-
 		// Render newWorkCard
 		newWorkCard += `
             <article class="work">
-                ${mediaFactory()}
+                ${mediaFactory(work)}
                 <div class="work__infos">
                     <h2 class="work__infos__name">${work['alt']}</h2>
                     <div class="work__infos__likes">

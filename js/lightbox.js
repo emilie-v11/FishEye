@@ -23,7 +23,7 @@ const nextBtnLightboxEl = document.querySelector('.lightbox__next');
 // FACTORY MEDIA LIGHTBOX
 //==============================================
 
-function mediaFactoryLightbox() {
+function mediaFactoryLightbox(lightboxMedia) {
 	if (lightboxMedia.tagName == 'IMG') {
 		lightboxContentEl.innerHTML = `<img class="lightbox__content__media" src="${lightboxMedia.src}" alt="${lightboxMedia.alt}, closeup view" tabindex="0">`;
 		lightboxHeadingEl.innerHTML = `${lightboxMedia.alt}`;
