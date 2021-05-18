@@ -69,12 +69,12 @@ const renderPhotographerWorks = data => {
 function mediaFactory(media) {
 	if (media.image !== undefined) {
 		return (newMedia = `
-            <img id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.image}' alt="${media['alt']}" role="button" tabindex="0" aria-label="${media['alt']}"/>
+            <img id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.image}' alt="${media['alt']}" role="button" tabindex="0" aria-label="photo s'appelant: ${media['alt']}"/>
         `);
 	} else {
 		return (newMedia = `
-            <video id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.video}' alt="${media['alt']}" role="button" tabindex="0" aria-label="${media['alt']}">
-                <p class="video-alt">${media['alt']}</p>
+            <video id="${media['id']}" class="work__media__item" src='./img/photos/${ID}/${media.video}' role="button" tabindex="0" aria-label="video s'appelant: ${media['alt']}">
+                <p class="alt-video">${media['alt']}</p>
             </video>
         `);
 	}

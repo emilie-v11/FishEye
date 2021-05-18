@@ -25,10 +25,12 @@ const nextBtnLightboxEl = document.querySelector('.lightbox__next');
 
 function mediaFactoryLightbox(lightboxMedia) {
 	if (lightboxMedia.tagName == 'IMG') {
-		lightboxContentEl.innerHTML = `<img class="lightbox__content__media" src="${lightboxMedia.src}" alt="${lightboxMedia.alt}, closeup view" tabindex="0">`;
+		lightboxContentEl.innerHTML = `<img class="lightbox__content__media" src="${lightboxMedia.src}" aria-label="photo s'appelant: ${lightboxMedia.alt}, closeup view" alt="${lightboxMedia.alt}, closeup view" tabindex="0">`;
 		lightboxHeadingEl.innerHTML = `${lightboxMedia.alt}`;
 	} else {
-		lightboxContentEl.innerHTML = `<video class="lightbox__content__media" src="${lightboxMedia.src}" type="video/mp4" controls aria-label="${lightboxMedia['aria-label']}" tabindex="0"></video>`;
+		lightboxContentEl.innerHTML = `<video class="lightbox__content__media" src="${lightboxMedia.src}" type="video/mp4" controls aria-label="video s'appelant: ${lightboxMedia.textContent}" tabindex="0">
+        <p class="alt-video"> ${lightboxMedia.textContent}</p>
+        </video>`;
 		lightboxHeadingEl.textContent = `${lightboxMedia.textContent}`;
 	}
 }

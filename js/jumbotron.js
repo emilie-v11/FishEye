@@ -60,7 +60,7 @@ const renderJumbotron = data => {
                 ${newLiTags}
             </ul>
             <div class="photographers__portrait small">
-                <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="${photographer.name}" aria-label=""/>
+                <img class="photographers__portrait small ${photographer.id}" src='./img/photos/PhotographersIDPhotos/${photographer.portrait}' alt="portrait de ${photographer.name}" aria-label="portrait de ${photographer.name}"/>
             </div>
         </section>
 	    `;
