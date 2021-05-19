@@ -34,7 +34,7 @@
         <main id="main" class="photographer-page" aria-hidden="false">
             <div class="photographer-presentation">
                 <!-- jumbotron -->
-                <div class="container-jumbotron"></div>
+                <div class="container-jumbotron" role="region"></div>
                 <button class="btn-contact btn" aria-label="Contact me">Contactez-moi</button>
 
                 <!-- aside -->
@@ -100,7 +100,7 @@
                     <label for="first-name" id="label-firstname">Prénom</label>
                     <br>
                     <input id="first-name" class="text-control" type="text" name="first"
-                        aria-labelledby="label-firstname" />
+                        aria-labelledby="label-firstname" aria-required="true"/>
                     <span role="alert" class="errors-messages error-first" aria-hidden="true">
                         Veuillez entrer un prénom valide, 2 caractères ou plus
                     </span>
@@ -110,7 +110,7 @@
                     <label for="last-name" id="label-lastname">Nom</label>
                     <br>
                     <input id="last-name" class="text-control" type="text" name="last"
-                        aria-labelledby="label-lastname" />
+                        aria-labelledby="label-lastname" aria-required="true"/>
                     <span role="alert" class="errors-messages error-last" aria-hidden="true">
                         Veuillez entrer un nom valide, 2 caractères ou plus
                     </span>
@@ -119,7 +119,7 @@
                 <div class="form-data">
                     <label for="email" id="label-email">Email</label>
                     <br>
-                    <input id="email" class="text-control" name="email" aria-labelledby="label-email" />
+                    <input id="email" class="text-control" name="email" aria-labelledby="label-email" aria-required="true"/>
                     <span role="alert" class="errors-messages error-email" aria-hidden="true">
                         Veuillez entrer un email valide
                     </span>
@@ -129,7 +129,7 @@
                     <label for="message" id="label-message">Votre message</label>
                     <br>
                     <textarea id="message" class="text-control" name="message"
-                        aria-labelledby="label-message"></textarea>
+                        aria-labelledby="label-message" aria-required="true"></textarea>
                     <span role="alert" class="errors-messages error-message" aria-hidden="true">
                         Veuillez entrer un message entre 10 et 300 caractères
                     </span>
@@ -157,7 +157,7 @@
 
         <!-- Lightbox -->
         <div class="overlay-lightbox hidden" aria-hidden="true">
-            <div class="lightbox ">
+            <div class="lightbox " role="dialog">
                 <div id="lightbox__container" class="lightbox__container">
                     <div class="lightbox__content">
                         <!-- lightbox gallery -->
