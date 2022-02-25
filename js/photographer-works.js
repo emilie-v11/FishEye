@@ -37,7 +37,7 @@ const datasPhotographerPage = Utils.getAllDatas(URL).then(data =>
 	renderPhotographerWorks(data)
 );
 
-console.log(ID);
+// console.log(ID);
 //==================================================================================================
 //  Render Photographer Works
 //==================================================================================================

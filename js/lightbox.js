@@ -43,7 +43,7 @@ function setActiveMedia(image) {
 	lightboxMedia = image; //e.currentTarget; // e.target
 	activeMedia = workMediaItemsArray.indexOf(lightboxMedia);
 	mediaFactoryLightbox(lightboxMedia);
-	console.log(image, activeMedia);
+	// console.log(image, activeMedia);
 }
 
 //==============================================
@@ -57,7 +57,7 @@ function trapFocusLightbox() {
 	focusableContent = modal.querySelectorAll(focusableElements);
 	lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
 	trapFocus();
-	console.log(firstFocusableElement, focusableContent, lastFocusableElement);
+	// console.log(firstFocusableElement, focusableContent, lastFocusableElement);
 }
 
 function nextMedia() {
