@@ -114,7 +114,7 @@ function renderWorksCards() {
 	let workMediaItemsEl = document.querySelectorAll('.work__media__item');
 
 	workMediaItemsArray = Array.from(workMediaItemsEl);
-	console.log(workMediaItemsArray);
+	// console.log(workMediaItemsArray);
 
 	workMediaItemsArray.forEach((image, index) => {
 		image.addEventListener('click', () => {
